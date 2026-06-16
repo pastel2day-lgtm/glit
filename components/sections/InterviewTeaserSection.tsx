@@ -4,8 +4,8 @@ import Diamond from '@/components/ui/Diamond'
 import FadeUp from '@/components/ui/FadeUp'
 
 const interviews = [
-  { name: '박수지', role: '에세이스트', subject: '불완전한 문장이 더 솔직합니다' },
-  { name: '권민혁', role: '시인', subject: '시는 침묵으로 열립니다' },
+  { name: '권민혁', role: '에세이스트', subject: '불완전한 문장이 더 솔직합니다' },
+  { name: '박수지', role: '시인', subject: '시는 침묵으로 열립니다' },
   { name: '김유인', role: '독립출판 작가', subject: '작은 이름을 위한 글' },
 ]
 

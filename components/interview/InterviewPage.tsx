@@ -36,7 +36,7 @@ const featured = {
 const interviews = [
   {
     issue: 'Vol.02',
-    name: '박수지',
+    name: '권민혁',
     role: '에세이스트',
     subject: '불완전한 문장이 더 솔직합니다',
     pullQuote: '사람의 감정은 원래 불완전하니까요.',
@@ -48,7 +48,7 @@ const interviews = [
   },
   {
     issue: 'Vol.03',
-    name: '권민혁',
+    name: '박수지',
     role: '시인',
     subject: '시는 침묵으로 씁니다',
     pullQuote: '행간의 여백이 독자의 마음을 채웁니다.',

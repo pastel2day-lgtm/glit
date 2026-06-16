@@ -13,6 +13,9 @@ export default function Home() {
       <form name="glit-subscribe" data-netlify="true" className="hidden">
         <input type="email" name="email" />
       </form>
+      <form name="glit-diagnosis-apply" data-netlify="true" className="hidden">
+        <input type="hidden" name="form-name" value="glit-diagnosis-apply" />
+      </form>
       <Navbar />
       <HeroSection />
       <ConceptSection />

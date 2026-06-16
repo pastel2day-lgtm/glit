@@ -11,7 +11,7 @@ const featured = {
   author: '김서연',
   authorRole: '에디터',
   readTime: '6분',
-  image: 'https://images.unsplash.com/photo-1501139083538-0139583c060f?w=1200&h=780&fit=crop&q=85',
+  image: '/images/glit-rain-essay.png',
 }
 
 const cards = [
@@ -21,7 +21,7 @@ const cards = [
     title: '아무도 묻지 않는 것들에 대하여',
     excerpt: '사소해서 지나친 질문들이 어느 날 가장 오래 남는 문장이 되는 순간.',
     readTime: '3분',
-    image: 'https://images.unsplash.com/photo-1517842645767-c639042777db?w=720&h=520&fit=crop&q=85',
+    image: '/images/glit-editorial-still-life.png',
   },
   {
     category: '감상',
@@ -29,7 +29,7 @@ const cards = [
     title: '오늘과 어제 사이에서',
     excerpt: '매일의 경계 위에서 우리는 무언가를 놓고, 또 무언가를 안고 살아간다.',
     readTime: '4분',
-    image: 'https://images.unsplash.com/photo-1474540412665-1cdae210ae6b?w=720&h=520&fit=crop&q=85',
+    image: '/images/glit-writer-studio.png',
   },
 ]
 

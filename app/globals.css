@@ -13,8 +13,19 @@ body {
     'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
   background-color: #f4ecdd;
   color: #2e2b28;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 * {
   box-sizing: border-box;
+}
+
+::selection {
+  background: rgba(217, 119, 78, 0.24);
+  color: #2e2b28;
+}
+
+img {
+  display: block;
 }

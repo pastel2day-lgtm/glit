@@ -35,7 +35,7 @@ export default function InterviewTeaserSection() {
             <div className="relative border border-ink/10 bg-ivory/55 p-3">
               <div className="aspect-[4/3] overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=900&h=680&fit=crop&q=85"
+                  src="/images/glit-writer-studio.png"
                   alt="인터뷰이 초상"
                   className="h-full w-full object-cover sepia-[0.14] saturate-[0.82] transition-transform duration-700 group-hover:scale-[1.035]"
                 />

@@ -291,10 +291,10 @@ export default function DiagnosisQuiz() {
             </p>
 
             <a
-              href="/#join"
+              href="/diagnosis/apply"
               className="inline-block bg-coral text-white px-8 py-4 rounded-full text-sm font-medium hover:bg-coral/90 transition-colors mb-5"
             >
-              전체 분석 결과 받아보기 →
+              진단 신청서 작성하기 →
             </a>
 
             <br />

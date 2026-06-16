@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Diamond from '@/components/ui/Diamond'
 
 const links = [
@@ -14,70 +14,75 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60)
+    const onScroll = () => setScrolled(window.scrollY > 40)
     window.addEventListener('scroll', onScroll, { passive: true })
+    onScroll()
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
   return (
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-ivory/95 backdrop-blur-sm border-b border-ink/10' : ''
+        scrolled ? 'border-b border-ink/8 bg-ivory/88 backdrop-blur-md' : ''
       }`}
     >
-      <nav className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="#home" className="flex items-center gap-2 group">
-          <Diamond className="w-4 h-4 text-coral group-hover:scale-110 transition-transform duration-200" />
-          <span className="font-bold text-xl text-ink tracking-tight">글릿</span>
+      <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+        <a href="#home" className="group flex items-center gap-2" aria-label="글릿 홈">
+          <Diamond className="h-4 w-4 text-coral transition-transform duration-200 group-hover:scale-110" />
+          <span className="text-xl font-bold tracking-[-0.02em] text-ink">글릿</span>
         </a>
 
-        <div className="hidden md:flex items-center gap-8">
-          {links.map((l) => (
+        <div className="hidden items-center gap-8 md:flex">
+          {links.map((link) => (
             <a
-              key={l.href}
-              href={l.href}
-              className="text-sub hover:text-coral transition-colors text-sm font-medium"
+              key={link.href}
+              href={link.href}
+              className="text-sm font-medium text-sub transition-colors hover:text-coral"
             >
-              {l.label}
+              {link.label}
             </a>
           ))}
         </div>
 
         <a
           href="#join"
-          className="hidden md:inline-block bg-coral text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-coral/90 transition-colors"
+          className="hidden rounded-full bg-coral px-5 py-2.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-ink md:inline-flex"
         >
           참여하기
         </a>
 
         <button
-          className="md:hidden text-ink p-1"
-          onClick={() => setMenuOpen(!menuOpen)}
+          type="button"
+          className="grid h-10 w-10 place-items-center rounded-full border border-ink/10 text-ink md:hidden"
+          onClick={() => setMenuOpen((open) => !open)}
           aria-label="메뉴 열기"
+          aria-expanded={menuOpen}
         >
-          <span className="text-xl leading-none">{menuOpen ? '✕' : '☰'}</span>
+          <span className="text-lg leading-none">{menuOpen ? '×' : '☰'}</span>
         </button>
       </nav>
 
       {menuOpen && (
-        <div className="md:hidden bg-ivory border-t border-ink/10 px-6 py-5 flex flex-col gap-4">
-          {links.map((l) => (
+        <div className="border-t border-ink/10 bg-ivory px-5 py-5 md:hidden">
+          <div className="flex flex-col gap-4">
+            {links.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                className="text-base font-medium text-sub transition-colors hover:text-coral"
+              >
+                {link.label}
+              </a>
+            ))}
             <a
-              key={l.href}
-              href={l.href}
+              href="#join"
               onClick={() => setMenuOpen(false)}
-              className="text-sub hover:text-coral transition-colors font-medium"
+              className="rounded-full bg-coral px-5 py-3 text-center text-sm font-semibold text-white"
             >
-              {l.label}
+              참여하기
             </a>
-          ))}
-          <a
-            href="#join"
-            onClick={() => setMenuOpen(false)}
-            className="bg-coral text-white px-5 py-2.5 rounded-full text-sm font-medium text-center hover:bg-coral/90 transition-colors"
-          >
-            참여하기
-          </a>
+          </div>
         </div>
       )}
     </header>

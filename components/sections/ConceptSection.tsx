@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import Diamond from '@/components/ui/Diamond'
 import FadeUp from '@/components/ui/FadeUp'
 
@@ -22,7 +22,7 @@ const concepts = [
     label: '삶',
     eng: 'Life',
     text: '가장 보통의 시간이 가장 아름다운 소재가 된다.',
-    desc: '특별하지 않아도 좋습니다. 오늘의 산책, 오래 머문 생각, 작은 다정함이 글릿의 재료입니다.',
+    desc: '특별하지 않아도 좋습니다. 오늘의 산책, 오래 머문 생각, 작은 다정함이 글잇의 재료입니다.',
   },
 ]
 
@@ -38,7 +38,7 @@ export default function ConceptSection() {
             </h2>
           </div>
           <p className="self-end text-sm leading-7 text-sub md:text-right">
-            글릿이 믿는 세 가지. 쓰고, 읽고, 살아가는 일만으로도 충분히 빛나는 사람들을 위한 기준입니다.
+            글잇이 믿는 세 가지. 쓰고, 읽고, 살아가는 일만으로도 충분히 빛나는 사람들을 위한 기준입니다.
           </p>
         </div>
       </FadeUp>

@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import Diamond from '@/components/ui/Diamond'
 import FadeUp from '@/components/ui/FadeUp'
 
@@ -29,7 +29,7 @@ export default function AboutSection() {
           <div className="mt-12 grid gap-12 border-t border-ink/10 pt-12 md:grid-cols-[1fr_18rem]">
             <div className="space-y-6">
               <p className="text-lg leading-9 text-ink/76">
-                글릿은 빛나는 글을 수집하는 에디토리얼 공간입니다. 쓰고 읽고 살아가는
+                글잇은 빛나는 글을 수집하는 에디토리얼 공간입니다. 쓰고 읽고 살아가는
                 일의 태도를 함께 찾아가며, 작은 문장이 하루를 바꾸는 순간을 기록합니다.
               </p>
               <p className="text-base leading-8 text-sub">

@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import { useState } from 'react'
 import Diamond from '@/components/ui/Diamond'
 
@@ -268,7 +268,7 @@ export default function DiagnosisQuiz() {
       <header className="px-6 py-4 flex items-center justify-between border-b border-ink/8 bg-ivory/90 backdrop-blur-sm sticky top-0 z-10">
         <a href="/" className="flex items-center gap-2">
           <Diamond className="w-4 h-4 text-coral" />
-          <span className="text-sm font-bold tracking-tight">글릿</span>
+          <span className="text-sm font-bold tracking-tight">글잇</span>
         </a>
         {stage === 'quiz' && (
           <span className="text-xs tracking-widest uppercase text-sub/40">
@@ -296,7 +296,7 @@ export default function DiagnosisQuiz() {
             </p>
             <p className="text-sub/60 text-sm leading-relaxed mb-8">
               솔직하게, 가장 먼저 떠오르는 답을 선택하세요.<br />
-              결과는 글릿 뉴스레터에서 전체 분석으로 받아볼 수 있어요.
+              결과는 글잇 뉴스레터에서 전체 분석으로 받아볼 수 있어요.
             </p>
 
             <div className="flex justify-center gap-3 mb-10 flex-wrap">
@@ -316,7 +316,7 @@ export default function DiagnosisQuiz() {
 
             <div className="mt-8">
               <a href="/" className="text-xs text-sub/40 hover:text-coral transition-colors">
-                ← 글릿으로 돌아가기
+                ← 글잇으로 돌아가기
               </a>
             </div>
           </div>
@@ -452,7 +452,7 @@ export default function DiagnosisQuiz() {
                 <p className="text-xs text-sub/50 tracking-widest uppercase mb-3">글쓰기 스타일 분석</p>
                 <p className="text-sub text-sm leading-relaxed mb-6">{result.writingStyle}</p>
 
-                <p className="text-xs text-sub/50 tracking-widest uppercase mb-3">추천 글릿 콘텐츠</p>
+                <p className="text-xs text-sub/50 tracking-widest uppercase mb-3">추천 글잇 콘텐츠</p>
                 <ul className="space-y-2">
                   {result.recommendedContent.map((c) => (
                     <li key={c} className="flex items-center gap-2 text-sm text-sub">
@@ -461,9 +461,9 @@ export default function DiagnosisQuiz() {
                   ))}
                 </ul>
 
-                <p className="text-xs text-sub/50 tracking-widest uppercase mt-6 mb-3">나와 잘 맞는 글릿 작가 유형</p>
+                <p className="text-xs text-sub/50 tracking-widest uppercase mt-6 mb-3">나와 잘 맞는 글잇 작가 유형</p>
                 <p className="text-sub text-sm leading-relaxed blur-[6px] select-none">
-                  글릿 인터뷰에서 만난 {result.code} 작가들과 당신의 글쓰기 습관을 비교해보세요. 당신만의 언어가 어디서 빛나는지 발견할 수 있을 거예요.
+                  글잇 인터뷰에서 만난 {result.code} 작가들과 당신의 글쓰기 습관을 비교해보세요. 당신만의 언어가 어디서 빛나는지 발견할 수 있을 거예요.
                 </p>
               </div>
 
@@ -502,7 +502,7 @@ export default function DiagnosisQuiz() {
       <footer className="px-6 py-5 text-center border-t border-ink/8">
         <div className="flex items-center justify-center gap-2 text-sub/35 text-xs">
           <Diamond className="w-3 h-3 text-coral/50" />
-          <span>글릿 · Gleam it, Glit!</span>
+          <span>글잇 · Gleam it, Glit!</span>
         </div>
       </footer>
     </div>

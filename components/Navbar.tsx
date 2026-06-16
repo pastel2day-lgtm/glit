@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import { useEffect, useState } from 'react'
 import Diamond from '@/components/ui/Diamond'
 
@@ -27,9 +27,9 @@ export default function Navbar() {
       }`}
     >
       <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-        <a href="#home" className="group flex items-center gap-2" aria-label="글릿 홈">
+        <a href="#home" className="group flex items-center gap-2" aria-label="글잇 홈">
           <Diamond className="h-4 w-4 text-coral transition-transform duration-200 group-hover:scale-110" />
-          <span className="text-xl font-bold tracking-[-0.02em] text-ink">글릿</span>
+          <span className="text-xl font-bold tracking-[-0.02em] text-ink">글잇</span>
         </a>
 
         <div className="hidden items-center gap-8 md:flex">

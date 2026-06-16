@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import { useState } from 'react'
 import Diamond from '@/components/ui/Diamond'
 import FadeUp from '@/components/ui/FadeUp'
@@ -36,7 +36,7 @@ export default function JoinSection() {
             기다리고 있어요
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-base leading-8 text-sub md:text-lg">
-            글릿은 쓰는 사람들의 공간입니다. 매주 발행되는 에디토리얼 소식을 받고,
+            글잇은 쓰는 사람들의 공간입니다. 매주 발행되는 에디토리얼 소식을 받고,
             직접 글을 보내 함께 만들어가요.
           </p>
         </FadeUp>
@@ -46,7 +46,7 @@ export default function JoinSection() {
             {submitted ? (
               <div className="px-4 py-8">
                 <Diamond className="mx-auto mb-4 h-5 w-5 text-coral" />
-                <p className="text-xl font-black text-ink">글릿 소식을 받을 준비가 되었어요.</p>
+                <p className="text-xl font-black text-ink">글잇 소식을 받을 준비가 되었어요.</p>
                 <p className="mt-2 text-sm text-sub">다음 에디토리얼에서 만나요.</p>
               </div>
             ) : (
@@ -99,7 +99,7 @@ export default function JoinSection() {
           <footer className="mt-16 border-t border-ink/10 pt-8">
             <div className="mb-2 flex items-center justify-center gap-2 text-sm font-semibold text-sub">
               <Diamond className="h-3 w-3 text-coral" />
-              <span>글릿 · Gleam it, Glit!</span>
+              <span>글잇 · Gleam it, Glit!</span>
             </div>
             <p className="text-xs text-sub/45">글을 쓰고 읽고 사는 모든 이를 위한 공간</p>
             <a

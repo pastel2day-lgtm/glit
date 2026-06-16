@@ -1,12 +1,12 @@
-/* eslint-disable @next/next/no-img-element */
+﻿/* eslint-disable @next/next/no-img-element */
 'use client'
 import Diamond from '@/components/ui/Diamond'
 import FadeUp from '@/components/ui/FadeUp'
 
 const interviews = [
-  { name: '박지민', role: '에세이스트', subject: '불완전한 문장이 더 솔직합니다' },
-  { name: '김여현', role: '시인', subject: '시는 침묵으로 열립니다' },
-  { name: '최수아', role: '독립출판 작가', subject: '작은 이름을 위한 글' },
+  { name: '박수지', role: '에세이스트', subject: '불완전한 문장이 더 솔직합니다' },
+  { name: '권민혁', role: '시인', subject: '시는 침묵으로 열립니다' },
+  { name: '김유인', role: '독립출판 작가', subject: '작은 이름을 위한 글' },
 ]
 
 export default function InterviewTeaserSection() {
@@ -35,7 +35,7 @@ export default function InterviewTeaserSection() {
             <div className="relative border border-ink/10 bg-ivory/55 p-3">
               <div className="aspect-[4/3] overflow-hidden">
                 <img
-                  src="/images/glit-writer-studio.png"
+                  src="/images/interview-korean-featured.png"
                   alt="인터뷰이 초상"
                   className="h-full w-full object-cover sepia-[0.14] saturate-[0.82] transition-transform duration-700 group-hover:scale-[1.035]"
                 />
@@ -45,7 +45,7 @@ export default function InterviewTeaserSection() {
                 <p className="text-2xl font-black leading-snug text-white">
                   "완성하지 않아도 괜찮아요."
                 </p>
-                <p className="mt-2 text-sm text-white/72">이하루 · 소설가</p>
+                <p className="mt-2 text-sm text-white/72">문지희 · 소설가</p>
               </div>
             </div>
           </a>
@@ -59,11 +59,11 @@ export default function InterviewTeaserSection() {
                 <br />
                 기다린 사람에게는 정확히 도착해요."
               </p>
-              <footer className="mt-4 text-sm text-sub">이하루, 소설가</footer>
+              <footer className="mt-4 text-sm text-sub">문지희, 소설가</footer>
             </blockquote>
 
             <p className="mt-7 max-w-2xl text-sm leading-7 text-sub md:text-base">
-              글릿 인터뷰는 글을 쓰는 사람들의 내면을 기록합니다. 완벽한 성공담이 아니라,
+              글잇 인터뷰는 글을 쓰는 사람들의 내면을 기록합니다. 완벽한 성공담이 아니라,
               지금도 쓰고 있는 사람들의 온도와 리듬을 묻습니다.
             </p>
 

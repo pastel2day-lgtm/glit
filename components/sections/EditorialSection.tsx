@@ -4,121 +4,115 @@ import FadeUp from '@/components/ui/FadeUp'
 
 const featured = {
   category: '에세이',
-  issue: 'Vol.04',
-  title: '비 오는 날, 이 글이 필요한 이유',
+  issue: 'Vol.01',
+  title: '비 오는 날, 왜 글이 더 필요해질까',
   excerpt:
-    '창밖으로 빗소리가 들릴 때면 꼭 글을 쓰고 싶어진다. 오늘 같은 날, 단 한 줄이라도 적어두는 것이 얼마나 중요한지에 대해 이야기하려 한다.',
+    '창밖으로 빗소리가 들리는 오후에는 꼭 적고 싶은 마음이 생긴다. 흐린 날의 문장이 우리를 조금 더 투명하게 만드는 이유.',
   author: '김서연',
   authorRole: '에디터',
   readTime: '6분',
-  image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=1200&h=700&fit=crop&q=80',
+  image: 'https://images.unsplash.com/photo-1501139083538-0139583c060f?w=1200&h=780&fit=crop&q=85',
 }
 
 const cards = [
   {
     category: '일상',
-    issue: 'Vol.04',
+    issue: 'Vol.01',
     title: '아무도 묻지 않는 것들에 대하여',
-    excerpt: '당신의 하루에도 아무도 묻지 않는 것들이 분명 있을 것이다.',
+    excerpt: '사소해서 지나친 질문들이 어느 날 가장 오래 남는 문장이 되는 순간.',
     readTime: '3분',
-    image: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=700&h=460&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1517842645767-c639042777db?w=720&h=520&fit=crop&q=85',
   },
   {
-    category: '단상',
-    issue: 'Vol.04',
+    category: '감상',
+    issue: 'Vol.01',
     title: '오늘과 어제 사이에서',
-    excerpt: '매일의 경계. 우리는 그 사이에서 무언가를 잃고, 또 무언가를 얻으며 살아간다.',
+    excerpt: '매일의 경계 위에서 우리는 무언가를 놓고, 또 무언가를 안고 살아간다.',
     readTime: '4분',
-    image: 'https://images.unsplash.com/photo-1476820865390-c52aeebb9891?w=700&h=460&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1474540412665-1cdae210ae6b?w=720&h=520&fit=crop&q=85',
   },
 ]
 
 export default function EditorialSection() {
   return (
-    <section id="archive" className="bg-ivory border-t border-ink/8">
-      {/* Header */}
+    <section id="archive" className="border-t border-ink/10 bg-[#f8f1e7]">
       <FadeUp>
-        <div className="px-6 md:px-12 py-10 border-b border-ink/8 flex items-end justify-between gap-4">
+        <div className="mx-auto flex max-w-6xl items-end justify-between gap-5 border-b border-ink/10 px-5 py-12 md:px-8">
           <div>
-            <p className="text-coral text-xs font-medium tracking-widest uppercase mb-2">Editorial</p>
-            <h2 className="text-4xl md:text-6xl font-bold text-ink leading-tight tracking-tight">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.26em] text-coral">Editorial</p>
+            <h2 className="text-4xl font-black leading-none tracking-[-0.035em] text-ink md:text-7xl">
               This Issue
             </h2>
           </div>
-          <p className="hidden md:block text-sub/50 text-xs tracking-wider pb-1 font-mono">Vol.04 · 2026</p>
+          <p className="hidden pb-1 font-mono text-xs uppercase tracking-[0.2em] text-sub/45 md:block">
+            Vol.01 · 2026
+          </p>
         </div>
       </FadeUp>
 
-      <div className="px-6 md:px-12 py-14 max-w-6xl mx-auto">
-        {/* Featured — full width horizontal */}
+      <div className="mx-auto max-w-6xl px-5 py-14 md:px-8">
         <FadeUp>
-          <article className="group grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-0 rounded-2xl overflow-hidden border border-ink/8 bg-white/50 hover:border-coral/20 hover:shadow-md transition-all duration-300 mb-8 cursor-pointer">
-            <div className="relative h-64 md:h-auto overflow-hidden">
+          <article className="group grid border border-ink/10 bg-ivory/70 shadow-[0_28px_70px_rgba(46,43,40,0.07)] transition-all hover:border-coral/35 md:grid-cols-[0.95fr_1.05fr]">
+            <div className="relative min-h-72 overflow-hidden md:min-h-[32rem]">
               <img
                 src={featured.image}
                 alt={featured.title}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                className="h-full w-full object-cover sepia-[0.1] saturate-[0.88] transition-transform duration-700 group-hover:scale-[1.035]"
               />
               <div className="absolute inset-0 bg-ink/10" />
-              <div className="absolute top-4 left-4">
-                <span className="text-xs text-white font-medium bg-coral/80 backdrop-blur-sm px-3 py-1.5 rounded-full">
-                  {featured.category}
-                </span>
-              </div>
+              <span className="absolute left-5 top-5 bg-coral px-3 py-1.5 text-xs font-semibold text-white">
+                {featured.category}
+              </span>
             </div>
-            <div className="p-8 md:p-10 flex flex-col justify-between">
+            <div className="flex flex-col justify-between p-7 md:p-10">
               <div>
-                <div className="flex items-center gap-3 mb-5">
-                  <span className="text-xs text-sub/50 font-mono">{featured.issue}</span>
-                  <span className="text-xs text-coral/60 font-medium border border-coral/20 px-2 py-0.5 rounded-full">
+                <div className="mb-8 flex items-center gap-3">
+                  <span className="font-mono text-xs text-sub/50">{featured.issue}</span>
+                  <span className="border border-coral/25 px-2.5 py-1 text-xs font-semibold text-coral">
                     Featured
                   </span>
                 </div>
-                <h3 className="text-2xl md:text-3xl font-bold text-ink leading-snug mb-4 group-hover:text-coral transition-colors duration-200">
+                <h3 className="max-w-xl text-3xl font-black leading-tight tracking-[-0.025em] text-ink transition-colors group-hover:text-coral md:text-5xl">
                   {featured.title}
                 </h3>
-                <p className="text-sub text-sm leading-relaxed mb-6">{featured.excerpt}</p>
+                <p className="mt-6 max-w-lg text-sm leading-7 text-sub md:text-base">{featured.excerpt}</p>
               </div>
-              <div className="flex items-center justify-between pt-4 border-t border-ink/8">
+              <div className="mt-10 flex items-center justify-between border-t border-ink/10 pt-5">
                 <div>
-                  <p className="text-ink text-sm font-medium">{featured.author}</p>
-                  <p className="text-sub/50 text-xs">{featured.authorRole} · {featured.readTime} 읽기</p>
+                  <p className="text-sm font-bold text-ink">{featured.author}</p>
+                  <p className="mt-1 text-xs text-sub/50">
+                    {featured.authorRole} · {featured.readTime} 읽기
+                  </p>
                 </div>
-                <span className="text-coral text-sm font-medium group-hover:translate-x-0.5 transition-transform inline-block">
-                  읽기 →
-                </span>
+                <span className="text-sm font-bold text-coral">읽기 →</span>
               </div>
             </div>
           </article>
         </FadeUp>
 
-        {/* Two-column cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {cards.map((item, i) => (
-            <FadeUp key={i} delay={i * 80 + 80}>
-              <article className="group bg-white/50 rounded-2xl overflow-hidden border border-ink/8 hover:border-coral/20 hover:shadow-sm transition-all duration-300 flex flex-col cursor-pointer">
-                <div className="relative h-52 overflow-hidden">
+        <div className="mt-6 grid gap-6 md:grid-cols-2">
+          {cards.map((item, index) => (
+            <FadeUp key={item.title} delay={index * 80 + 90}>
+              <article className="group grid min-h-full grid-cols-[9rem_1fr] border border-ink/10 bg-ivory/60 transition-all hover:border-coral/35 sm:grid-cols-[14rem_1fr]">
+                <div className="relative overflow-hidden">
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="h-full min-h-52 w-full object-cover sepia-[0.12] saturate-[0.85] transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-ink/10" />
-                  <span className="absolute top-4 left-4 text-xs text-white font-medium bg-coral/75 backdrop-blur-sm px-2.5 py-1 rounded-full">
-                    {item.category}
-                  </span>
                 </div>
-                <div className="p-6 flex flex-col flex-1">
-                  <span className="text-xs text-sub/40 font-mono mb-2">{item.issue}</span>
-                  <h3 className="text-lg font-bold text-ink leading-snug mb-3 group-hover:text-coral transition-colors duration-200 flex-1">
+                <div className="flex flex-col p-5">
+                  <div className="mb-4 flex items-center justify-between gap-3">
+                    <span className="text-xs font-semibold text-coral">{item.category}</span>
+                    <span className="font-mono text-xs text-sub/40">{item.issue}</span>
+                  </div>
+                  <h3 className="text-xl font-black leading-snug tracking-[-0.02em] text-ink transition-colors group-hover:text-coral">
                     {item.title}
                   </h3>
-                  <p className="text-sub text-sm leading-relaxed mb-4">{item.excerpt}</p>
-                  <div className="flex items-center justify-between pt-4 border-t border-ink/8">
-                    <span className="text-xs text-sub/40">{item.readTime} 읽기</span>
-                    <span className="text-coral text-sm font-medium group-hover:translate-x-0.5 transition-transform inline-block">
-                      읽기 →
-                    </span>
+                  <p className="mt-3 flex-1 text-sm leading-6 text-sub">{item.excerpt}</p>
+                  <div className="mt-5 flex items-center justify-between border-t border-ink/10 pt-4">
+                    <span className="text-xs text-sub/45">{item.readTime} 읽기</span>
+                    <span className="text-sm font-bold text-coral">읽기 →</span>
                   </div>
                 </div>
               </article>

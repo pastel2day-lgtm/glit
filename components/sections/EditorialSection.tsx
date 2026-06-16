@@ -12,6 +12,7 @@ const featured = {
   authorRole: '에디터',
   readTime: '6분',
   image: '/images/glit-rain-essay.png',
+  href: '/editorial/rain',
 }
 
 const cards = [
@@ -22,6 +23,7 @@ const cards = [
     excerpt: '사소해서 지나친 질문들이 어느 날 가장 오래 남는 문장이 되는 순간.',
     readTime: '3분',
     image: '/images/glit-editorial-still-life.png',
+    href: '/editorial/unasked',
   },
   {
     category: '감상',
@@ -30,6 +32,7 @@ const cards = [
     excerpt: '매일의 경계 위에서 우리는 무언가를 놓고, 또 무언가를 안고 살아간다.',
     readTime: '4분',
     image: '/images/glit-writer-studio.png',
+    href: '/editorial/between-days',
   },
 ]
 
@@ -52,6 +55,7 @@ export default function EditorialSection() {
 
       <div className="mx-auto max-w-6xl px-5 py-14 md:px-8">
         <FadeUp>
+          <a href={featured.href} className="block">
           <article className="group grid border border-ink/10 bg-ivory/70 shadow-[0_28px_70px_rgba(46,43,40,0.07)] transition-all hover:border-coral/35 md:grid-cols-[0.95fr_1.05fr]">
             <div className="relative min-h-72 overflow-hidden md:min-h-[32rem]">
               <img
@@ -88,12 +92,14 @@ export default function EditorialSection() {
               </div>
             </div>
           </article>
+          </a>
         </FadeUp>
 
         <div className="mt-6 grid gap-6 md:grid-cols-2">
           {cards.map((item, index) => (
             <FadeUp key={item.title} delay={index * 80 + 90}>
-              <article className="group grid min-h-full grid-cols-[9rem_1fr] border border-ink/10 bg-ivory/60 transition-all hover:border-coral/35 sm:grid-cols-[14rem_1fr]">
+              <a href={item.href} className="block min-h-full">
+          <article className="group grid min-h-full grid-cols-[9rem_1fr] border border-ink/10 bg-ivory/60 transition-all hover:border-coral/35 sm:grid-cols-[14rem_1fr]">
                 <div className="relative overflow-hidden">
                   <img
                     src={item.image}
@@ -116,6 +122,7 @@ export default function EditorialSection() {
                   </div>
                 </div>
               </article>
+              </a>
             </FadeUp>
           ))}
         </div>

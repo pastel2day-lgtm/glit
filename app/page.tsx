@@ -15,6 +15,16 @@ export default function Home() {
       </form>
       <form name="glit-diagnosis-apply" data-netlify="true" className="hidden">
         <input type="hidden" name="form-name" value="glit-diagnosis-apply" />
+        <input type="text" name="name" />
+        <input type="tel" name="contact" />
+        <input type="checkbox" name="privacy" />
+      </form>
+      <form name="glit-interview-apply" data-netlify="true" className="hidden">
+        <input type="hidden" name="form-name" value="glit-interview-apply" />
+        <input type="text" name="name" />
+        <input type="tel" name="phone" />
+        <input type="email" name="email" />
+        <input type="checkbox" name="privacy" />
       </form>
       <Navbar />
       <HeroSection />

@@ -1,6 +1,7 @@
 ﻿'use client'
 import { useState } from 'react'
 import Diamond from '@/components/ui/Diamond'
+import SiteFooter from '@/components/SiteFooter'
 
 type EssenceType = 'E' | 'T' | 'P' | 'I'
 type Stage = 'intro' | 'quiz' | 'result'
@@ -499,12 +500,7 @@ export default function DiagnosisQuiz() {
         )}
       </main>
 
-      <footer className="px-6 py-5 text-center border-t border-ink/8">
-        <div className="flex items-center justify-center gap-2 text-sub/35 text-xs">
-          <Diamond className="w-3 h-3 text-coral/50" />
-          <span>글잇 · Gleam it, Glit!</span>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   )
 }

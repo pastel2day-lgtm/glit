@@ -1,10 +1,12 @@
 ﻿'use client'
 import { useState } from 'react'
 import Diamond from '@/components/ui/Diamond'
+import SiteFooter from '@/components/SiteFooter'
 
 export default function DiagnosisApplyForm() {
   const [name, setName] = useState('')
   const [contact, setContact] = useState('')
+  const [privacy, setPrivacy] = useState(false)
   const [submitted, setSubmitted] = useState(false)
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -37,7 +39,7 @@ export default function DiagnosisApplyForm() {
             <p className="mb-3 text-sm uppercase tracking-[0.3em] text-coral/80">에센스 진단 신청</p>
             <h1 className="text-3xl font-black leading-tight">진단 신청서를 작성해주세요</h1>
             <p className="mt-3 text-sm leading-relaxed text-ivory/55">
-              성함과 연락처를 남겨주시면 일정 확인을 위해 빠르게 안내드릴게요.
+              성함과 연락처를 남겨주시면 영업일 기준 2~3일 안에 일정 확인을 위해 안내드릴게요.
             </p>
           </div>
 
@@ -91,6 +93,24 @@ export default function DiagnosisApplyForm() {
                 />
               </label>
 
+              <label className="flex items-start gap-2 text-xs leading-5 text-ivory/45">
+                <input
+                  type="checkbox"
+                  name="privacy"
+                  checked={privacy}
+                  onChange={(event) => setPrivacy(event.target.checked)}
+                  required
+                  className="mt-0.5 h-4 w-4 shrink-0 accent-coral"
+                />
+                <span>
+                  진단 일정 안내를 위해 입력 정보를 수집하는 것에 동의합니다. 자세한 내용은{' '}
+                  <a href="/privacy" className="font-semibold text-coral hover:text-ivory">
+                    개인정보처리방침
+                  </a>
+                  에서 확인할 수 있습니다.
+                </span>
+              </label>
+
               <button
                 type="submit"
                 className="w-full rounded-full bg-coral px-6 py-4 text-sm font-semibold text-ink transition hover:bg-coral/90"
@@ -101,6 +121,7 @@ export default function DiagnosisApplyForm() {
           )}
         </div>
       </main>
+      <SiteFooter tone="dark" />
     </div>
   )
 }

@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import Diamond from '@/components/ui/Diamond'
 import FadeUp from '@/components/ui/FadeUp'
+import SiteFooter from '@/components/SiteFooter'
 
 export default function JoinSection() {
   const [email, setEmail] = useState('')
@@ -77,7 +78,9 @@ export default function JoinSection() {
             )}
           </div>
 
-          <p className="mt-4 text-xs text-sub/45">스팸 없이, 글과 소식만 보내드립니다.</p>
+          <p className="mt-4 text-xs leading-6 text-sub/45">
+            매주 화요일 발행됩니다. 구독 신청 시 이메일 수신과 개인정보처리방침에 동의한 것으로 간주됩니다.
+          </p>
 
           <div className="my-9 flex items-center gap-4">
             <div className="h-px flex-1 bg-ink/10" />
@@ -95,22 +98,10 @@ export default function JoinSection() {
           </a>
         </FadeUp>
 
+      </div>
+      <div className="mx-auto mt-16 max-w-6xl">
         <FadeUp delay={220}>
-          <footer className="mt-16 border-t border-ink/10 pt-8">
-            <div className="mb-2 flex items-center justify-center gap-2 text-sm font-semibold text-sub">
-              <Diamond className="h-3 w-3 text-coral" />
-              <span>글잇 · Gleam it, Glit!</span>
-            </div>
-            <p className="text-xs text-sub/45">글을 쓰고 읽고 사는 모든 이를 위한 공간</p>
-            <a
-              href="https://instagram.com/gleamit_glit"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-3 inline-block text-xs font-semibold text-coral hover:text-ink"
-            >
-              @gleamit_glit
-            </a>
-          </footer>
+          <SiteFooter />
         </FadeUp>
       </div>
     </section>

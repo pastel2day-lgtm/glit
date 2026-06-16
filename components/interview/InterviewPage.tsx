@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Diamond from '@/components/ui/Diamond'
 import FadeUp from '@/components/ui/FadeUp'
+import SiteFooter from '@/components/SiteFooter'
 
 const featured = {
   issue: 'Vol.01',
@@ -35,18 +36,6 @@ const featured = {
 const interviews = [
   {
     issue: 'Vol.02',
-    name: '박수지',
-    role: '에세이스트',
-    subject: '불완전한 문장이 더 솔직합니다',
-    pullQuote: '사람의 감정은 원래 불완전하니까요.',
-    excerpt:
-      '"저는 문법적으로 완전한 문장보다 숨이 끊기는 문장을 더 좋아해요. 독자가 그 끊어짐에서 자신의 감정을 넣게 되거든요. 그게 글쓰기의 마법이라고 생각해요."',
-    image: '/images/interview-korean-essayist.png',
-    date: '2026년 2월',
-    readTime: '8분',
-  },
-  {
-    issue: 'Vol.03',
     name: '권민혁',
     role: '시인',
     subject: '시는 침묵으로 씁니다',
@@ -56,6 +45,18 @@ const interviews = [
     image: '/images/interview-korean-poet.png',
     date: '2026년 3월',
     readTime: '10분',
+  },
+  {
+    issue: 'Vol.03',
+    name: '박수지',
+    role: '에세이스트',
+    subject: '불완전한 문장이 더 솔직합니다',
+    pullQuote: '사람의 감정은 원래 불완전하니까요.',
+    excerpt:
+      '"저는 문법적으로 완전한 문장보다 숨이 끊기는 문장을 더 좋아해요. 독자가 그 끊어짐에서 자신의 감정을 넣게 되거든요. 그게 글쓰기의 마법이라고 생각해요."',
+    image: '/images/interview-korean-essayist.png',
+    date: '2026년 2월',
+    readTime: '8분',
   },
   {
     issue: 'Vol.04',
@@ -73,6 +74,23 @@ const interviews = [
 
 export default function InterviewPage() {
   const [expandedQ, setExpandedQ] = useState<number | null>(0)
+  const [form, setForm] = useState({ name: '', phone: '', email: '', privacy: false })
+  const [submitted, setSubmitted] = useState(false)
+
+  const handleInterviewSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const data = new FormData(event.currentTarget)
+
+    try {
+      await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(data as unknown as Record<string, string>).toString(),
+      })
+    } finally {
+      setSubmitted(true)
+    }
+  }
 
   return (
     <div className="min-h-screen bg-ivory text-ink">
@@ -268,32 +286,99 @@ export default function InterviewPage() {
 
       {/* ── CTA ── */}
       <FadeUp>
-        <section className="bg-salmon/30 py-20 px-6 text-center border-t border-ink/8">
-          <Diamond className="w-6 h-6 text-coral mx-auto mb-4" />
-          <h2 className="text-2xl md:text-3xl font-bold text-ink mb-3">
-            당신의 이야기도 글잇에 실릴 수 있어요
-          </h2>
-          <p className="text-sub text-base mb-8 max-w-sm mx-auto leading-relaxed">
-            글을 쓰는 사람이라면 누구든. 글잇에 당신의 이야기를 보내주세요.
-          </p>
-          <a
-            href="/#join"
-            className="inline-block bg-coral text-white px-8 py-4 rounded-full text-sm font-medium hover:bg-coral/90 transition-colors"
-          >
-            글잇에 참여하기 →
-          </a>
+        <section className="bg-salmon/30 py-20 px-6 border-t border-ink/8">
+          <div className="max-w-xl mx-auto text-center">
+            <Diamond className="w-6 h-6 text-coral mx-auto mb-4" />
+            <h2 className="text-2xl md:text-3xl font-bold text-ink mb-3">
+              당신의 이야기도 글잇에 실릴 수 있어요
+            </h2>
+            <p className="text-sub text-base mb-8 max-w-sm mx-auto leading-relaxed">
+              글을 쓰는 사람이라면 누구든. 인터뷰 참여를 신청해주세요. 영업일 기준 2~3일 안에 연락드립니다.
+            </p>
+
+            {submitted ? (
+              <div className="border border-coral/20 bg-ivory/55 px-6 py-8 text-center">
+                <Diamond className="w-4 h-4 text-coral mx-auto mb-3" />
+                <p className="text-ink text-lg font-bold">인터뷰 신청이 접수되었습니다</p>
+                <p className="text-sub text-sm mt-2 leading-relaxed">
+                  남겨주신 연락처로 확인 후 안내드릴게요.
+                </p>
+              </div>
+            ) : (
+              <form
+                name="glit-interview-apply"
+                method="POST"
+                data-netlify="true"
+                onSubmit={handleInterviewSubmit}
+                className="space-y-3 text-left"
+              >
+                <input type="hidden" name="form-name" value="glit-interview-apply" />
+                <label className="block">
+                  <span className="sr-only">이름</span>
+                  <input
+                    type="text"
+                    name="name"
+                    value={form.name}
+                    onChange={(event) => setForm((current) => ({ ...current, name: event.target.value }))}
+                    placeholder="이름"
+                    required
+                    className="w-full rounded-full border border-ink/15 bg-ivory/70 px-5 py-4 text-sm text-ink outline-none transition placeholder:text-sub/45 focus:border-coral"
+                  />
+                </label>
+                <label className="block">
+                  <span className="sr-only">전화번호</span>
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={form.phone}
+                    onChange={(event) => setForm((current) => ({ ...current, phone: event.target.value }))}
+                    placeholder="전화번호"
+                    required
+                    className="w-full rounded-full border border-ink/15 bg-ivory/70 px-5 py-4 text-sm text-ink outline-none transition placeholder:text-sub/45 focus:border-coral"
+                  />
+                </label>
+                <label className="block">
+                  <span className="sr-only">이메일</span>
+                  <input
+                    type="email"
+                    name="email"
+                    value={form.email}
+                    onChange={(event) => setForm((current) => ({ ...current, email: event.target.value }))}
+                    placeholder="이메일"
+                    required
+                    className="w-full rounded-full border border-ink/15 bg-ivory/70 px-5 py-4 text-sm text-ink outline-none transition placeholder:text-sub/45 focus:border-coral"
+                  />
+                </label>
+                <label className="flex items-start gap-2 px-1 text-xs leading-5 text-sub/55">
+                  <input
+                    type="checkbox"
+                    name="privacy"
+                    checked={form.privacy}
+                    onChange={(event) => setForm((current) => ({ ...current, privacy: event.target.checked }))}
+                    required
+                    className="mt-0.5 h-4 w-4 shrink-0 accent-coral"
+                  />
+                  <span>
+                    인터뷰 안내를 위해 입력 정보를 수집하는 것에 동의합니다. 자세한 내용은{' '}
+                    <a href="/privacy" className="font-semibold text-coral hover:text-ink">
+                      개인정보처리방침
+                    </a>
+                    에서 확인할 수 있습니다.
+                  </span>
+                </label>
+                <button
+                  type="submit"
+                  className="w-full rounded-full bg-coral px-8 py-4 text-sm font-semibold text-white transition-colors hover:bg-ink"
+                >
+                  인터뷰 참여 신청하기 →
+                </button>
+              </form>
+            )}
+          </div>
         </section>
       </FadeUp>
 
-      {/* ── FOOTER ── */}
-      <footer className="px-6 py-6 text-center border-t border-ink/8">
-        <div className="flex items-center justify-center gap-2 text-sub/40 text-xs">
-          <Diamond className="w-3 h-3 text-coral/50" />
-          <span>글잇 · Gleam it, Glit!</span>
-          <span className="text-ink/15">·</span>
-          <a href="/" className="hover:text-coral transition-colors">홈으로</a>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   )
 }

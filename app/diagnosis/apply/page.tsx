@@ -2,7 +2,7 @@
 import DiagnosisApplyForm from '@/components/diagnosis/DiagnosisApplyForm'
 
 export const metadata: Metadata = {
-  title: '에센스 진단 신청 · 글잇',
+  title: '에센스 진단 신청',
   description: '에센스 진단 신청서를 작성하고 일정 확인을 요청하세요.',
 }
 

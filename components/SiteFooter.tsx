@@ -23,9 +23,6 @@ export default function SiteFooter({ tone = 'light' }: SiteFooterProps) {
         </div>
 
         <div className={`flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs ${muted}`}>
-          <a href="mailto:hello@gleamit-glit.com" className={`transition-colors ${hover}`}>
-            hello@gleamit-glit.com
-          </a>
           <a
             href="https://instagram.com/gleamit_glit"
             target="_blank"

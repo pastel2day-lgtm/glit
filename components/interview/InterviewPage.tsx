@@ -36,18 +36,6 @@ const featured = {
 const interviews = [
   {
     issue: 'Vol.02',
-    name: '권민혁',
-    role: '시인',
-    subject: '시는 침묵으로 씁니다',
-    pullQuote: '행간의 여백이 독자의 마음을 채웁니다.',
-    excerpt:
-      '"시에서 가장 중요한 건 쓰인 것이 아니라 쓰이지 않은 것들이에요. 저는 항상 지우는 과정에서 시가 완성된다고 느낍니다. 쓰는 것보다 지우는 데 더 오래 걸려요."',
-    image: '/images/interview-korean-poet.png',
-    date: '2026년 3월',
-    readTime: '10분',
-  },
-  {
-    issue: 'Vol.03',
     name: '박수지',
     role: '에세이스트',
     subject: '불완전한 문장이 더 솔직합니다',
@@ -57,6 +45,18 @@ const interviews = [
     image: '/images/interview-korean-essayist.png',
     date: '2026년 2월',
     readTime: '8분',
+  },
+  {
+    issue: 'Vol.03',
+    name: '권민혁',
+    role: '시인',
+    subject: '시는 침묵으로 씁니다',
+    pullQuote: '행간의 여백이 독자의 마음을 채웁니다.',
+    excerpt:
+      '"시에서 가장 중요한 건 쓰인 것이 아니라 쓰이지 않은 것들이에요. 저는 항상 지우는 과정에서 시가 완성된다고 느낍니다. 쓰는 것보다 지우는 데 더 오래 걸려요."',
+    image: '/images/interview-korean-poet.png',
+    date: '2026년 3월',
+    readTime: '10분',
   },
   {
     issue: 'Vol.04',

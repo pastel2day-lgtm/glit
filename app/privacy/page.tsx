@@ -26,7 +26,7 @@ const sections = [
   },
   {
     title: '문의',
-    body: '개인정보 관련 문의와 정정, 삭제 요청은 hello@gleamit-glit.com 으로 보내주세요.',
+    body: '개인정보 관련 문의와 정정, 삭제 요청은 아래 신청 폼을 통해 연락주세요.',
   },
 ]
 

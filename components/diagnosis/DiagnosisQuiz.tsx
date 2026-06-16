@@ -139,24 +139,15 @@ export default function DiagnosisQuiz() {
   const progress = ((step + 1) / QUESTIONS.length) * 100
 
   return (
-    <div
-      className="min-h-screen flex flex-col"
-      style={{ background: '#16130f', color: '#f4ecdd', fontFamily: 'inherit' }}
-    >
+    <div className="min-h-screen flex flex-col bg-ivory text-ink">
       {/* Header */}
-      <header
-        className="px-6 py-5 flex items-center justify-between"
-        style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}
-      >
+      <header className="px-6 py-5 flex items-center justify-between border-b border-ink/8 bg-ivory/80 backdrop-blur-sm sticky top-0 z-10">
         <a href="/" className="flex items-center gap-2">
-          <span style={{ color: '#d9774e', display: 'flex' }}><Diamond className="w-4 h-4" /></span>
+          <Diamond className="w-4 h-4 text-coral" />
           <span className="text-sm font-bold tracking-tight">글릿</span>
         </a>
         {stage === 'quiz' && (
-          <span
-            className="hidden sm:block text-xs tracking-widest uppercase"
-            style={{ color: 'rgba(244,236,221,0.22)' }}
-          >
+          <span className="hidden sm:block text-xs tracking-widest uppercase text-sub/40">
             Digital Essence Diagnosis
           </span>
         )}
@@ -167,46 +158,37 @@ export default function DiagnosisQuiz() {
         {/* ── INTRO ── */}
         {stage === 'intro' && (
           <div className="text-center max-w-lg mx-auto">
-            <p
-              className="text-xs tracking-widest uppercase mb-6"
-              style={{ color: '#d9774e' }}
-            >
+            <div className="flex justify-center mb-6">
+              <Diamond className="w-8 h-8 text-coral" />
+            </div>
+            <p className="text-coral text-xs font-medium tracking-widest uppercase mb-5">
               Digital Essence Diagnosis
             </p>
-            <h1 className="text-3xl md:text-4xl font-bold leading-snug mb-6">
+            <h1 className="text-3xl md:text-4xl font-bold text-ink leading-snug mb-6">
               당신은 어떤 언어를<br />가진 사람인가요?
             </h1>
-            <p
-              className="text-base leading-relaxed mb-8"
-              style={{ color: 'rgba(244,236,221,0.45)' }}
-            >
+            <p className="text-sub text-base leading-relaxed mb-8">
               5가지 질문으로 나의 글쓰기 에센스 타입을 진단합니다.<br />
               솔직하게, 가장 먼저 떠오르는 답을 선택하세요.
             </p>
 
-            <div
-              className="flex justify-center gap-4 mb-10 flex-wrap text-xs"
-              style={{ color: 'rgba(244,236,221,0.22)' }}
-            >
+            <div className="flex justify-center gap-4 mb-10 flex-wrap">
               {['E형 · 온기', 'T형 · 명징', 'P형 · 깊이', 'I형 · 고요'].map((t) => (
-                <span key={t}>{t}</span>
+                <span key={t} className="text-xs text-sub/50 border border-ink/10 px-3 py-1 rounded-full">
+                  {t}
+                </span>
               ))}
             </div>
 
             <button
               onClick={() => setStage('quiz')}
-              className="px-8 py-4 rounded-full text-sm font-medium transition-all"
-              style={{ background: '#d9774e', color: '#fff' }}
+              className="bg-coral text-white px-8 py-4 rounded-full text-sm font-medium hover:bg-coral/90 transition-colors"
             >
               진단 시작하기
             </button>
 
             <div className="mt-8">
-              <a
-                href="/"
-                className="text-xs"
-                style={{ color: 'rgba(244,236,221,0.22)' }}
-              >
+              <a href="/" className="text-xs text-sub/40 hover:text-coral transition-colors">
                 ← 글릿으로 돌아가기
               </a>
             </div>
@@ -216,28 +198,21 @@ export default function DiagnosisQuiz() {
         {/* ── QUIZ ── */}
         {stage === 'quiz' && (
           <div className="w-full max-w-xl mx-auto">
-            {/* Step indicator */}
-            <p
-              className="text-xs tracking-widest uppercase mb-3"
-              style={{ color: 'rgba(244,236,221,0.22)' }}
-            >
-              DIGITAL ESSENCE DIAGNOSIS — STEP {step + 1} OF {QUESTIONS.length}
+            <p className="text-xs tracking-widest uppercase mb-3 text-sub/40">
+              STEP {step + 1} / {QUESTIONS.length}
             </p>
 
             {/* Progress bar */}
-            <div
-              className="h-px mb-10 rounded-full overflow-hidden"
-              style={{ background: 'rgba(255,255,255,0.07)' }}
-            >
+            <div className="h-0.5 mb-10 rounded-full overflow-hidden bg-ink/8">
               <div
-                className="h-full rounded-full transition-all duration-500"
-                style={{ width: `${progress}%`, background: '#d9774e' }}
+                className="h-full rounded-full bg-coral transition-all duration-500"
+                style={{ width: `${progress}%` }}
               />
             </div>
 
             {/* Question */}
             <h2
-              className="text-xl md:text-2xl font-bold leading-snug mb-8"
+              className="text-xl md:text-2xl font-bold text-ink leading-snug mb-8"
               style={{ whiteSpace: 'pre-line' }}
             >
               {QUESTIONS[step].title}
@@ -253,19 +228,14 @@ export default function DiagnosisQuiz() {
                     key={i}
                     onClick={() => handleSelect(option.type)}
                     disabled={!!selected}
-                    className="text-left px-5 py-4 rounded-xl text-sm leading-relaxed transition-all duration-200"
-                    style={{
-                      border: isChosen
-                        ? '1px solid #d9774e'
-                        : '1px solid rgba(255,255,255,0.08)',
-                      background: isChosen
-                        ? 'rgba(217,119,78,0.13)'
-                        : 'rgba(255,255,255,0.02)',
-                      color: isDimmed
-                        ? 'rgba(244,236,221,0.18)'
-                        : 'rgba(244,236,221,0.75)',
-                      cursor: selected ? 'default' : 'pointer',
-                    }}
+                    className={[
+                      'text-left px-5 py-4 rounded-xl text-sm leading-relaxed transition-all duration-200 border',
+                      isChosen
+                        ? 'border-coral bg-coral/8 text-ink'
+                        : isDimmed
+                        ? 'border-ink/8 bg-white/40 text-sub/30'
+                        : 'border-ink/12 bg-white hover:border-coral/40 hover:bg-coral/4 text-sub cursor-pointer',
+                    ].join(' ')}
                   >
                     {option.text}
                   </button>
@@ -278,32 +248,19 @@ export default function DiagnosisQuiz() {
         {/* ── RESULT ── */}
         {stage === 'result' && (
           <div className="text-center max-w-lg mx-auto">
-            <p
-              className="text-xs tracking-widest uppercase mb-5"
-              style={{ color: '#d9774e' }}
-            >
+            <p className="text-coral text-xs font-medium tracking-widest uppercase mb-5">
               Your Essence Type
             </p>
 
-            <div
-              className="inline-flex items-center gap-2 px-5 py-2 rounded-full mb-6"
-              style={{ border: '1px solid rgba(217,119,78,0.28)' }}
-            >
-              <span className="font-mono text-sm" style={{ color: '#d9774e' }}>
-                {result.code}
-              </span>
-              <span style={{ color: 'rgba(244,236,221,0.18)' }}>·</span>
-              <span className="text-sm" style={{ color: 'rgba(244,236,221,0.45)' }}>
-                {result.eng}
-              </span>
+            <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full mb-6 border border-coral/25 bg-coral/5">
+              <span className="font-mono text-sm text-coral">{result.code}</span>
+              <span className="text-ink/20">·</span>
+              <span className="text-sm text-sub">{result.eng}</span>
             </div>
 
-            <h2 className="text-3xl md:text-4xl font-bold mb-3">{result.name}</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-ink mb-3">{result.name}</h2>
 
-            <p
-              className="text-base italic mb-7"
-              style={{ color: 'rgba(244,236,221,0.45)' }}
-            >
+            <p className="text-base italic text-sub leading-relaxed mb-7">
               {result.tagline}
             </p>
 
@@ -311,11 +268,7 @@ export default function DiagnosisQuiz() {
               {result.keywords.map((kw) => (
                 <span
                   key={kw}
-                  className="text-xs px-2.5 py-1 rounded-full"
-                  style={{
-                    color: 'rgba(217,119,78,0.75)',
-                    border: '1px solid rgba(217,119,78,0.2)',
-                  }}
+                  className="text-xs text-coral border border-coral/30 px-2.5 py-1 rounded-full"
                 >
                   {kw}
                 </span>
@@ -323,39 +276,23 @@ export default function DiagnosisQuiz() {
             </div>
 
             {/* Blurred preview */}
-            <div
-              className="relative mb-3 p-6 rounded-2xl text-left overflow-hidden"
-              style={{
-                background: 'rgba(255,255,255,0.035)',
-                border: '1px solid rgba(255,255,255,0.07)',
-              }}
-            >
-              <p
-                className="text-sm leading-relaxed"
-                style={{ color: 'rgba(244,236,221,0.55)' }}
-              >
+            <div className="relative mb-3 p-6 rounded-2xl text-left overflow-hidden border border-ink/8 bg-white/60">
+              <p className="text-sub text-sm leading-relaxed">
                 {result.description}
               </p>
-              {/* Blur overlay */}
               <div
                 className="absolute bottom-0 left-0 right-0 h-16 rounded-b-2xl"
-                style={{
-                  background: 'linear-gradient(to top, #16130f 20%, transparent)',
-                }}
+                style={{ background: 'linear-gradient(to top, #F4ECDD 20%, transparent)' }}
               />
             </div>
 
-            <p
-              className="text-xs mb-7 mt-3"
-              style={{ color: 'rgba(244,236,221,0.22)' }}
-            >
+            <p className="text-xs text-sub/40 mb-7 mt-3">
               전체 분석 결과는 글릿 뉴스레터 구독 후 확인할 수 있어요.
             </p>
 
             <a
               href="/#join"
-              className="inline-block px-8 py-4 rounded-full text-sm font-medium transition-all mb-5"
-              style={{ background: '#d9774e', color: '#fff' }}
+              className="inline-block bg-coral text-white px-8 py-4 rounded-full text-sm font-medium hover:bg-coral/90 transition-colors mb-5"
             >
               전체 분석 결과 받아보기 →
             </a>
@@ -364,14 +301,21 @@ export default function DiagnosisQuiz() {
 
             <button
               onClick={handleReset}
-              className="text-xs mt-1 transition-colors"
-              style={{ color: 'rgba(244,236,221,0.22)' }}
+              className="text-xs mt-1 text-sub/40 hover:text-coral transition-colors"
             >
               다시 진단하기
             </button>
           </div>
         )}
       </main>
+
+      {/* Footer */}
+      <footer className="px-6 py-5 text-center border-t border-ink/8">
+        <div className="flex items-center justify-center gap-2 text-sub/40 text-xs">
+          <Diamond className="w-3 h-3 text-coral/50" />
+          <span>글릿 · Gleam it, Glit!</span>
+        </div>
+      </footer>
     </div>
   )
 }

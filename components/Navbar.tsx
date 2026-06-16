@@ -5,6 +5,7 @@ import Diamond from '@/components/ui/Diamond'
 const links = [
   { label: 'Concept', href: '#concept' },
   { label: 'Editorial', href: '#archive' },
+  { label: 'Interview', href: '/interview' },
   { label: 'About', href: '#about' },
 ]
 

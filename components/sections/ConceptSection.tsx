@@ -1,5 +1,6 @@
 'use client'
 import FadeUp from '@/components/ui/FadeUp'
+import Diamond from '@/components/ui/Diamond'
 
 const concepts = [
   {
@@ -27,45 +28,57 @@ const concepts = [
 
 export default function ConceptSection() {
   return (
-    <section id="concept" className="py-24 md:py-36 px-6 bg-ivory">
-      <div className="max-w-5xl mx-auto">
-        <FadeUp>
-          <div className="text-center mb-16">
-            <p className="text-coral text-xs font-medium tracking-widest uppercase mb-4">Concept</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-ink">
-              글쓰기{' '}
-              <span className="text-sub/40 font-light mx-1">|</span>
-              읽기{' '}
-              <span className="text-sub/40 font-light mx-1">|</span>
-              삶
+    <section id="concept" className="bg-ivory border-t border-ink/8">
+      {/* Big editorial label */}
+      <FadeUp>
+        <div className="px-6 md:px-12 py-10 border-b border-ink/8 flex items-end justify-between gap-4">
+          <div>
+            <p className="text-coral text-xs font-medium tracking-widest uppercase mb-2">Concept</p>
+            <h2 className="text-4xl md:text-6xl font-bold text-ink leading-tight tracking-tight">
+              Why We Write
             </h2>
-            <p className="text-sub mt-4 text-base max-w-md mx-auto leading-relaxed">
-              글릿이 믿는 세 가지. 쓰고, 읽고, 살아가는 것만으로 충분합니다.
-            </p>
           </div>
-        </FadeUp>
+          <p className="hidden md:block text-sub text-sm max-w-[280px] text-right leading-relaxed pb-1">
+            글릿이 믿는 세 가지.<br />쓰고, 읽고, 살아가는 것만으로 충분합니다.
+          </p>
+        </div>
+      </FadeUp>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {concepts.map((item, i) => (
-            <FadeUp key={item.label} delay={i * 110}>
-              <div className="group relative p-8 border border-ink/10 rounded-2xl hover:border-coral/40 hover:shadow-sm bg-white/40 hover:bg-white/70 transition-all duration-300 h-full overflow-hidden">
-                <span className="absolute -top-4 -right-2 text-[7rem] font-bold text-ink/5 leading-none select-none pointer-events-none group-hover:text-coral/8 transition-colors duration-300">
+      {/* Three concept rows */}
+      <div className="divide-y divide-ink/8">
+        {concepts.map((item, i) => (
+          <FadeUp key={item.label} delay={i * 80}>
+            <div className="group px-6 md:px-12 py-10 grid grid-cols-12 gap-6 items-center hover:bg-white/40 transition-colors duration-300 cursor-default">
+              {/* Number */}
+              <div className="col-span-2 md:col-span-1">
+                <span className="text-3xl md:text-4xl font-bold text-ink/10 group-hover:text-coral/20 transition-colors duration-300 font-mono">
                   {item.num}
                 </span>
-
-                <p className="text-coral text-xs font-mono mb-5 tracking-widest relative z-10">{item.num}</p>
-                <h3 className="text-2xl font-bold text-ink mb-1 relative z-10">{item.label}</h3>
-                <p className="text-sub text-sm mb-5 relative z-10">{item.eng}</p>
-
-                <p className="text-ink font-medium text-base mb-4 leading-snug relative z-10">{item.text}</p>
-
-                <div className="w-8 h-px bg-coral/30 mb-5 group-hover:w-16 transition-all duration-300 relative z-10" />
-
-                <p className="text-ink/55 text-sm leading-relaxed relative z-10">{item.desc}</p>
               </div>
-            </FadeUp>
-          ))}
-        </div>
+
+              {/* Korean label */}
+              <div className="col-span-4 md:col-span-2">
+                <p className="text-xl md:text-2xl font-bold text-ink">{item.label}</p>
+                <p className="text-sub/50 text-xs tracking-wider mt-0.5">{item.eng}</p>
+              </div>
+
+              {/* Divider */}
+              <div className="hidden md:block col-span-1">
+                <Diamond className="w-3 h-3 text-coral/30 mx-auto group-hover:text-coral/60 transition-colors" />
+              </div>
+
+              {/* Headline */}
+              <div className="col-span-6 md:col-span-5">
+                <p className="text-ink font-medium text-base md:text-lg leading-snug">{item.text}</p>
+              </div>
+
+              {/* Description — desktop only */}
+              <div className="hidden md:block col-span-3">
+                <p className="text-sub/60 text-sm leading-relaxed">{item.desc}</p>
+              </div>
+            </div>
+          </FadeUp>
+        ))}
       </div>
     </section>
   )

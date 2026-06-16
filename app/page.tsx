@@ -2,6 +2,7 @@ import Navbar from '@/components/Navbar'
 import HeroSection from '@/components/sections/HeroSection'
 import ConceptSection from '@/components/sections/ConceptSection'
 import EditorialSection from '@/components/sections/EditorialSection'
+import InterviewTeaserSection from '@/components/sections/InterviewTeaserSection'
 import AboutSection from '@/components/sections/AboutSection'
 import JoinSection from '@/components/sections/JoinSection'
 
@@ -16,6 +17,7 @@ export default function Home() {
       <HeroSection />
       <ConceptSection />
       <EditorialSection />
+      <InterviewTeaserSection />
       <AboutSection />
       <JoinSection />
     </main>

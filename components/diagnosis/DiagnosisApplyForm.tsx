@@ -5,7 +5,8 @@ import SiteFooter from '@/components/SiteFooter'
 
 export default function DiagnosisApplyForm() {
   const [name, setName] = useState('')
-  const [contact, setContact] = useState('')
+  const [phone, setPhone] = useState('')
+  const [email, setEmail] = useState('')
   const [privacy, setPrivacy] = useState(false)
   const [submitted, setSubmitted] = useState(false)
 
@@ -68,7 +69,7 @@ export default function DiagnosisApplyForm() {
               <input type="hidden" name="form-name" value="glit-diagnosis-apply" />
 
               <label className="block text-sm text-ivory/60">
-                <span className="mb-2 block text-ivory/80">성함</span>
+                <span className="mb-2 block text-ivory/80">이름</span>
                 <input
                   type="text"
                   name="name"
@@ -81,13 +82,26 @@ export default function DiagnosisApplyForm() {
               </label>
 
               <label className="block text-sm text-ivory/60">
-                <span className="mb-2 block text-ivory/80">연락처</span>
+                <span className="mb-2 block text-ivory/80">전화번호</span>
                 <input
                   type="tel"
-                  name="contact"
-                  value={contact}
-                  onChange={(event) => setContact(event.target.value)}
-                  placeholder="연락처를 입력해 주세요"
+                  name="phone"
+                  value={phone}
+                  onChange={(event) => setPhone(event.target.value)}
+                  placeholder="010-0000-0000"
+                  required
+                  className="w-full rounded-full border border-white/10 bg-[#14120f] px-5 py-4 text-ivory outline-none transition placeholder:text-ivory/28 focus:border-coral"
+                />
+              </label>
+
+              <label className="block text-sm text-ivory/60">
+                <span className="mb-2 block text-ivory/80">이메일</span>
+                <input
+                  type="email"
+                  name="email"
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
+                  placeholder="hello@example.com"
                   required
                   className="w-full rounded-full border border-white/10 bg-[#14120f] px-5 py-4 text-ivory outline-none transition placeholder:text-ivory/28 focus:border-coral"
                 />

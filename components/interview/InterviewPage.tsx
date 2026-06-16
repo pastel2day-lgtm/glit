@@ -28,7 +28,7 @@ const featured = {
       a: '당신의 이야기는 충분히 아름답습니다. 아무도 당신처럼 살지 않았고, 아무도 당신이 본 것을 보지 못했어요. 그게 이미 글이 될 이유가 됩니다. 오늘 딱 한 문장만 써보세요. 그게 시작이에요.',
     },
   ],
-  image: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=900&h=1100&fit=crop&q=80',
+  image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=900&h=1100&fit=crop&q=80',
   date: '2026년 1월',
 }
 
@@ -41,7 +41,7 @@ const interviews = [
     pullQuote: '사람의 감정은 원래 불완전하니까요.',
     excerpt:
       '"저는 문법적으로 완전한 문장보다 숨이 끊기는 문장을 더 좋아해요. 독자가 그 끊어짐에서 자신의 감정을 넣게 되거든요. 그게 글쓰기의 마법이라고 생각해요."',
-    image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600&h=700&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1542103749-8ef59b94f47e?w=600&h=700&fit=crop&q=80',
     date: '2026년 2월',
     readTime: '8분',
   },
@@ -53,7 +53,7 @@ const interviews = [
     pullQuote: '행간의 여백이 독자의 마음을 채웁니다.',
     excerpt:
       '"시에서 가장 중요한 건 쓰인 것이 아니라 쓰이지 않은 것들이에요. 저는 항상 지우는 과정에서 시가 완성된다고 느낍니다. 쓰는 것보다 지우는 데 더 오래 걸려요."',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=700&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1618077360395-f3068be8e001?w=600&h=700&fit=crop&q=80',
     date: '2026년 3월',
     readTime: '10분',
   },
@@ -65,7 +65,7 @@ const interviews = [
     pullQuote: '"이게 내 얘기다"라고 느끼면 성공한 거예요.',
     excerpt:
       '"저는 독자를 특정한 한 사람으로 상상하고 씁니다. 모든 사람에게 닿으려 하면 아무에게도 닿지 못해요. 딱 한 명의 마음에 정확히 닿는 글을 쓰고 싶어요."',
-    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=600&h=700&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=600&h=700&fit=crop&q=80',
     date: '2026년 4월',
     readTime: '7분',
   },

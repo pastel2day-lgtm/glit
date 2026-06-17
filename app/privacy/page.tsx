@@ -4,13 +4,13 @@ import SiteFooter from '@/components/SiteFooter'
 
 export const metadata: Metadata = {
   title: '개인정보처리방침',
-  description: '글잇의 구독, 인터뷰 신청, 에센스 진단 신청 정보 처리 기준을 안내합니다.',
+  description: '글릿의 구독, 인터뷰 신청, 에센스 진단 신청 정보 처리 기준을 안내합니다.',
 }
 
 const sections = [
   {
     title: '수집하는 정보',
-    body: '글잇은 뉴스레터 구독 시 이메일 주소를, 인터뷰 및 에센스 진단 신청 시 이름, 연락처, 이메일 등 신청 안내에 필요한 최소 정보를 수집합니다.',
+    body: '글릿은 뉴스레터 구독 시 이메일 주소를, 인터뷰 및 에센스 진단 신청 시 이름, 연락처, 이메일 등 신청 안내에 필요한 최소 정보를 수집합니다.',
   },
   {
     title: '이용 목적',
@@ -22,7 +22,7 @@ const sections = [
   },
   {
     title: '제3자 제공',
-    body: '글잇은 이용자의 동의 없이 개인정보를 외부에 제공하지 않습니다. 서비스 운영에 필요한 도구를 사용하는 경우에도 목적 범위 내에서만 처리합니다.',
+    body: '글릿은 이용자의 동의 없이 개인정보를 외부에 제공하지 않습니다. 서비스 운영에 필요한 도구를 사용하는 경우에도 목적 범위 내에서만 처리합니다.',
   },
   {
     title: '문의',
@@ -37,7 +37,7 @@ export default function PrivacyPage() {
         <div className="mx-auto flex max-w-5xl items-center justify-between">
           <a href="/" className="flex items-center gap-2 font-bold text-ink">
             <Diamond className="h-4 w-4 text-coral" />
-            글잇
+            글릿
           </a>
           <a href="/" className="text-xs font-medium text-sub/55 transition-colors hover:text-coral">
             홈으로
@@ -49,7 +49,7 @@ export default function PrivacyPage() {
         <p className="mb-4 text-xs font-semibold uppercase tracking-[0.26em] text-coral">Privacy Policy</p>
         <h1 className="text-4xl font-black tracking-[-0.035em] md:text-6xl">개인정보처리방침</h1>
         <p className="mt-6 max-w-2xl text-sm leading-7 text-sub md:text-base">
-          글잇은 필요한 정보만 수집하고, 신청과 구독 안내 목적 안에서 조심스럽게 다룹니다.
+          글릿은 필요한 정보만 수집하고, 신청과 구독 안내 목적 안에서 조심스럽게 다룹니다.
           본 방침은 2026년 6월 17일부터 적용됩니다.
         </p>
 

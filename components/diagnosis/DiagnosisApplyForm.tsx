@@ -30,7 +30,7 @@ export default function DiagnosisApplyForm() {
       <header className="border-b border-white/10 px-6 py-5">
         <a href="/" className="flex items-center gap-2 text-sm font-bold text-ivory">
           <Diamond className="h-4 w-4 text-coral" />
-          글잇
+          글릿
         </a>
       </header>
 

@@ -10,7 +10,7 @@ export default function ArticleDiary({ article }: { article: Article }) {
       <header className="fixed top-0 inset-x-0 z-50 px-6 py-4 flex items-center justify-between bg-[#f8f3eb]/90 backdrop-blur-sm border-b border-ink/6">
         <a href="/" className="flex items-center gap-2">
           <Diamond className="w-4 h-4 text-coral" />
-          <span className="font-bold text-base tracking-tight">글잇</span>
+          <span className="font-bold text-base tracking-tight">글릿</span>
         </a>
         <a href="/#archive" className="text-xs text-sub/50 hover:text-coral transition-colors">
           ← 에디토리얼
@@ -90,7 +90,7 @@ export default function ArticleDiary({ article }: { article: Article }) {
           {/* Footer */}
           <div className="mt-16 pt-8 border-t border-ink/8 flex items-center justify-between flex-wrap gap-4">
             <div className="text-xs text-sub/35 font-mono">
-              {article.issue} · 글잇 에디토리얼
+              {article.issue} · 글릿 에디토리얼
             </div>
             <a
               href="/#archive"

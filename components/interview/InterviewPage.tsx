@@ -25,7 +25,7 @@ const featured = {
       a: '독자들이 종종 물어요. "완성도가 낮은 글을 올려도 되냐"고요. 저는 항상 이렇게 답해요. 완성하지 않아도 좋습니다. 쓰고 있다는 것 자체가 이미 충분합니다. 우리는 너무 자주 결과물로 자신을 판단해요. 하지만 글쓰기의 가장 중요한 순간은 아무도 읽지 않은 그 초안에 있거든요.',
     },
     {
-      q: '글잇 독자들에게 한 마디 해주신다면요?',
+      q: '글릿 독자들에게 한 마디 해주신다면요?',
       a: '당신의 이야기는 충분히 아름답습니다. 아무도 당신처럼 살지 않았고, 아무도 당신이 본 것을 보지 못했어요. 그게 이미 글이 될 이유가 됩니다. 오늘 딱 한 문장만 써보세요. 그게 시작이에요.',
     },
   ],
@@ -98,7 +98,7 @@ export default function InterviewPage() {
       <header className="px-6 md:px-12 py-5 flex items-center justify-between border-b border-ink/8 bg-ivory/90 backdrop-blur-sm sticky top-0 z-50">
         <a href="/" className="flex items-center gap-2 group">
           <Diamond className="w-4 h-4 text-coral group-hover:scale-110 transition-transform" />
-          <span className="font-bold text-lg text-ink tracking-tight">글잇</span>
+          <span className="font-bold text-lg text-ink tracking-tight">글릿</span>
         </a>
         <nav className="hidden md:flex items-center gap-8 text-sm text-sub font-medium">
           <a href="/#concept" className="hover:text-coral transition-colors">Concept</a>
@@ -126,7 +126,7 @@ export default function InterviewPage() {
               <div className="text-right self-end pb-2">
                 <p className="text-sub/50 text-xs tracking-wider mb-1">2026 Spring</p>
                 <p className="text-sub text-sm max-w-[220px] leading-relaxed text-right">
-                  글을 쓰는 사람들의 이야기.<br />글잇이 직접 만나 나눈 대화.
+                  글을 쓰는 사람들의 이야기.<br />글릿이 직접 만나 나눈 대화.
                 </p>
               </div>
             </div>
@@ -290,7 +290,7 @@ export default function InterviewPage() {
           <div className="max-w-xl mx-auto text-center">
             <Diamond className="w-6 h-6 text-coral mx-auto mb-4" />
             <h2 className="text-2xl md:text-3xl font-bold text-ink mb-3">
-              당신의 이야기도 글잇에 실릴 수 있어요
+              당신의 이야기도 글릿에 실릴 수 있어요
             </h2>
             <p className="text-sub text-base mb-8 max-w-sm mx-auto leading-relaxed">
               글을 쓰는 사람이라면 누구든. 인터뷰 참여를 신청해주세요. 영업일 기준 2~3일 안에 연락드립니다.

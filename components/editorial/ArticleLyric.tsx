@@ -10,7 +10,7 @@ export default function ArticleLyric({ article }: { article: Article }) {
       <header className="fixed top-0 inset-x-0 z-50 px-6 py-4 flex items-center justify-between">
         <a href="/" className="flex items-center gap-2 opacity-60 hover:opacity-100 transition-opacity">
           <Diamond className="w-3.5 h-3.5 text-coral" />
-          <span className="font-bold text-sm tracking-tight">글잇</span>
+          <span className="font-bold text-sm tracking-tight">글릿</span>
         </a>
         <a href="/#archive" className="text-xs text-sub/40 hover:text-coral transition-colors">
           ← 에디토리얼
@@ -89,7 +89,7 @@ export default function ArticleLyric({ article }: { article: Article }) {
         {/* Closing */}
         <div className="mt-16 flex flex-col items-center gap-3">
           <Diamond className="w-4 h-4 text-coral/40" />
-          <p className="text-xs text-sub/35 tracking-wider font-mono">{article.issue} · 글잇</p>
+          <p className="text-xs text-sub/35 tracking-wider font-mono">{article.issue} · 글릿</p>
           <a
             href="/#archive"
             className="mt-4 text-sm text-coral font-medium hover:text-coral/70 transition-colors"

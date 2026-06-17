@@ -63,7 +63,7 @@ export default function InterviewTeaserSection() {
             </blockquote>
 
             <p className="mt-7 max-w-2xl text-sm leading-7 text-sub md:text-base">
-              글잇 인터뷰는 글을 쓰는 사람들의 내면을 기록합니다. 완벽한 성공담이 아니라,
+              글릿 인터뷰는 글을 쓰는 사람들의 내면을 기록합니다. 완벽한 성공담이 아니라,
               지금도 쓰고 있는 사람들의 온도와 리듬을 묻습니다.
             </p>
 

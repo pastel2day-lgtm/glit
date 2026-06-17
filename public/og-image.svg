@@ -2,7 +2,7 @@
   <rect width="1200" height="630" fill="#F4ECDD"/>
   <circle cx="880" cy="255" r="230" fill="#E89B7D" opacity=".36"/>
   <path d="M152 315 188 279 224 315 188 351 152 315Z" fill="#D9774E"/>
-  <text x="260" y="302" fill="#2E2B28" font-family="Pretendard, Arial, sans-serif" font-size="104" font-weight="800">글잇</text>
+  <text x="260" y="302" fill="#2E2B28" font-family="Pretendard, Arial, sans-serif" font-size="104" font-weight="800">글릿</text>
   <text x="266" y="366" fill="#D9774E" font-family="Georgia, serif" font-size="38" font-style="italic">Gleam it, Glit!</text>
   <text x="266" y="430" fill="#6E655C" font-family="Pretendard, Arial, sans-serif" font-size="28">글을 쓰고, 읽고, 살아가는 모든 이를 위한 에디토리얼 공간</text>
   <line x1="266" y1="472" x2="770" y2="472" stroke="#2E2B28" opacity=".16"/>

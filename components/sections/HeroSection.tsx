@@ -42,7 +42,7 @@ export default function HeroSection() {
 
           <div className="mb-10 text-center md:text-left">
             <h1 className="mb-6 text-[clamp(4.4rem,12vw,9rem)] font-black leading-[0.9] tracking-[-0.045em] text-ink">
-              글잇
+              글릿
             </h1>
             <div className="flex items-center justify-center gap-4 md:justify-start">
               <div className="h-px w-12 bg-coral" />

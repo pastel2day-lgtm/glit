@@ -15,7 +15,7 @@ export default function SiteFooter({ tone = 'light' }: SiteFooterProps) {
         <div>
           <div className={`mb-2 flex items-center justify-center gap-2 text-sm font-semibold md:justify-start ${muted}`}>
             <Diamond className="h-3 w-3 text-coral" />
-            <span>글잇 · Gleam it, Glit!</span>
+            <span>글릿 · Gleam it, Glit!</span>
           </div>
           <p className={`text-xs leading-6 ${muted}`}>
             매주 화요일 발행되는 에디토리얼 매거진. 글을 쓰고 읽고 살아가는 사람들을 위한 공간.

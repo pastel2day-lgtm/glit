@@ -138,11 +138,179 @@ const QUESTIONS: Question[] = [
     ],
   },
   {
-    title: '마지막으로,\n당신이 지금 붙잡고 싶은 감각은?',
+    title: '지금 붙잡고 싶은 감각은?',
     options: [
       { text: '아직 더 많은 세계가 남아 있다는 설렘', type: 'SEVEN' },
       { text: '나의 힘을 좋은 방향으로 쓰고 있다는 확신', type: 'EIGHT' },
       { text: '서두르지 않아도 괜찮다는 고요한 안정감', type: 'NINE' },
+    ],
+  },
+  {
+    title: '하루가 끝난 뒤,\n스스로에게 가장 먼저 하는 말은?',
+    options: [
+      { text: '오늘 더 잘할 수 있었던 부분을 조용히 돌아본다', type: 'ONE' },
+      { text: '내가 누군가에게 도움이 되었는지 떠올린다', type: 'TWO' },
+      { text: '내일은 무엇을 더 해낼 수 있을지 생각한다', type: 'THREE' },
+    ],
+  },
+  {
+    title: '마음이 오래 머무는 장면은?',
+    options: [
+      { text: '이름 붙이기 어려운 감정이 선명해지는 순간', type: 'FOUR' },
+      { text: '혼자만의 조용한 방에서 생각이 정리되는 순간', type: 'FIVE' },
+      { text: '불안하던 마음에 확실한 약속이 생기는 순간', type: 'SIX' },
+    ],
+  },
+  {
+    title: '낯선 곳에 도착했을 때,\n당신이 먼저 느끼는 것은?',
+    options: [
+      { text: '새로운 일이 시작될 것 같은 기대감', type: 'SEVEN' },
+      { text: '이곳에서 내가 지켜야 할 선과 힘', type: 'EIGHT' },
+      { text: '천천히 적응하며 분위기를 읽고 싶은 마음', type: 'NINE' },
+    ],
+  },
+  {
+    title: '칭찬을 들었을 때,\n더 오래 남는 말은?',
+    options: [
+      { text: '당신은 참 성실하고 믿을 만해요', type: 'ONE' },
+      { text: '당신 덕분에 마음이 놓였어요', type: 'TWO' },
+      { text: '당신은 결국 해내는 사람이에요', type: 'THREE' },
+    ],
+  },
+  {
+    title: '문장을 고를 때,\n무의식적으로 끌리는 결은?',
+    options: [
+      { text: '슬픔과 아름다움이 같은 자리에 있는 결', type: 'FOUR' },
+      { text: '설명보다 질문을 오래 남기는 결', type: 'FIVE' },
+      { text: '불안을 지나 안심으로 데려가는 결', type: 'SIX' },
+    ],
+  },
+  {
+    title: '누군가가 당신을 말한다면,\n가장 가까운 표현은?',
+    options: [
+      { text: '언제나 새로운 이야기를 꺼내는 사람', type: 'SEVEN' },
+      { text: '필요한 순간 앞에 서는 사람', type: 'EIGHT' },
+      { text: '곁에 있으면 마음이 조용해지는 사람', type: 'NINE' },
+    ],
+  },
+  {
+    title: '선택이 어려울 때,\n당신이 기대는 기준은?',
+    options: [
+      { text: '무엇이 더 올바르고 납득 가능한가', type: 'ONE' },
+      { text: '누가 상처받지 않고 함께 갈 수 있는가', type: 'TWO' },
+      { text: '어떤 선택이 나를 더 앞으로 데려가는가', type: 'THREE' },
+    ],
+  },
+  {
+    title: '좋아하는 책을 오래 기억하는 방식은?',
+    options: [
+      { text: '그때의 감정과 분위기까지 함께 기억한다', type: 'FOUR' },
+      { text: '책이 남긴 질문과 생각의 구조를 기억한다', type: 'FIVE' },
+      { text: '그 책이 내게 준 안정감과 확신을 기억한다', type: 'SIX' },
+    ],
+  },
+  {
+    title: '마음이 살아난다고 느끼는 순간은?',
+    options: [
+      { text: '새로운 가능성이 한꺼번에 열릴 때', type: 'SEVEN' },
+      { text: '피하지 않고 정면으로 말했을 때', type: 'EIGHT' },
+      { text: '갈등이 잦아들고 마음이 부드러워질 때', type: 'NINE' },
+    ],
+  },
+  {
+    title: '혼란스러운 상황에서,\n당신이 자연스럽게 하는 일은?',
+    options: [
+      { text: '흐트러진 것들을 기준에 맞게 정리한다', type: 'ONE' },
+      { text: '사람들의 마음과 분위기를 먼저 살핀다', type: 'TWO' },
+      { text: '가장 빠르게 해결할 수 있는 방법을 찾는다', type: 'THREE' },
+    ],
+  },
+  {
+    title: '당신이 혼자만 알고 있는 바람은?',
+    options: [
+      { text: '내 마음의 깊이를 누군가 알아봐주었으면 한다', type: 'FOUR' },
+      { text: '아무 방해 없이 끝까지 생각해보고 싶다', type: 'FIVE' },
+      { text: '믿어도 되는 사람이 곁에 있다는 확신을 원한다', type: 'SIX' },
+    ],
+  },
+  {
+    title: '휴식이 필요할 때,\n가장 가까운 장면은?',
+    options: [
+      { text: '낯선 도시를 걷거나 새로운 계획을 세우는 장면', type: 'SEVEN' },
+      { text: '몸을 움직이며 다시 힘을 되찾는 장면', type: 'EIGHT' },
+      { text: '조용한 공간에서 천천히 숨을 고르는 장면', type: 'NINE' },
+    ],
+  },
+  {
+    title: '당신이 지키고 싶은 삶의 태도는?',
+    options: [
+      { text: '대충 넘기지 않고 바르게 살아가려는 태도', type: 'ONE' },
+      { text: '무심해지지 않고 다정하게 건네는 태도', type: 'TWO' },
+      { text: '멈추지 않고 스스로를 성장시키려는 태도', type: 'THREE' },
+    ],
+  },
+  {
+    title: '밤에 더 잘 어울리는 문장은?',
+    options: [
+      { text: '내가 느낀 슬픔에도 이름이 있다는 문장', type: 'FOUR' },
+      { text: '아무도 방해하지 않는 생각의 불빛 같은 문장', type: 'FIVE' },
+      { text: '혼자가 아니라는 사실을 조용히 알려주는 문장', type: 'SIX' },
+    ],
+  },
+  {
+    title: '다음 페이지를 넘기게 하는 힘은?',
+    options: [
+      { text: '아직 끝나지 않은 모험이 남아 있다는 기대', type: 'SEVEN' },
+      { text: '부딪혀도 물러서지 않겠다는 마음', type: 'EIGHT' },
+      { text: '조금씩 괜찮아질 거라는 느린 믿음', type: 'NINE' },
+    ],
+  },
+  {
+    title: '실수했을 때,\n가장 먼저 드는 생각은?',
+    options: [
+      { text: '어디서 어긋났는지 정확히 고쳐야 한다', type: 'ONE' },
+      { text: '혹시 누군가에게 불편을 준 건 아닌지 걱정된다', type: 'TWO' },
+      { text: '빨리 회복해서 다시 결과를 만들어야 한다', type: 'THREE' },
+    ],
+  },
+  {
+    title: '누군가의 이야기를 들을 때,\n당신이 오래 붙잡는 것은?',
+    options: [
+      { text: '말 아래 숨어 있는 진짜 감정', type: 'FOUR' },
+      { text: '그 이야기를 이루는 맥락과 이유', type: 'FIVE' },
+      { text: '앞으로 괜찮아질 수 있는 근거', type: 'SIX' },
+    ],
+  },
+  {
+    title: '마음이 답답할 때,\n당신에게 필요한 문은?',
+    options: [
+      { text: '상상하지 못한 세계로 나가는 문', type: 'SEVEN' },
+      { text: '두려움을 지나 힘을 확인하는 문', type: 'EIGHT' },
+      { text: '조용히 마음을 쉬게 하는 문', type: 'NINE' },
+    ],
+  },
+  {
+    title: '당신의 문장 결에 가까운 속도는?',
+    options: [
+      { text: '흐트러진 곳을 차분히 바로잡는 속도', type: 'ONE' },
+      { text: '상대의 마음에 맞춰 조금 늦추는 속도', type: 'TWO' },
+      { text: '목표를 향해 빠르게 움직이는 속도', type: 'THREE' },
+    ],
+  },
+  {
+    title: '읽고 난 뒤 마음에 남았으면 하는 것은?',
+    options: [
+      { text: '내 감정이 틀리지 않았다는 작은 확인', type: 'FOUR' },
+      { text: '오래 생각하고 싶은 조용한 질문', type: 'FIVE' },
+      { text: '내가 기대어도 되는 안정된 문장', type: 'SIX' },
+    ],
+  },
+  {
+    title: '마지막으로,\n지금 당신이 더 원하는 것은?',
+    options: [
+      { text: '더 넓은 세계를 향한 설렘', type: 'SEVEN' },
+      { text: '내 힘을 믿고 나아가는 용기', type: 'EIGHT' },
+      { text: '서두르지 않아도 괜찮은 고요', type: 'NINE' },
     ],
   },
 ]
@@ -396,10 +564,10 @@ export default function DiagnosisQuiz() {
                   결이 있어요.
                 </h1>
                 <p className="mt-7 max-w-xl text-base leading-8 text-sub">
-                  지금 당신에게 맞는 문장의 결을 찾아드릴게요. 열다섯 개의 질문이 당신의 이야기를 듣고 싶어해요.
+                  지금 당신에게 맞는 문장의 결을 찾아드릴게요. 서른여섯 개의 질문이 당신의 이야기를 듣고 싶어해요.
                 </p>
                 <p className="mt-4 max-w-lg text-sm leading-7 text-sub/60">
-                  81문항의 핵심을 45개 진술로 압축해 지금 마음의 리듬과 문장 취향을 살펴봅니다. 정답을 고르기보다,
+                  81문항의 핵심을 36개 질문으로 압축해 지금 마음의 리듬과 문장 취향을 살펴봅니다. 정답을 고르기보다,
                   요즘 마음이 오래 머무는 문장에 가까이 가보세요.
                 </p>
               </div>
@@ -431,7 +599,7 @@ export default function DiagnosisQuiz() {
                 <div className="border border-ink/10 bg-[#fffaf1] p-5">
                   <p className="text-xs font-semibold uppercase text-coral">How it works</p>
                   <div className="mt-5 space-y-4 text-sm font-semibold text-ink">
-                    <p>01. 15개 질문 선택</p>
+                    <p>01. 36개 질문 선택</p>
                     <p>02. 결의 방향 분석</p>
                     <p>03. 책 3권 큐레이션</p>
                   </div>
@@ -456,7 +624,7 @@ export default function DiagnosisQuiz() {
 
             <div className="border border-ink/10 bg-[#fffaf1]/88 p-5 shadow-[0_24px_70px_rgba(46,43,40,0.07)] md:p-9">
               <p className="mb-5 text-xs font-semibold uppercase text-coral">문장 결 질문</p>
-              <h2 className="mb-8 text-2xl font-black leading-snug text-ink md:text-4xl">{QUESTIONS[step].title}</h2>
+              <h2 className="mb-8 whitespace-pre-line text-2xl font-black leading-snug text-ink md:text-4xl">{QUESTIONS[step].title}</h2>
 
               <div className="grid gap-3">
                 {QUESTIONS[step].options.map((option, index) => {

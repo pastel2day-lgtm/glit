@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Diamond from '@/components/ui/Diamond'
 import SiteFooter from '@/components/SiteFooter'
 
@@ -21,7 +21,7 @@ type Result = {
   description: string
   keywords: string[]
   image: string
-  books: { title: string; reason: string }[]
+  books: { title: string; author: string; reason: string }[]
 }
 
 const QUESTIONS: Question[] = [
@@ -158,9 +158,9 @@ const RESULTS: Record<GrainType, Result> = {
     keywords: ['기준', '정돈', '성실', '회복'],
     image: 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=900&q=85',
     books: [
-      { title: '잠 못 이루는 밤을 위하여', reason: '흔들리는 밤에도 마음의 중심을 다시 세워주는 책' },
-      { title: '월든', reason: '단순한 삶이 가진 분명한 기준을 보여주는 고전' },
-      { title: '어린 왕자', reason: '좋은 마음을 잃지 않는 법을 조용히 알려주는 이야기' },
+      { title: '잠 못 이루는 밤을 위하여', author: '칼 힐티', reason: '흔들리는 밤에도 마음의 중심을 다시 세워주는 책' },
+      { title: '월든', author: '헨리 데이비드 소로', reason: '단순한 삶이 가진 분명한 기준을 보여주는 고전' },
+      { title: '나는 나로 살기로 했다', author: '김수현', reason: '스스로에게 너무 엄격했던 마음을 다정하게 풀어주는 책' },
     ],
   },
   TWO: {
@@ -173,9 +173,9 @@ const RESULTS: Record<GrainType, Result> = {
     keywords: ['다정함', '돌봄', '연결', '온기'],
     image: 'https://images.unsplash.com/photo-1489710437720-ebb67ec84dd2?auto=format&fit=crop&w=900&q=85',
     books: [
-      { title: '어린 왕자', reason: '관계의 본질과 길들임의 온기를 담은 책' },
-      { title: '잠 못 이루는 밤을 위하여', reason: '나를 잊은 마음에게 조용한 위로를 주는 책' },
-      { title: '월든', reason: '타인을 돌보기 전 나를 회복하는 시간을 알려주는 책' },
+      { title: '나는 나로 살기로 했다', author: '김수현', reason: '타인을 위해 살아온 시간 끝에 자신을 찾아가는 이야기' },
+      { title: '아몬드', author: '손원평', reason: '감정을 배우는 과정을 통해 진짜 연결이 무엇인지 보여주는 소설' },
+      { title: '82년생 김지영', author: '조남주', reason: '누군가를 돌보며 자신을 지워온 시간들에 대한 이야기' },
     ],
   },
   THREE: {
@@ -188,9 +188,9 @@ const RESULTS: Record<GrainType, Result> = {
     keywords: ['성장', '속도', '가능성', '성취'],
     image: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=85',
     books: [
-      { title: '월든', reason: '성과 너머의 삶을 다시 바라보게 하는 책' },
-      { title: '잠 못 이루는 밤을 위하여', reason: '바쁜 마음을 잠시 내려놓게 하는 책' },
-      { title: '어린 왕자', reason: '중요한 것을 다시 묻게 하는 짧고 깊은 이야기' },
+      { title: '모든 것은 기본에서 시작한다', author: '손웅정', reason: '앞으로 나아가는 힘의 바탕을 다시 정돈하게 하는 책' },
+      { title: '일의 기쁨과 슬픔', author: '장류진', reason: '성과와 일상 사이에서 일하는 마음을 현실적으로 비추는 소설' },
+      { title: '월든', author: '헨리 데이비드 소로', reason: '속도 바깥의 삶을 다시 바라보게 하는 고전' },
     ],
   },
   FOUR: {
@@ -203,9 +203,9 @@ const RESULTS: Record<GrainType, Result> = {
     keywords: ['깊이', '감정', '고유함', '아름다움'],
     image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=85',
     books: [
-      { title: '어린 왕자', reason: '상실과 아름다움이 함께 남는 책' },
-      { title: '잠 못 이루는 밤을 위하여', reason: '깊은 밤의 감정을 문장으로 붙잡아주는 책' },
-      { title: '월든', reason: '혼자의 시간 속에서 자기 결을 발견하게 하는 책' },
+      { title: '어린 왕자', author: '앙투안 드 생텍쥐페리', reason: '상실과 아름다움이 함께 남는 책' },
+      { title: '참을 수 없는 존재의 가벼움', author: '밀란 쿤데라', reason: '사랑과 고유함의 무게를 오래 생각하게 하는 소설' },
+      { title: '우리가 빛의 속도로 갈 수 없다면', author: '김초엽', reason: '외로움과 그리움을 섬세한 상상력으로 건드리는 책' },
     ],
   },
   FIVE: {
@@ -218,9 +218,9 @@ const RESULTS: Record<GrainType, Result> = {
     keywords: ['사유', '관찰', '이해', '고독'],
     image: 'https://images.unsplash.com/photo-1519682337058-a94d519337bc?auto=format&fit=crop&w=900&q=85',
     books: [
-      { title: '월든', reason: '혼자의 시간을 가장 충만하게 바꾸는 책' },
-      { title: '잠 못 이루는 밤을 위하여', reason: '깊은 사유와 고요한 문장으로 밤을 밝혀주는 책' },
-      { title: '어린 왕자', reason: '단순한 문장 속에 오래 남는 질문을 숨긴 책' },
+      { title: '월든', author: '헨리 데이비드 소로', reason: '혼자의 시간을 가장 충만하게 바꾸는 책' },
+      { title: '침묵의 봄', author: '레이첼 카슨', reason: '관찰과 사유가 세계를 바꾸는 방식을 보여주는 책' },
+      { title: '코스모스', author: '칼 세이건', reason: '생각의 방을 우주만큼 넓혀주는 고전' },
     ],
   },
   SIX: {
@@ -233,9 +233,9 @@ const RESULTS: Record<GrainType, Result> = {
     keywords: ['믿음', '곁', '안정', '약속'],
     image: 'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=900&q=85',
     books: [
-      { title: '어린 왕자', reason: '믿음과 관계의 책임을 따뜻하게 보여주는 책' },
-      { title: '잠 못 이루는 밤을 위하여', reason: '불안한 밤에 기대어 읽기 좋은 책' },
-      { title: '월든', reason: '나를 지탱하는 삶의 리듬을 회복하게 하는 책' },
+      { title: '어린 왕자', author: '앙투안 드 생텍쥐페리', reason: '믿음과 관계의 책임을 따뜻하게 보여주는 책' },
+      { title: '불안', author: '알랭 드 보통', reason: '불안을 조금 더 선명하게 이해하게 해주는 책' },
+      { title: '아몬드', author: '손원평', reason: '불완전한 마음들이 서로의 곁이 되어가는 소설' },
     ],
   },
   SEVEN: {
@@ -248,9 +248,9 @@ const RESULTS: Record<GrainType, Result> = {
     keywords: ['확장', '설렘', '자유', '가능성'],
     image: 'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=900&q=85',
     books: [
-      { title: '어린 왕자', reason: '낯선 별을 건너며 세계를 넓혀주는 책' },
-      { title: '월든', reason: '자유를 더 깊은 삶의 방식으로 바꿔주는 책' },
-      { title: '잠 못 이루는 밤을 위하여', reason: '떠도는 마음을 문장 안에 잠시 머물게 하는 책' },
+      { title: '여행의 이유', author: '김영하', reason: '낯선 세계를 향한 마음을 문장으로 확장해주는 책' },
+      { title: '어린 왕자', author: '앙투안 드 생텍쥐페리', reason: '낯선 별을 건너며 세계를 넓혀주는 이야기' },
+      { title: '우리가 빛의 속도로 갈 수 없다면', author: '김초엽', reason: '상상력으로 더 먼 가능성을 열어주는 책' },
     ],
   },
   EIGHT: {
@@ -263,9 +263,9 @@ const RESULTS: Record<GrainType, Result> = {
     keywords: ['힘', '용기', '정면', '보호'],
     image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=85',
     books: [
-      { title: '월든', reason: '강함을 자기만의 삶으로 정돈하게 하는 책' },
-      { title: '잠 못 이루는 밤을 위하여', reason: '버티는 마음의 방향을 조용히 밝혀주는 책' },
-      { title: '어린 왕자', reason: '강함 뒤에 숨은 순한 마음을 다시 보게 하는 책' },
+      { title: '월든', author: '헨리 데이비드 소로', reason: '강함을 자기만의 삶으로 정돈하게 하는 책' },
+      { title: '채식주의자', author: '한강', reason: '부딪힘과 저항의 감각을 강렬하게 남기는 소설' },
+      { title: '소년이 온다', author: '한강', reason: '지켜야 할 것 앞에서 물러서지 않는 마음을 생각하게 하는 책' },
     ],
   },
   NINE: {
@@ -278,9 +278,9 @@ const RESULTS: Record<GrainType, Result> = {
     keywords: ['고요', '평온', '수용', '리듬'],
     image: 'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=900&q=85',
     books: [
-      { title: '월든', reason: '고요한 삶이 가진 충만함을 보여주는 책' },
-      { title: '잠 못 이루는 밤을 위하여', reason: '느린 마음이 쉬어갈 수 있는 밤의 책' },
-      { title: '어린 왕자', reason: '작고 조용한 것의 소중함을 다시 알려주는 책' },
+      { title: '월든', author: '헨리 데이비드 소로', reason: '고요한 삶이 가진 충만함을 보여주는 책' },
+      { title: '모순', author: '양귀자', reason: '삶의 엇갈림을 조용히 품어보게 하는 소설' },
+      { title: '어린 왕자', author: '앙투안 드 생텍쥐페리', reason: '작고 조용한 것의 소중함을 다시 알려주는 책' },
     ],
   },
 }
@@ -328,7 +328,6 @@ export default function DiagnosisQuiz() {
   const result = RESULTS[resultType]
   const total = QUESTIONS.length
   const progress = stage === 'quiz' ? ((step + 1) / total) * 100 : 100
-  const scores = useMemo(() => calcScores(answers), [answers])
 
   useEffect(() => {
     if (stage !== 'loading') return
@@ -508,28 +507,26 @@ export default function DiagnosisQuiz() {
         )}
 
         {stage === 'result' && (
-          <section className="mx-auto grid w-full max-w-6xl gap-8 md:grid-cols-[minmax(0,720px)_320px]">
-            <div className="overflow-hidden border border-ink/10 bg-[#fffaf1]/92 shadow-[0_32px_90px_rgba(46,43,40,0.12)]">
-              <div className="grid gap-0 md:grid-cols-[0.74fr_1fr]">
-                <div className="relative min-h-[24rem] overflow-hidden rounded-t-[8rem] md:rounded-none md:rounded-tl-[10rem]">
-                  <img src={result.image} alt={`${result.name}을 상징하는 무드 이미지`} className="h-full w-full object-cover sepia-[0.16] saturate-[0.78]" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/8 to-white/12" />
-                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                    <p className="font-mono text-xs text-white/70">TYPE {String(result.number).padStart(2, '0')} · {result.oldName}</p>
-                    <p className="mt-2 text-sm font-semibold text-white/88">{result.line}</p>
-                  </div>
-                </div>
+          <section className="mx-auto w-full max-w-4xl overflow-hidden bg-[#292925] text-[#f7f0df] shadow-[0_34px_90px_rgba(30,28,24,0.24)]">
+            <div className="h-3 bg-[#dfa080]" />
+            <div className="px-6 py-8 md:px-12 md:py-12">
+              <div className="flex items-center justify-between border-b border-white/10 pb-5 text-[0.65rem] uppercase tracking-[0.18em] text-[#b7b0a2]">
+                <span>Glit Sentence Grain</span>
+                <span>Type {String(result.number).padStart(2, '0')} · {result.oldName}</span>
+              </div>
 
-                <div className="relative p-6 md:p-9">
-                  <div className="absolute right-8 top-8 h-24 w-24 rounded-full border border-coral/20" />
-                  <p className="text-xs font-semibold uppercase text-coral">Your Sentence Grain</p>
-                  <h2 className="mt-4 text-3xl font-black leading-[1.18] text-ink md:text-5xl">{result.name}</h2>
-                  <p className="mt-5 text-base italic leading-8 text-sub">당신은 {result.name}의 결을 가졌어요.</p>
-                  <p className="mt-7 border-y border-coral/20 py-5 text-lg font-bold leading-8 text-ink">{result.editorNote}</p>
-                  <p className="mt-5 text-sm leading-8 text-sub">{result.description}</p>
+              <div className="mt-9 grid gap-8 md:grid-cols-[0.72fr_1fr] md:items-end">
+                <div className="relative aspect-[4/5] overflow-hidden rounded-t-[7rem]">
+                  <img src={result.image} alt={`${result.name}을 상징하는 무드 이미지`} className="h-full w-full object-cover sepia-[0.2] saturate-[0.72]" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#292925]/72 via-transparent to-transparent" />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold italic text-[#dfa080]">{result.oldName}</p>
+                  <h2 className="mt-3 text-3xl font-black leading-[1.18] md:text-5xl">{result.name}</h2>
+                  <p className="mt-5 text-base italic leading-8 text-[#d8d0bf]">당신은 {result.name}의 결을 가졌어요.</p>
                   <div className="mt-6 flex flex-wrap gap-2">
                     {result.keywords.map((keyword) => (
-                      <span key={keyword} className="rounded-full border border-coral/20 bg-coral/7 px-3 py-1 text-xs text-coral">
+                      <span key={keyword} className="rounded-full border border-[#dfa080]/35 px-3 py-1 text-xs text-[#dfa080]">
                         {keyword}
                       </span>
                     ))}
@@ -537,64 +534,59 @@ export default function DiagnosisQuiz() {
                 </div>
               </div>
 
-              <div className="border-t border-ink/10 p-6 md:p-9">
-                <p className="text-xs font-semibold uppercase text-coral">Book Curation</p>
-                <h3 className="mt-3 text-2xl font-black text-ink">글릿이 고른 책 3권</h3>
-                <div className="mt-6 grid gap-4 md:grid-cols-3">
-                  {result.books.map((book, index) => (
-                    <article key={book.title} className="border border-ink/10 bg-white/38 p-5">
-                      <p className="font-mono text-xs text-coral">0{index + 1}</p>
-                      <h4 className="mt-4 text-lg font-black leading-7 text-ink">{book.title}</h4>
-                      <p className="mt-3 text-sm leading-7 text-sub/70">{book.reason}</p>
-                    </article>
-                  ))}
-                </div>
+              <div className="mt-10 border-l-2 border-[#ffd67d] bg-white/[0.04] px-6 py-6 md:px-8">
+                <p className="text-xl font-medium italic leading-10 md:text-2xl">"{result.editorNote.replace('글릿 에디터 코멘트: ', '')}"</p>
+                <p className="mt-5 text-sm text-[#9f988c]">— glit 에디터</p>
               </div>
-            </div>
 
-            <aside className="md:sticky md:top-24 md:self-start">
-              <div className="border border-coral/20 bg-coral/7 p-6">
-                <p className="text-sm font-bold leading-7 text-ink">@glit으로 DM 보내기</p>
-                <p className="mt-3 text-xs leading-6 text-sub">
-                  결과 화면을 캡처해서 DM으로 보내주시면, 글릿이 당신의 결에 맞는 문장과 읽을거리 목록을 더 자세히 전해드려요.
+              <p className="mt-8 text-sm leading-8 text-[#d8d0bf]">{result.description}</p>
+
+              <div className="mt-12 flex items-center gap-4">
+                <p className="shrink-0 text-xs font-semibold tracking-[0.22em] text-[#ffd67d]">글릿이 고른 책</p>
+                <div className="h-px flex-1 bg-white/14" />
+              </div>
+
+              <div className="mt-8 divide-y divide-white/10">
+                {result.books.map((book, index) => (
+                  <article key={book.title} className="grid gap-4 py-7 md:grid-cols-[3rem_1fr]">
+                    <p className="font-mono text-sm text-[#9f988c]">0{index + 1}</p>
+                    <div>
+                      <h3 className="text-xl font-black leading-8">「{book.title}」</h3>
+                      <p className="mt-2 text-sm text-[#a9a293]">{book.author}</p>
+                      <p className="mt-4 text-base leading-8 text-[#d8d0bf]">{book.reason}</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+
+              <div className="mt-12 border border-white/14 px-6 py-9 text-center md:px-12">
+                <h3 className="text-2xl font-black leading-9">더 깊은 큐레이션을<br />받고 싶다면</h3>
+                <p className="mt-5 text-sm leading-8 text-[#d8d0bf]">
+                  이 결과를 캡처해서 글릿 인스타그램으로 DM을 보내주세요.
+                  <br />
+                  당신의 결에 맞는 책 목록을 48시간 안에 전달드릴게요.
                 </p>
                 <a
                   href="https://instagram.com/gleamit_glit"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-6 block rounded-full bg-coral px-7 py-4 text-center text-sm font-semibold text-white transition-colors hover:bg-ink"
+                  className="mx-auto mt-8 inline-flex min-h-14 items-center justify-center bg-[#dfa080] px-12 text-sm font-bold text-[#292925] transition-colors hover:bg-[#f0c09f]"
                 >
-                  @glit으로 DM 보내기
+                  @glit 으로 DM 보내기
                 </a>
               </div>
 
-              <div className="mt-4 border border-ink/10 bg-white/50 p-6">
-                <p className="text-xs font-semibold uppercase text-coral">Score Map</p>
-                <div className="mt-5 space-y-3">
-                  {(Object.keys(RESULTS) as GrainType[]).map((type) => (
-                    <div key={type}>
-                      <div className="mb-1 flex justify-between text-[0.65rem] text-sub/45">
-                        <span>{String(RESULTS[type].number).padStart(2, '0')}</span>
-                        <span>{scores[type]}</span>
-                      </div>
-                      <div className="h-1 overflow-hidden rounded-full bg-ink/8">
-                        <div className="h-full rounded-full bg-coral" style={{ width: `${Math.min(scores[type] * 20, 100)}%` }} />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <p className="mt-4 text-xs leading-6 text-sub/45">
-                이 검사는 의학적·심리학적 진단이 아니라, 글릿이 제안하는 문장 취향 큐레이션입니다.
-              </p>
               <button
                 onClick={handleReset}
-                className="mt-5 w-full rounded-full border border-ink/12 px-7 py-4 text-sm font-medium text-sub transition-colors hover:border-coral hover:text-coral"
+                className="mt-8 w-full border border-white/14 px-7 py-4 text-sm font-medium text-[#f7f0df] transition-colors hover:border-[#dfa080] hover:text-[#dfa080]"
               >
-                다시 찾기
+                처음부터 다시 하기
               </button>
-            </aside>
+
+              <p className="mt-10 text-center text-xs leading-6 text-[#8f887b]">
+                이 검사는 의학적·심리학적 진단이 아니라, 글릿이 제안하는 문장 취향 큐레이션입니다.
+              </p>
+            </div>
           </section>
         )}
       </main>

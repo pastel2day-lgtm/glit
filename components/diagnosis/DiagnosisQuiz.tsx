@@ -256,9 +256,9 @@ const RESULTS: Record<
 
 const resultTypes = Object.values(RESULTS)
 const heroImages = [
-  '/images/glit_mag_bright_night.png',
-  '/images/glit_mag_bright_star.png',
-  '/images/glit_mag_week3_forest.png',
+  'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=900&q=85',
+  'https://images.unsplash.com/photo-1519682337058-a94d519337bc?auto=format&fit=crop&w=900&q=85',
+  'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=900&q=85',
 ]
 
 function calcScores(answers: GrainType[]): Record<GrainType, number> {
@@ -363,21 +363,23 @@ export default function DiagnosisQuiz() {
                 <span className="border border-ink/10 bg-white/45 px-3 py-2">약 5분</span>
               </div>
 
-              <div className="mt-9 flex flex-wrap items-center gap-4">
+              <div className="mt-9 border border-coral/20 bg-[#fffaf1]/75 p-4 shadow-[0_18px_44px_rgba(46,43,40,0.08)] sm:inline-flex sm:items-center sm:gap-4">
                 <button
                   onClick={() => setStage('quiz')}
-                  className="inline-flex h-12 items-center rounded-full bg-ink px-7 text-sm font-semibold text-ivory shadow-[0_18px_40px_rgba(46,43,40,0.16)] transition-colors hover:bg-coral"
+                  className="inline-flex min-h-14 w-full items-center justify-center rounded-full bg-coral px-8 py-4 text-sm font-bold text-white shadow-[0_18px_40px_rgba(217,119,78,0.24)] transition-colors hover:bg-ink sm:w-auto"
                 >
                   나의 결 찾기
                 </button>
-                <p className="text-xs leading-5 text-sub/45">결과 화면을 캡처해 DM으로 보내면 큐레이션을 받아볼 수 있어요.</p>
+                <p className="mt-3 text-xs leading-5 text-sub/55 sm:mt-0">
+                  결과 화면을 캡처해 DM으로 보내면 큐레이션을 받아볼 수 있어요.
+                </p>
               </div>
             </div>
 
             <div className="relative overflow-hidden border border-ink/10 bg-[#fffaf1]/85 p-4 shadow-[0_26px_80px_rgba(46,43,40,0.08)] md:p-5">
               <div className="grid min-h-[23rem] grid-cols-[0.88fr_1.08fr] gap-4 md:min-h-[28rem]">
                 <div className="flex flex-col gap-4">
-                  <img src={heroImages[0]} alt="" className="h-36 w-full object-cover sepia-[0.15] saturate-[0.85] md:h-44" />
+                  <img src={heroImages[0]} alt="별빛이 보이는 밤하늘" className="h-36 w-full object-cover sepia-[0.08] saturate-[0.9] md:h-44" />
                   <div className="flex flex-1 flex-col justify-between border-y border-ink/10 py-5">
                     <p className="text-xs font-semibold uppercase text-coral">Compressed from 81</p>
                     <p className="text-xl font-black leading-tight text-ink md:text-2xl">
@@ -389,9 +391,9 @@ export default function DiagnosisQuiz() {
                   </div>
                 </div>
                 <div className="grid gap-4">
-                  <img src={heroImages[1]} alt="" className="h-52 min-h-0 w-full object-cover sepia-[0.08] saturate-[0.9] md:h-full" />
+                  <img src={heroImages[1]} alt="따뜻한 빛 아래 놓인 책" className="h-52 min-h-0 w-full object-cover sepia-[0.12] saturate-[0.85] md:h-full" />
                   <div className="grid grid-cols-[1fr_0.72fr] gap-4">
-                    <img src={heroImages[2]} alt="" className="h-28 w-full object-cover sepia-[0.2] saturate-[0.78] md:h-32" />
+                    <img src={heroImages[2]} alt="고요한 숲길" className="h-28 w-full object-cover sepia-[0.18] saturate-[0.78] md:h-32" />
                     <div className="border border-coral/20 bg-ivory/70 p-3">
                       <p className="font-mono text-xs text-coral">15</p>
                       <p className="mt-2 text-xs font-semibold leading-5 text-ink">questions for a quiet reading map</p>

@@ -1,235 +1,151 @@
-﻿'use client'
+'use client'
 import { useState } from 'react'
 import Diamond from '@/components/ui/Diamond'
 import SiteFooter from '@/components/SiteFooter'
 
-type EssenceType = 'E' | 'T' | 'P' | 'I'
+type GrainType = 'NIGHT' | 'STAR' | 'FOREST'
 type Stage = 'intro' | 'quiz' | 'result'
 
 const QUESTIONS = [
   {
-    title: '오늘 하루, 당신이 마음의 머무름을 위해\n가장 필요한 온도는?',
+    title: '요즘 마음이 가장 자주\n머무는 곳은 어디인가요?',
     options: [
-      { text: '얼어붙은 생각들을 부드럽게 감싸는 아주 연한 미온의 온기', type: 'E' as EssenceType },
-      { text: '격렬히 타오르던 번뇌를 즉시 가라앉히는 차고 명징한 냉정', type: 'T' as EssenceType },
-      { text: '달콤한 우유를 갓 끓여 올렸을 때 만나는 농밀하고 포근한 온기', type: 'P' as EssenceType },
-      { text: '느릿하게 타들어가는 인센스 연기 같은 그윽한 상온의 고요', type: 'I' as EssenceType },
+      { text: '잠들기 전, 자꾸만 선명해지는 생각들 사이', type: 'NIGHT' as GrainType },
+      { text: '내가 정말 원하는 게 뭔지 묻게 되는 순간들 사이', type: 'STAR' as GrainType },
+      { text: '혼자 있어야 겨우 숨이 돌아오는 시간들 사이', type: 'FOREST' as GrainType },
     ],
   },
   {
-    title: '가장 글을 쓰고 싶어지는 시간대는\n언제인가요?',
+    title: '괜찮지 않은 날,\n당신에게 먼저 필요한 것은?',
     options: [
-      { text: '저녁 노을이 지고, 하루의 감정들이 가라앉는 시간에', type: 'E' as EssenceType },
-      { text: '한낮의 선명한 햇살 아래, 생각이 날카롭게 정리될 때', type: 'T' as EssenceType },
-      { text: '늦은 밤, 세상과 나만 깨어 있는 듯한 깊은 호흡 속에서', type: 'P' as EssenceType },
-      { text: '이른 새벽, 세상이 아직 잠들어 있는 고요한 빛 속에서', type: 'I' as EssenceType },
+      { text: '불 꺼진 방에서도 붙잡을 수 있는 조용한 문장', type: 'NIGHT' as GrainType },
+      { text: '잊고 있던 방향을 다시 떠올리게 하는 질문', type: 'STAR' as GrainType },
+      { text: '아무에게도 설명하지 않아도 되는 넓은 침묵', type: 'FOREST' as GrainType },
     ],
   },
   {
-    title: '당신에게 가장 편안한 글쓰기 장소는\n어디인가요?',
+    title: '책을 펼칠 때,\n가장 먼저 찾게 되는 감각은?',
     options: [
-      { text: '사람들 소리가 은은히 들리는 카페나 공원 벤치', type: 'E' as EssenceType },
-      { text: '정돈된 책상, 필요한 것만 놓인 깔끔한 방', type: 'T' as EssenceType },
-      { text: '창가 자리, 빛이 잘 드는 조용한 구석', type: 'P' as EssenceType },
-      { text: '아무도 모르는 나만의 장소, 완전한 고요 속', type: 'I' as EssenceType },
+      { text: '뒤척이는 마음이 조금씩 가라앉는 안도감', type: 'NIGHT' as GrainType },
+      { text: '나만의 빛을 다시 확인하는 작은 설렘', type: 'STAR' as GrainType },
+      { text: '혼자 있는 시간이 충분해지는 단단함', type: 'FOREST' as GrainType },
     ],
   },
   {
-    title: '글을 쓰기 전, 당신이 가장 먼저\n하는 것은 무엇인가요?',
+    title: '지금 가장 듣고 싶은 말은?',
     options: [
-      { text: '최근에 나눈 대화나 만남을 마음속으로 떠올린다', type: 'E' as EssenceType },
-      { text: '쓰고 싶은 것을 간단히 메모하거나 목차를 잡아본다', type: 'T' as EssenceType },
-      { text: '음악을 틀거나, 향을 피우거나, 분위기를 먼저 만든다', type: 'P' as EssenceType },
-      { text: '그냥 오래 앉아서 아무것도 하지 않는다', type: 'I' as EssenceType },
+      { text: '오늘 밤을 꼭 잘 해내지 않아도 괜찮아요', type: 'NIGHT' as GrainType },
+      { text: '당신의 별은 사라진 게 아니라 잠시 흐려진 거예요', type: 'STAR' as GrainType },
+      { text: '혼자 있는 시간도 충분히 사랑의 방식이에요', type: 'FOREST' as GrainType },
     ],
   },
   {
-    title: '당신이 가장 좋아하는\n문장의 스타일은?',
+    title: '당신의 문장 결을\n하나의 풍경으로 고른다면?',
     options: [
-      { text: '따뜻하고 친근하게 말을 거는 문장', type: 'E' as EssenceType },
-      { text: '간결하고 명확하게 핵심을 짚는 문장', type: 'T' as EssenceType },
-      { text: '이미지나 감각이 살아 숨쉬는 문장', type: 'P' as EssenceType },
-      { text: '천천히 읽어야만 하는, 여운이 긴 문장', type: 'I' as EssenceType },
+      { text: '밝은 책등 하나가 놓인 깊은 밤의 침대맡', type: 'NIGHT' as GrainType },
+      { text: '작지만 분명하게 빛나는 한 사람의 별', type: 'STAR' as GrainType },
+      { text: '말을 아껴도 마음이 넓어지는 숲길', type: 'FOREST' as GrainType },
     ],
   },
   {
-    title: '글이 막힐 때, 당신은 어떻게\n하나요?',
+    title: '좋은 책을 만났을 때\n가장 오래 남는 것은?',
     options: [
-      { text: '친구에게 연락하거나 누군가와 이야기를 나눈다', type: 'E' as EssenceType },
-      { text: '관련 자료를 더 찾아보거나 논리를 다시 정리한다', type: 'T' as EssenceType },
-      { text: '산책을 나가거나 다른 예술 작품을 감상한다', type: 'P' as EssenceType },
-      { text: '그냥 기다린다. 때가 오면 쓰인다고 믿는다', type: 'I' as EssenceType },
+      { text: '나와 같은 밤을 지나온 사람이 있다는 느낌', type: 'NIGHT' as GrainType },
+      { text: '내 안에 아직 꺼지지 않은 가능성을 보는 느낌', type: 'STAR' as GrainType },
+      { text: '혼자여도 비어 있지 않다는 확신', type: 'FOREST' as GrainType },
     ],
   },
   {
-    title: '다른 사람의 글을 읽을 때\n가장 먼저 눈에 들어오는 것은?',
+    title: '지금 당신에게 필요한\n책의 역할은 무엇인가요?',
     options: [
-      { text: '이 글에서 느껴지는 사람의 온기와 진심', type: 'E' as EssenceType },
-      { text: '이 글이 하고 싶은 말의 핵심', type: 'T' as EssenceType },
-      { text: '이 글에서 사용된 표현과 이미지', type: 'P' as EssenceType },
-      { text: '이 글 사이사이에 숨어있는 침묵과 여백', type: 'I' as EssenceType },
-    ],
-  },
-  {
-    title: '당신이 글쓰기를 통해\n얻고 싶은 것은?',
-    options: [
-      { text: '나의 이야기로 누군가와 깊이 연결되는 것', type: 'E' as EssenceType },
-      { text: '흩어진 생각을 명확하게 정리하는 것', type: 'T' as EssenceType },
-      { text: '내 안의 감정을 아름다운 언어로 표현하는 것', type: 'P' as EssenceType },
-      { text: '나 자신을 더 깊이 이해하는 것', type: 'I' as EssenceType },
-    ],
-  },
-  {
-    title: '당신의 이상적인 글쓰기 루틴은\n어떤 모습인가요?',
-    options: [
-      { text: '일상의 작은 순간들을 꾸준히 기록하는 것', type: 'E' as EssenceType },
-      { text: '특정 주제를 깊이 연구하고 분석적으로 쓰는 것', type: 'T' as EssenceType },
-      { text: '감흥이 올 때 집중적으로 쏟아내는 것', type: 'P' as EssenceType },
-      { text: '오랫동안 생각을 숙성시킨 후 천천히 쓰는 것', type: 'I' as EssenceType },
-    ],
-  },
-  {
-    title: '당신이 쓴 글을 읽은 독자가\n이런 말을 해줬으면 한다면?',
-    options: [
-      { text: '"이 글을 읽고 조금 위로가 됐어요"', type: 'E' as EssenceType },
-      { text: '"이 글, 정말 정확하게 짚었네요"', type: 'T' as EssenceType },
-      { text: '"이 글의 감성이 마음속 깊이 남아요"', type: 'P' as EssenceType },
-      { text: '"이 글을 읽으며 한참 생각에 잠겼어요"', type: 'I' as EssenceType },
-    ],
-  },
-  {
-    title: '글을 완성하고 나서\n드는 감정은?',
-    options: [
-      { text: '이 글이 누군가에게 닿을까 하는 설렘과 기대', type: 'E' as EssenceType },
-      { text: '하고 싶었던 말이 정확히 담겼는지 확인하고 싶음', type: 'T' as EssenceType },
-      { text: '이 글이 충분히 아름다운지 다시 읽어보고 싶음', type: 'P' as EssenceType },
-      { text: '이 글을 세상에 내보내도 될지 오래 망설임', type: 'I' as EssenceType },
-    ],
-  },
-  {
-    title: '지금 이 순간 당신의 감정을\n색으로 표현한다면?',
-    options: [
-      { text: '따뜻한 황토빛 — 누군가의 손처럼', type: 'E' as EssenceType },
-      { text: '차가운 회청색 — 새벽 하늘처럼', type: 'T' as EssenceType },
-      { text: '짙은 마젠타 — 해 질 녘처럼', type: 'P' as EssenceType },
-      { text: '연한 회색 — 안개처럼', type: 'I' as EssenceType },
-    ],
-  },
-  {
-    title: '당신이 만약 책을 쓴다면\n어떤 책인가요?',
-    options: [
-      { text: '일상 에세이 — 나와 주변 사람들의 따뜻한 이야기', type: 'E' as EssenceType },
-      { text: '논픽션 — 세상을 꿰뚫어 보는 날카로운 분석', type: 'T' as EssenceType },
-      { text: '감성 소설 — 언어로 빚어낸 아름다운 세계', type: 'P' as EssenceType },
-      { text: '사색집 — 오랫동안 혼자 익힌 내면의 기록', type: 'I' as EssenceType },
-    ],
-  },
-  {
-    title: '당신이 글을 쓸 때\n가장 담고 싶은 이야기는?',
-    options: [
-      { text: '나와 연결된 사람들, 일상에서 느낀 따뜻한 감정들', type: 'E' as EssenceType },
-      { text: '세상을 바라보며 발견한 명확한 통찰과 예리한 관찰', type: 'T' as EssenceType },
-      { text: '소리, 빛, 향기처럼 언어로 설명하기 어려운 감각의 기억', type: 'P' as EssenceType },
-      { text: '혼자 오래 생각해온 것, 아직 아무에게도 말하지 않은 것', type: 'I' as EssenceType },
-    ],
-  },
-  {
-    title: '지금 이 순간, 당신의 내면을\n가장 잘 표현하는 문장은?',
-    options: [
-      { text: '나는 지금, 누군가와 따뜻하게 연결되고 싶다', type: 'E' as EssenceType },
-      { text: '나는 지금, 모든 것을 명확하게 이해하고 싶다', type: 'T' as EssenceType },
-      { text: '나는 지금, 내 감정의 끝까지 들어가 보고 싶다', type: 'P' as EssenceType },
-      { text: '나는 지금, 그냥 조용히 나 자신과 함께 있고 싶다', type: 'I' as EssenceType },
+      { text: '잠 못 드는 밤 옆에 조용히 놓이는 것', type: 'NIGHT' as GrainType },
+      { text: '고개를 들게 하고, 다시 별을 보게 하는 것', type: 'STAR' as GrainType },
+      { text: '혼자의 시간을 낭비가 아니라 충만함으로 바꾸는 것', type: 'FOREST' as GrainType },
     ],
   },
 ]
 
 const RESULTS: Record<
-  EssenceType,
+  GrainType,
   {
     code: string
     name: string
-    eng: string
-    tagline: string
+    label: string
+    comment: string
     description: string
-    traits: string[]
+    bookTitle: string
+    bookSlug: string
+    bookImage: string
+    bookLine: string
+    feelingQuestion: string
     keywords: string[]
-    writingStyle: string
-    recommendedContent: string[]
   }
 > = {
-  E: {
-    code: 'E형',
-    name: '온기의 언어',
-    eng: 'The Warm Voice',
-    tagline: '당신의 글은 사람과 사람 사이를 잇는 다리입니다.',
+  NIGHT: {
+    code: '1',
+    name: '잠 못 드는 결',
+    label: '불안 속에서도 문장을 붙잡는 결',
+    comment: '깊이 느끼는 사람이에요. 표면보다 바닥을 오래 보는 분이시더라고요.',
     description:
-      '따뜻한 공감의 감각으로 독자의 마음을 부드럽게 감쌉니다. 일상 속 작은 연결을 포착하는 당신의 글은, 읽는 이로 하여금 "나만 이런 게 아니었구나"를 느끼게 합니다.',
-    traits: ['공감 능력이 뛰어남', '일상의 온도를 포착함', '독자와 함께 숨 쉬는 글'],
-    keywords: ['공감', '일상', '연결', '따뜻함'],
-    writingStyle: '당신의 글은 독자를 처음 만나는 순간부터 포근하게 감쌉니다. 특별한 사건보다 평범한 하루의 감촉을 담아내는 데 탁월하며, 읽는 이가 자신의 이야기처럼 느끼게 만드는 힘이 있습니다.',
-    recommendedContent: ['일상 에세이 쓰기 가이드', '공감 글쓰기 워크숍', '나의 첫 뉴스레터 만들기'],
+      '마음이 소란할수록 오히려 더 조용한 문장을 찾는 편이에요. 잠이 오지 않는 밤에도 감정을 밀어내기보다 천천히 들여다보려는 힘이 있습니다.',
+    bookTitle: '잠 못 드는 밤을 위한 책',
+    bookSlug: '/editorial/sleepless-night',
+    bookImage: '/images/glit_mag_bright_night.png',
+    bookLine: '어둠이 깊을수록 별은 더 선명해진다는 걸.',
+    feelingQuestion: '혹시 요즘, 잠들기 직전에 마음이 가장 솔직해지는 날이 많으신가요?',
+    keywords: ['사색', '불면', '안도', '깊은 밤'],
   },
-  T: {
-    code: 'T형',
-    name: '명징의 언어',
-    eng: 'The Clear Eye',
-    tagline: '당신의 글은 흐릿한 것을 선명하게 만듭니다.',
+  STAR: {
+    code: '2',
+    name: '별을 찾는 결',
+    label: '잊고 있던 방향을 다시 찾는 결',
+    comment: '계속 찾는 사람이에요. 지친 와중에도 나만의 빛을 포기하지 않는 분이시더라고요.',
     description:
-      '날카로운 관찰력과 논리적인 언어로 세상을 새롭게 해석합니다. 독자는 당신의 글을 읽고 "그렇게 생각한 적이 없었는데"라며 무언가를 발견하게 됩니다.',
-    traits: ['본질을 꿰뚫어 보는 시선', '논리와 감성의 균형', '생각을 구조화하는 능력'],
-    keywords: ['통찰', '관찰', '분석', '명확함'],
-    writingStyle: '당신의 글은 독자에게 새로운 시각을 선사합니다. 감정에 치우치지 않으면서도 차갑지 않은, 명징하되 따뜻한 언어를 씁니다. 복잡한 것을 단순하게, 단순해 보이는 것에서 깊이를 발견합니다.',
-    recommendedContent: ['비평적 글쓰기 입문', '나만의 관점 발견하기', '에세이 구조 설계법'],
+      '바쁘게 지내다가도 문득 “나는 어디로 가고 있지?”를 묻는 타입이에요. 당신에게 필요한 문장은 답보다 방향을 다시 켜주는 작은 신호에 가깝습니다.',
+    bookTitle: '당신만의 별은 어디 있나요',
+    bookSlug: '/editorial/your-own-star',
+    bookImage: '/images/glit_mag_bright_star.png',
+    bookLine: '별은 사라지지 않으니까요.',
+    feelingQuestion: '혹시 요즘, 내 별이 어디 있는지 자꾸 잊어버리는 기분이 드시나요?',
+    keywords: ['방향', '이상', '가능성', '나의 별'],
   },
-  P: {
-    code: 'P형',
-    name: '깊이의 언어',
-    eng: 'The Deep Current',
-    tagline: '당신의 글은 감정의 깊은 곳에서 길어올린 것입니다.',
+  FOREST: {
+    code: '3',
+    name: '혼자 충만한 결',
+    label: '혼자 있을 때 가장 충만해지는 결',
+    comment: '혼자서 깊어지는 사람이에요. 거리를 두는 게 아니라 자신을 회복하는 분이시더라고요.',
     description:
-      '시와 산문의 경계에서 살아가는 당신은 언어를 감각으로 씁니다. 독자는 당신의 글에서 설명할 수 없는 무언가를, 오래도록 마음에 품게 됩니다.',
-    traits: ['감각적이고 시적인 표현', '깊고 농밀한 감정의 층위', '언어의 질감을 다루는 능력'],
-    keywords: ['감성', '시적', '깊이', '농밀함'],
-    writingStyle: '당신의 글은 읽히기보다 느껴집니다. 한 문장 한 문장에 소리와 빛과 냄새가 배어 있고, 독자는 그 감각의 세계 속으로 자연스럽게 걸어 들어갑니다. 언어로 그림을 그리는 사람입니다.',
-    recommendedContent: ['감각 글쓰기 훈련법', '산문시 입문', '이미지로 쓰는 글쓰기'],
-  },
-  I: {
-    code: 'I형',
-    name: '고요의 언어',
-    eng: 'The Still Water',
-    tagline: '당신의 글은 독자를 잠시 멈추게 합니다.',
-    description:
-      '느린 호흡처럼, 읽고 난 뒤에도 오래도록 마음속에 머무는 글을 씁니다. 혼자만의 사색에서 시작된 당신의 언어는, 독자의 내면에 조용한 파문을 일으킵니다.',
-    traits: ['깊은 사색과 내면 탐구', '언어의 여백을 다루는 능력', '독자에게 긴 여운을 남김'],
-    keywords: ['사색', '고요', '여운', '내면'],
-    writingStyle: '당신의 글은 쓰인 것보다 쓰이지 않은 것이 더 많습니다. 행간에 담긴 침묵이 독자의 마음을 흔들고, 다 읽은 후에야 글의 진짜 무게가 느껴집니다. 서두르지 않는 글쓰기의 미덕을 아는 사람입니다.',
-    recommendedContent: ['사색 일기 쓰기', '느리게 읽고 천천히 쓰기', '내면 글쓰기 명상'],
+      '사람들 사이에서 소진된 마음을 혼자만의 시간으로 다시 채우는 타입이에요. 고요를 회피가 아니라 생활의 중심을 되찾는 방식으로 사용할 줄 압니다.',
+    bookTitle: '혼자 있는 시간이 가장 충만했다',
+    bookSlug: '/editorial/fullest-alone',
+    bookImage: '/images/glit_mag_week3_forest.png',
+    bookLine: '혼자 있는 시간은 낭비가 아니라, 나를 다시 채우는 방식일지도 몰라요.',
+    feelingQuestion: '혹시 요즘, 혼자 있는 시간이 있어야 겨우 나로 돌아오는 느낌이 드시나요?',
+    keywords: ['혼자', '회복', '고요', '루틴'],
   },
 }
 
-function calcScores(answers: EssenceType[]): Record<EssenceType, number> {
-  const count: Record<EssenceType, number> = { E: 0, T: 0, P: 0, I: 0 }
-  answers.forEach((a) => count[a]++)
+function calcScores(answers: GrainType[]): Record<GrainType, number> {
+  const count: Record<GrainType, number> = { NIGHT: 0, STAR: 0, FOREST: 0 }
+  answers.forEach((answer) => count[answer]++)
   return count
 }
 
-function calcResult(answers: EssenceType[]): EssenceType {
+function calcResult(answers: GrainType[]): GrainType {
   const count = calcScores(answers)
-  return (Object.keys(count) as EssenceType[]).reduce((a, b) =>
-    count[a] >= count[b] ? a : b
+  return (Object.keys(count) as GrainType[]).reduce((current, candidate) =>
+    count[current] >= count[candidate] ? current : candidate
   )
 }
 
 export default function DiagnosisQuiz() {
   const [stage, setStage] = useState<Stage>('intro')
   const [step, setStep] = useState(0)
-  const [answers, setAnswers] = useState<EssenceType[]>([])
-  const [selected, setSelected] = useState<EssenceType | null>(null)
-  const [resultType, setResultType] = useState<EssenceType>('E')
-  const [scores, setScores] = useState<Record<EssenceType, number>>({ E: 0, T: 0, P: 0, I: 0 })
+  const [answers, setAnswers] = useState<GrainType[]>([])
+  const [selected, setSelected] = useState<GrainType | null>(null)
+  const [resultType, setResultType] = useState<GrainType>('NIGHT')
 
-  const handleSelect = (type: EssenceType) => {
+  const handleSelect = (type: GrainType) => {
     if (selected) return
     setSelected(type)
 
@@ -238,15 +154,13 @@ export default function DiagnosisQuiz() {
       setAnswers(newAnswers)
 
       if (step < QUESTIONS.length - 1) {
-        setStep((s) => s + 1)
+        setStep((current) => current + 1)
         setSelected(null)
       } else {
-        const finalScores = calcScores(newAnswers)
-        setScores(finalScores)
         setResultType(calcResult(newAnswers))
         setStage('result')
       }
-    }, 400)
+    }, 320)
   }
 
   const handleReset = () => {
@@ -254,118 +168,110 @@ export default function DiagnosisQuiz() {
     setStep(0)
     setAnswers([])
     setSelected(null)
-    setScores({ E: 0, T: 0, P: 0, I: 0 })
+    setResultType('NIGHT')
   }
 
   const result = RESULTS[resultType]
   const progress = ((step + 1) / QUESTIONS.length) * 100
   const total = QUESTIONS.length
 
-  const typeLabels: Record<EssenceType, string> = { E: '온기', T: '명징', P: '깊이', I: '고요' }
-
   return (
-    <div className="min-h-screen flex flex-col bg-ivory text-ink">
-      {/* Header */}
-      <header className="px-6 py-4 flex items-center justify-between border-b border-ink/8 bg-ivory/90 backdrop-blur-sm sticky top-0 z-10">
+    <div className="flex min-h-screen flex-col bg-ivory text-ink">
+      <header className="sticky top-0 z-10 flex items-center justify-between border-b border-ink/8 bg-ivory/90 px-6 py-4 backdrop-blur-sm">
         <a href="/" className="flex items-center gap-2">
-          <Diamond className="w-4 h-4 text-coral" />
+          <Diamond className="h-4 w-4 text-coral" />
           <span className="text-sm font-bold tracking-tight">글릿</span>
         </a>
         {stage === 'quiz' && (
-          <span className="text-xs tracking-widest uppercase text-sub/40">
+          <span className="text-xs uppercase tracking-widest text-sub/40">
             {step + 1} / {total}
           </span>
         )}
       </header>
 
-      <main className="flex-1 flex items-center justify-center px-6 py-12">
-
-        {/* ── INTRO ── */}
+      <main className="flex flex-1 items-center justify-center px-6 py-12">
         {stage === 'intro' && (
-          <div className="text-center max-w-lg mx-auto">
-            <div className="flex justify-center mb-6">
-              <Diamond className="w-8 h-8 text-coral" />
+          <div className="mx-auto max-w-xl text-center">
+            <div className="mb-6 flex justify-center">
+              <Diamond className="h-8 w-8 text-coral" />
             </div>
-            <p className="text-coral text-xs font-medium tracking-widest uppercase mb-5">
-              Digital Essence Diagnosis
+            <p className="mb-5 text-xs font-medium uppercase tracking-widest text-coral">
+              Sentence Grain Test
             </p>
-            <h1 className="text-3xl md:text-4xl font-bold text-ink leading-snug mb-4">
-              당신은 어떤 언어를<br />가진 사람인가요?
+            <h1 className="mb-4 text-3xl font-bold leading-snug text-ink md:text-4xl">
+              당신의 문장 결에 맞는
+              <br />
+              책을 골라드릴게요
             </h1>
-            <p className="text-sub text-base leading-relaxed mb-3">
-              15가지 질문으로 나의 글쓰기 에센스 타입을 진단합니다.
+            <p className="mb-4 text-base leading-relaxed text-sub">
+              말씀해주신 거 들으면서, 딱 어울리는 문장이 떠올랐어요.
+              <br />
+              조금 더 정확하게 맞춰드리고 싶어서요.
             </p>
-            <p className="text-sub/60 text-sm leading-relaxed mb-8">
-              솔직하게, 가장 먼저 떠오르는 답을 선택하세요.<br />
-              결과는 글릿 뉴스레터에서 전체 분석으로 받아볼 수 있어요.
+            <p className="mb-8 text-sm leading-relaxed text-sub/60">
+              아래 짧은 검사만 해주시면, 당신의 문장 결에 맞는 책과 문장을 바로 보여드릴게요.
             </p>
 
-            <div className="flex justify-center gap-3 mb-10 flex-wrap">
-              {(['E형 · 온기', 'T형 · 명징', 'P형 · 깊이', 'I형 · 고요'] as const).map((t) => (
-                <span key={t} className="text-xs text-sub/50 border border-ink/10 px-3 py-1.5 rounded-full">
-                  {t}
+            <div className="mb-10 flex flex-wrap justify-center gap-3">
+              {(['잠 못 드는 결', '별을 찾는 결', '혼자 충만한 결'] as const).map((type) => (
+                <span key={type} className="rounded-full border border-ink/10 px-3 py-1.5 text-xs text-sub/50">
+                  {type}
                 </span>
               ))}
             </div>
 
             <button
               onClick={() => setStage('quiz')}
-              className="bg-coral text-white px-8 py-4 rounded-full text-sm font-medium hover:bg-coral/90 transition-colors"
+              className="rounded-full bg-coral px-8 py-4 text-sm font-medium text-white transition-colors hover:bg-coral/90"
             >
-              진단 시작하기 →
+              문장 결 검사하기
             </button>
 
             <div className="mt-8">
-              <a href="/" className="text-xs text-sub/40 hover:text-coral transition-colors">
-                ← 글릿으로 돌아가기
+              <a href="/" className="text-xs text-sub/40 transition-colors hover:text-coral">
+                글릿으로 돌아가기
               </a>
             </div>
           </div>
         )}
 
-        {/* ── QUIZ ── */}
         {stage === 'quiz' && (
-          <div className="w-full max-w-xl mx-auto">
-            {/* Progress */}
-            <div className="flex items-center gap-3 mb-2">
-              <div className="flex-1 h-0.5 bg-ink/8 rounded-full overflow-hidden">
+          <div className="mx-auto w-full max-w-xl">
+            <div className="mb-2 flex items-center gap-3">
+              <div className="h-0.5 flex-1 overflow-hidden rounded-full bg-ink/8">
                 <div
-                  className="h-full bg-coral rounded-full transition-all duration-500"
+                  className="h-full rounded-full bg-coral transition-all duration-500"
                   style={{ width: `${progress}%` }}
                 />
               </div>
-              <span className="text-xs text-sub/40 font-mono shrink-0">{step + 1}/{total}</span>
+              <span className="shrink-0 font-mono text-xs text-sub/40">{step + 1}/{total}</span>
             </div>
 
-            <p className="text-xs tracking-widest uppercase mb-8 text-sub/30">
-              Digital Essence Diagnosis
-            </p>
+            <p className="mb-8 text-xs uppercase tracking-widest text-sub/30">Sentence Grain Test</p>
 
-            {/* Question */}
             <h2
-              className="text-xl md:text-2xl font-bold text-ink leading-snug mb-7"
+              className="mb-7 text-xl font-bold leading-snug text-ink md:text-2xl"
               style={{ whiteSpace: 'pre-line' }}
             >
               {QUESTIONS[step].title}
             </h2>
 
-            {/* Options */}
             <div className="flex flex-col gap-2.5">
-              {QUESTIONS[step].options.map((option, i) => {
+              {QUESTIONS[step].options.map((option, index) => {
                 const isChosen = selected === option.type
                 const isDimmed = !!selected && !isChosen
                 return (
                   <button
-                    key={i}
+                    key={index}
                     onClick={() => handleSelect(option.type)}
                     disabled={!!selected}
                     className={[
-                      'text-left px-5 py-4 rounded-xl text-sm leading-relaxed transition-all duration-200 border',
+                      'rounded-xl border px-5 py-4 text-left text-sm leading-relaxed transition-all duration-200',
                       isChosen
                         ? 'border-coral bg-coral/8 text-ink'
                         : isDimmed
                         ? 'border-ink/6 bg-white/30 text-sub/25'
-                        : 'border-ink/10 bg-white hover:border-coral/35 hover:bg-coral/3 text-sub cursor-pointer',
+                        : 'cursor-pointer border-ink/10 bg-white text-sub hover:border-coral/35 hover:bg-coral/3',
                     ].join(' ')}
                   >
                     {option.text}
@@ -376,124 +282,70 @@ export default function DiagnosisQuiz() {
           </div>
         )}
 
-        {/* ── RESULT ── */}
         {stage === 'result' && (
-          <div className="w-full max-w-2xl mx-auto">
-            {/* Type badge */}
-            <div className="text-center mb-8">
-              <p className="text-coral text-xs font-medium tracking-widest uppercase mb-4">
-                Your Essence Type
+          <div className="mx-auto w-full max-w-3xl">
+            <div className="mb-8 text-center">
+              <p className="mb-4 text-xs font-medium uppercase tracking-widest text-coral">
+                Your Sentence Grain
               </p>
-              <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full mb-5 border border-coral/25 bg-coral/5">
-                <span className="font-mono text-sm text-coral">{result.code}</span>
+              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-coral/25 bg-coral/5 px-5 py-2">
+                <span className="font-mono text-sm text-coral">Type {result.code}</span>
                 <span className="text-ink/20">·</span>
-                <span className="text-sm text-sub">{result.eng}</span>
+                <span className="text-sm text-sub">{result.label}</span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-ink mb-3">{result.name}</h2>
-              <p className="text-base italic text-sub leading-relaxed max-w-sm mx-auto">
-                {result.tagline}
+              <h2 className="mb-3 text-3xl font-bold text-ink md:text-4xl">
+                결과 보니까 {result.name}이시네요.
+              </h2>
+              <p className="mx-auto max-w-md text-base italic leading-relaxed text-sub">
+                {result.comment}
               </p>
             </div>
 
-            {/* Score bars */}
-            <div className="bg-white/60 border border-ink/8 rounded-2xl p-6 mb-5">
-              <p className="text-xs text-sub/50 tracking-widest uppercase mb-4">에센스 구성 비율</p>
-              <div className="space-y-3">
-                {(Object.keys(scores) as EssenceType[]).map((t) => {
-                  const pct = Math.round((scores[t] / total) * 100)
-                  const isMain = t === resultType
-                  return (
-                    <div key={t} className="flex items-center gap-3">
-                      <span className={`text-xs font-mono w-8 shrink-0 ${isMain ? 'text-coral font-bold' : 'text-sub/50'}`}>
-                        {t}형
-                      </span>
-                      <div className="flex-1 h-1.5 bg-ink/6 rounded-full overflow-hidden">
-                        <div
-                          className={`h-full rounded-full transition-all duration-700 ${isMain ? 'bg-coral' : 'bg-ink/20'}`}
-                          style={{ width: `${pct}%` }}
-                        />
-                      </div>
-                      <span className={`text-xs font-mono w-8 text-right shrink-0 ${isMain ? 'text-coral font-bold' : 'text-sub/40'}`}>
-                        {pct}%
-                      </span>
-                    </div>
-                  )
-                })}
-              </div>
-              <p className="text-xs text-sub/35 mt-4 leading-relaxed">
-                {typeLabels[resultType]}의 에센스가 가장 강하게 나타났어요. 두 번째 타입도 당신의 글쓰기에 영향을 줍니다.
-              </p>
-            </div>
-
-            {/* Keywords */}
-            <div className="flex justify-center gap-2 flex-wrap mb-5">
-              {result.keywords.map((kw) => (
-                <span key={kw} className="text-xs text-coral border border-coral/25 px-2.5 py-1 rounded-full">
-                  {kw}
-                </span>
-              ))}
-            </div>
-
-            {/* Traits */}
-            <div className="bg-white/60 border border-ink/8 rounded-2xl p-6 mb-5">
-              <p className="text-xs text-sub/50 tracking-widest uppercase mb-4">{result.code} 특징</p>
-              <ul className="space-y-2">
-                {result.traits.map((t) => (
-                  <li key={t} className="flex items-start gap-2 text-sm text-sub">
-                    <Diamond className="w-2 h-2 text-coral/60 mt-1 shrink-0" />
-                    {t}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Blurred full analysis */}
-            <div className="relative border border-ink/8 rounded-2xl overflow-hidden mb-3">
-              <div className="p-6">
-                <p className="text-xs text-sub/50 tracking-widest uppercase mb-3">글쓰기 스타일 분석</p>
-                <p className="text-sub text-sm leading-relaxed mb-6">{result.writingStyle}</p>
-
-                <p className="text-xs text-sub/50 tracking-widest uppercase mb-3">추천 글릿 콘텐츠</p>
-                <ul className="space-y-2">
-                  {result.recommendedContent.map((c) => (
-                    <li key={c} className="flex items-center gap-2 text-sm text-sub">
-                      <span className="text-coral">◆</span> {c}
-                    </li>
+            <div className="mb-5 grid overflow-hidden rounded-2xl border border-ink/8 bg-white/65 shadow-[0_24px_70px_rgba(46,43,40,0.07)] md:grid-cols-[0.85fr_1.15fr]">
+              <a href={result.bookSlug} className="relative min-h-64 overflow-hidden">
+                <img
+                  src={result.bookImage}
+                  alt={result.bookTitle}
+                  className="h-full w-full object-cover sepia-[0.1] saturate-[0.88] transition-transform duration-700 hover:scale-[1.035]"
+                />
+                <div className="absolute inset-0 bg-ink/10" />
+              </a>
+              <div className="flex flex-col justify-between p-6 md:p-8">
+                <div>
+                  <p className="mb-3 text-xs uppercase tracking-widest text-sub/45">Recommended Book</p>
+                  <p className="mb-4 text-sm leading-7 text-sub">{result.description}</p>
+                  <h3 className="mb-4 text-2xl font-black leading-snug text-ink">{result.bookTitle}</h3>
+                  <p className="text-sm leading-7 text-sub">
+                    이런 분들한테 제일 잘 맞는 책이 저는 <span className="font-bold text-ink">{result.bookTitle}</span>인 것 같아요.
+                    이 문장 때문인데요 —
+                  </p>
+                  <blockquote className="my-5 border-l-2 border-coral pl-4 text-xl font-medium italic leading-relaxed text-ink/82">
+                    "{result.bookLine}"
+                  </blockquote>
+                  <p className="text-sm font-semibold leading-7 text-coral">{result.feelingQuestion}</p>
+                </div>
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {result.keywords.map((keyword) => (
+                    <span key={keyword} className="rounded-full border border-coral/25 px-2.5 py-1 text-xs text-coral">
+                      {keyword}
+                    </span>
                   ))}
-                </ul>
-
-                <p className="text-xs text-sub/50 tracking-widest uppercase mt-6 mb-3">나와 잘 맞는 글릿 작가 유형</p>
-                <p className="text-sub text-sm leading-relaxed blur-[6px] select-none">
-                  글릿 인터뷰에서 만난 {result.code} 작가들과 당신의 글쓰기 습관을 비교해보세요. 당신만의 언어가 어디서 빛나는지 발견할 수 있을 거예요.
-                </p>
-              </div>
-
-              {/* Gradient overlay */}
-              <div
-                className="absolute bottom-0 left-0 right-0 h-28 flex flex-col items-center justify-end pb-5"
-                style={{ background: 'linear-gradient(to top, #F4ECDD 50%, transparent)' }}
-              >
-                <p className="text-xs text-sub/50 mb-2">뉴스레터 구독 후 전체 분석을 받아보세요</p>
+                </div>
               </div>
             </div>
 
-            {/* CTA */}
-            <a
-              href="/#join"
-              className="block w-full bg-coral text-white text-center px-8 py-4 rounded-full text-sm font-medium hover:bg-coral/90 transition-colors mb-3"
-            >
-              전체 분석 결과 받아보기 →
-            </a>
-            <p className="text-center text-xs text-sub/35 mb-6">
-              스팸 없이, 글과 소식만 보내드립니다.
-            </p>
-
-            <div className="text-center">
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <a
+                href={result.bookSlug}
+                className="flex-1 rounded-full bg-coral px-8 py-4 text-center text-sm font-medium text-white transition-colors hover:bg-coral/90"
+              >
+                추천 책 자세히 보기
+              </a>
               <button
                 onClick={handleReset}
-                className="text-xs text-sub/35 hover:text-coral transition-colors"
+                className="flex-1 rounded-full border border-ink/12 px-8 py-4 text-sm font-medium text-sub transition-colors hover:border-coral hover:text-coral"
               >
-                다시 진단하기
+                다시 검사하기
               </button>
             </div>
           </div>

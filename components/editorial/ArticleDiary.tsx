@@ -6,27 +6,25 @@ import Diamond from '@/components/ui/Diamond'
 export default function ArticleDiary({ article }: { article: Article }) {
   return (
     <div className="min-h-screen bg-[#f8f3eb] text-ink">
-      {/* Nav */}
-      <header className="fixed top-0 inset-x-0 z-50 px-6 py-4 flex items-center justify-between bg-[#f8f3eb]/90 backdrop-blur-sm border-b border-ink/6">
+      <header className="fixed inset-x-0 top-0 z-50 flex items-center justify-between border-b border-ink/6 bg-[#f8f3eb]/90 px-6 py-4 backdrop-blur-sm">
         <a href="/" className="flex items-center gap-2">
-          <Diamond className="w-4 h-4 text-coral" />
-          <span className="font-bold text-base tracking-tight">글릿</span>
+          <Diamond className="h-4 w-4 text-coral" />
+          <span className="text-base font-bold tracking-tight">글릿</span>
         </a>
-        <a href="/#archive" className="text-xs text-sub/50 hover:text-coral transition-colors">
-          ← 에디토리얼
+        <a href="/#archive" className="text-xs text-sub/50 transition-colors hover:text-coral">
+          에디토리얼
         </a>
       </header>
 
-      <div className="pt-14 max-w-3xl mx-auto px-6 md:px-12">
-        {/* Small image top-right */}
-        <div className="pt-14 pb-10 grid grid-cols-1 md:grid-cols-[1fr_260px] gap-10 items-start">
+      <div className="mx-auto max-w-3xl px-6 pt-14 md:px-12">
+        <div className="grid grid-cols-1 items-start gap-10 pb-10 pt-14 md:grid-cols-[1fr_260px]">
           <div>
-            <p className="text-sub/35 text-xs font-mono tracking-wider mb-5">{article.issue} · {article.date} · {article.readTime} 읽기</p>
-            <p className="text-coral text-xs font-medium tracking-widest uppercase mb-3">{article.category}</p>
-            <h1 className="text-2xl md:text-3xl font-bold text-ink leading-snug mb-3">
-              {article.title}
-            </h1>
-            <p className="text-sub text-sm leading-relaxed mb-6">{article.subtitle}</p>
+            <p className="mb-5 font-mono text-xs tracking-wider text-sub/35">
+              {article.issue} · {article.date} · {article.readTime} 읽기
+            </p>
+            <p className="mb-3 text-xs font-medium uppercase tracking-widest text-coral">{article.category}</p>
+            <h1 className="mb-3 text-2xl font-bold leading-snug text-ink md:text-3xl">{article.title}</h1>
+            <p className="mb-6 text-sm leading-relaxed text-sub">{article.subtitle}</p>
             <div className="flex items-center gap-2 text-xs text-sub/50">
               <span className="font-medium text-ink">{article.author}</span>
               <span>·</span>
@@ -38,65 +36,50 @@ export default function ArticleDiary({ article }: { article: Article }) {
               <img
                 src={article.image}
                 alt={article.title}
-                className="w-full h-full object-cover sepia-[0.18] saturate-[0.75]"
+                className="h-full w-full object-cover sepia-[0.18] saturate-[0.75]"
               />
             </div>
           </div>
         </div>
 
-        <div className="border-t border-ink/10 mb-12" />
+        <div className="mb-12 border-t border-ink/10" />
 
-        {/* Body — diary style: tight paragraphs, lots of breathing room between sections */}
         <article className="max-w-xl pb-24">
           {article.body.map((section, i) => {
             if (section.type === 'pullquote') {
               return (
-                <div
-                  key={i}
-                  className="my-10 py-8 border-y border-ink/8 text-center"
-                >
-                  <p className="text-ink font-bold text-xl md:text-2xl leading-snug">
-                    {section.text}
-                  </p>
+                <div key={i} className="my-10 border-y border-ink/8 py-8 text-center">
+                  <p className="text-xl font-bold leading-snug text-ink md:text-2xl">{section.text}</p>
                 </div>
               )
             }
             if (section.type === 'italic') {
               return (
-                <p key={i} className="my-5 text-sub italic text-sm md:text-base leading-loose pl-4 border-l-2 border-ink/15">
+                <p key={i} className="my-5 border-l-2 border-ink/15 pl-4 text-sm italic leading-loose text-sub md:text-base">
                   {section.text}
                 </p>
               )
             }
             if (section.type === 'divider') {
               return (
-                <div key={i} className="my-10 flex gap-2 items-center">
+                <div key={i} className="my-10 flex items-center gap-2">
                   {[0, 1, 2].map((d) => (
-                    <div key={d} className="w-1 h-1 rounded-full bg-ink/25" />
+                    <div key={d} className="h-1 w-1 rounded-full bg-ink/25" />
                   ))}
                 </div>
               )
             }
             return (
-              <p
-                key={i}
-                className="mb-5 text-ink/75 text-sm md:text-base leading-[1.85]"
-              >
+              <p key={i} className="mb-5 text-sm leading-[1.85] text-ink/75 md:text-base">
                 {section.text}
               </p>
             )
           })}
 
-          {/* Footer */}
-          <div className="mt-16 pt-8 border-t border-ink/8 flex items-center justify-between flex-wrap gap-4">
-            <div className="text-xs text-sub/35 font-mono">
-              {article.issue} · 글릿 에디토리얼
-            </div>
-            <a
-              href="/#archive"
-              className="text-sm text-coral font-medium hover:text-coral/70 transition-colors"
-            >
-              ← 다른 글 보기
+          <div className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t border-ink/8 pt-8">
+            <div className="font-mono text-xs text-sub/35">{article.issue} · 글릿 에디토리얼</div>
+            <a href="/#archive" className="text-sm font-medium text-coral transition-colors hover:text-coral/70">
+              다른 글 보기
             </a>
           </div>
         </article>

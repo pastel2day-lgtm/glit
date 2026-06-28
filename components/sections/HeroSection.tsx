@@ -4,7 +4,7 @@ import Diamond from '@/components/ui/Diamond'
 const channels = [
   { label: '에디토리얼', val: 'Editorial', href: '#archive' },
   { label: '인터뷰', val: 'Interview', href: '/interview' },
-  { label: '에센스 진단', val: 'Diagnosis', href: '/diagnosis' },
+  { label: '문장 결 검사', val: 'Diagnosis', href: '/diagnosis' },
   { label: '뉴스레터', val: 'Newsletter', href: '#join' },
 ]
 
@@ -78,7 +78,7 @@ export default function HeroSection() {
                 className="w-full rounded-full border border-ink/18 bg-ivory/30 px-8 py-4 text-center text-sm font-semibold text-ink backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-coral hover:text-coral md:w-auto"
               >
                 <span className="mr-2 inline-block text-[0.6rem] text-coral">◆</span>
-                에센스 진단하기
+                문장 결 검사하기
               </a>
             </div>
           </div>

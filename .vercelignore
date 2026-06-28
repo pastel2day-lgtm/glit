@@ -1,0 +1,12 @@
+.git
+.agents
+.claude
+.next
+node_modules
+out
+
+*.log
+*.tmp
+.~lock.*
+pg-*.jpg
+글릿_웹사이트_기획서.*

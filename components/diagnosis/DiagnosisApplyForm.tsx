@@ -37,7 +37,7 @@ export default function DiagnosisApplyForm() {
       <main className="flex flex-1 items-center justify-center px-6 py-12">
         <div className="w-full max-w-xl rounded-[2rem] border border-white/10 bg-[#1b1916] p-8 shadow-[0_32px_80px_rgba(0,0,0,0.25)]">
           <div className="mb-8 text-center">
-            <p className="mb-3 text-sm uppercase tracking-[0.3em] text-coral/80">에센스 진단 신청</p>
+            <p className="mb-3 text-sm uppercase tracking-[0.3em] text-coral/80">문장 결 검사 신청</p>
             <h1 className="text-3xl font-black leading-tight">진단 신청서를 작성해주세요</h1>
             <p className="mt-3 text-sm leading-relaxed text-ivory/55">
               성함과 연락처를 남겨주시면 영업일 기준 2~3일 안에 일정 확인을 위해 안내드릴게요.

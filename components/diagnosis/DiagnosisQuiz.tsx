@@ -509,29 +509,38 @@ export default function DiagnosisQuiz() {
                   <span>Type {String(result.number).padStart(2, '0')}</span>
                 </div>
 
-                <div className="mt-7 grid gap-6 md:grid-cols-[0.72fr_1fr] md:items-end">
-                  <div className="relative aspect-[4/5] overflow-hidden bg-ivory">
+                <div className="mt-7 grid gap-6 md:grid-cols-[0.68fr_1fr] md:items-center">
+                  <div className="relative aspect-[4/5] overflow-hidden rounded-t-[7rem] bg-ivory shadow-[0_18px_44px_rgba(46,43,40,0.10)]">
                     <img
                       src={result.image}
                       alt={`${result.name}을 상징하는 무드 이미지`}
-                      className="h-full w-full object-cover sepia-[0.12] saturate-[0.82]"
+                      className="h-full w-full object-cover sepia-[0.16] saturate-[0.76]"
                     />
-                    <div className="absolute inset-0 bg-ink/10" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-ink/42 via-transparent to-white/14" />
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-ink/70 to-transparent p-4">
                       <p className="font-mono text-xs text-white/75">TYPE {String(result.number).padStart(2, '0')}</p>
                       <p className="mt-1 text-sm font-semibold text-white">{result.original}</p>
                     </div>
                   </div>
 
-                  <div>
+                  <div className="relative">
+                    <div className="absolute -right-2 -top-8 hidden h-24 w-24 rounded-full border border-coral/20 md:block" />
+                    <div className="absolute right-12 top-12 hidden h-3 w-20 rounded-full bg-coral/20 md:block" />
                     <p className="text-sm font-semibold italic text-coral">{result.original}</p>
-                    <h2 className="mt-3 text-4xl font-black leading-tight text-ink md:text-6xl">{result.name}</h2>
+                    <h2 className="mt-3 max-w-lg text-3xl font-black leading-[1.18] text-ink md:text-5xl">{result.name}</h2>
                     <p className="mt-5 text-base italic leading-relaxed text-sub">당신은 {result.name}의 결을 가졌어요.</p>
+                    <div className="mt-6 flex flex-wrap gap-2">
+                      {result.keywords.slice(0, 3).map((keyword) => (
+                        <span key={keyword} className="rounded-full border border-coral/20 bg-coral/7 px-3 py-1 text-xs text-coral">
+                          {keyword}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
 
-                <blockquote className="my-8 border-y border-coral/25 py-6">
-                  <p className="text-2xl font-bold leading-snug text-ink md:text-3xl">{result.signature}</p>
+                <blockquote className="my-8 border-y border-coral/25 bg-white/30 px-1 py-6">
+                  <p className="text-xl font-bold leading-snug text-ink md:text-2xl">{result.signature}</p>
                 </blockquote>
 
                 <div className="grid gap-6 md:grid-cols-[1fr_0.85fr]">

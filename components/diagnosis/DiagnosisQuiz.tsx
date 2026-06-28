@@ -8,27 +8,27 @@ type Stage = 'intro' | 'quiz' | 'result'
 
 const QUESTIONS = [
   {
-    title: '마음이 흐트러진 날,\n당신을 가장 먼저 붙잡아주는 것은?',
+    title: '일이 흐트러질 때,\n당신에게 가장 가까운 반응은?',
     options: [
-      { text: '스스로 납득할 수 있는 기준과 질서', type: 'ONE' as GrainType },
-      { text: '누군가에게 건넨 다정한 말 한마디', type: 'TWO' as GrainType },
-      { text: '다시 앞으로 나아가고 있다는 감각', type: 'THREE' as GrainType },
+      { text: '먼저 기준을 세우고, 무엇이 바른 방향인지 정리한다', type: 'ONE' as GrainType },
+      { text: '주변 사람이 불편하지 않은지 먼저 살핀다', type: 'TWO' as GrainType },
+      { text: '멈추기보다 할 수 있는 일을 빠르게 찾아 움직인다', type: 'THREE' as GrainType },
     ],
   },
   {
-    title: '한 문장이 오래 남는 이유는\n무엇에 가까운가요?',
+    title: '혼자 있을 때,\n마음이 자주 향하는 곳은?',
     options: [
-      { text: '말로 다 못 한 감정을 정확히 건드려서', type: 'FOUR' as GrainType },
-      { text: '혼자 오래 생각해볼 질문을 남겨서', type: 'FIVE' as GrainType },
-      { text: '불안한 마음에 기댈 자리를 만들어줘서', type: 'SIX' as GrainType },
+      { text: '말로 다 못 한 감정의 깊은 곳', type: 'FOUR' as GrainType },
+      { text: '조용히 이해하고 싶은 생각의 방', type: 'FIVE' as GrainType },
+      { text: '앞으로 괜찮을지 점검하는 안전한 자리', type: 'SIX' as GrainType },
     ],
   },
   {
-    title: '새로운 책을 고를 때,\n당신이 끌리는 쪽은?',
+    title: '새로운 선택 앞에서,\n당신이 더 끌리는 쪽은?',
     options: [
-      { text: '지금과 다른 세계로 데려가줄 것 같은 책', type: 'SEVEN' as GrainType },
-      { text: '망설임 없이 정면으로 말하는 책', type: 'EIGHT' as GrainType },
-      { text: '조용히 곁에 두고 천천히 읽고 싶은 책', type: 'NINE' as GrainType },
+      { text: '아직 가보지 않은 가능성의 문', type: 'SEVEN' as GrainType },
+      { text: '피하지 않고 직접 부딪혀볼 수 있는 길', type: 'EIGHT' as GrainType },
+      { text: '서두르지 않아도 마음이 편안한 흐름', type: 'NINE' as GrainType },
     ],
   },
   {
@@ -36,47 +36,95 @@ const QUESTIONS = [
     options: [
       { text: '더 잘하고 싶어서 스스로에게 엄격해지는 마음', type: 'ONE' as GrainType },
       { text: '필요한 사람이 되고 싶어서 먼저 챙기는 마음', type: 'TWO' as GrainType },
-      { text: '멈추면 뒤처질 것 같아서 계속 달리는 마음', type: 'THREE' as GrainType },
+      { text: '뒤처질까 봐 계속 앞으로 나아가려는 마음', type: 'THREE' as GrainType },
     ],
   },
   {
-    title: '혼자 있는 시간에\n가장 자주 하는 일은?',
+    title: '마음이 복잡할 때,\n당신에게 필요한 시간은?',
     options: [
-      { text: '감정의 바닥까지 내려가 이름을 붙인다', type: 'FOUR' as GrainType },
-      { text: '정보와 생각을 조용히 정리한다', type: 'FIVE' as GrainType },
-      { text: '앞으로 괜찮을지 여러 가능성을 점검한다', type: 'SIX' as GrainType },
+      { text: '감정의 이름을 천천히 붙여보는 시간', type: 'FOUR' as GrainType },
+      { text: '방해받지 않고 생각을 정리하는 시간', type: 'FIVE' as GrainType },
+      { text: '믿을 수 있는 사람과 확인하고 안심하는 시간', type: 'SIX' as GrainType },
     ],
   },
   {
-    title: '지금 가장 듣고 싶은 말은?',
+    title: '삶이 답답해질 때,\n당신은 무엇을 찾나요?',
     options: [
-      { text: '아직 가보지 않은 세계가 많이 남아 있어요', type: 'SEVEN' as GrainType },
-      { text: '당신의 힘은 누군가를 지키는 데 쓰일 수 있어요', type: 'EIGHT' as GrainType },
-      { text: '서두르지 않아도 이미 충분히 여기 있어요', type: 'NINE' as GrainType },
+      { text: '분위기를 바꿔줄 새로운 세계와 경험', type: 'SEVEN' as GrainType },
+      { text: '내가 지켜야 할 것과 밀고 나갈 힘', type: 'EIGHT' as GrainType },
+      { text: '소란이 가라앉고 다시 편안해지는 상태', type: 'NINE' as GrainType },
     ],
   },
   {
-    title: '당신의 문장 결을\n하나의 태도로 고른다면?',
+    title: '좋은 문장을 만났을 때,\n오래 남는 이유는?',
     options: [
-      { text: '흐트러진 것을 바로잡으려는 태도', type: 'ONE' as GrainType },
-      { text: '누군가의 마음을 먼저 살피는 태도', type: 'TWO' as GrainType },
-      { text: '가능한 한 멀리 가보려는 태도', type: 'THREE' as GrainType },
+      { text: '흐트러진 마음을 바르게 정돈해줘서', type: 'ONE' as GrainType },
+      { text: '누군가의 마음을 더 다정하게 이해하게 해서', type: 'TWO' as GrainType },
+      { text: '다시 해볼 수 있겠다는 힘을 줘서', type: 'THREE' as GrainType },
     ],
   },
   {
-    title: '삶이 낯설어질 때,\n당신은 어디로 향하나요?',
+    title: '당신이 책에서 자주 찾는 것은?',
     options: [
-      { text: '아름다움과 슬픔이 겹치는 깊은 곳으로', type: 'FOUR' as GrainType },
-      { text: '아무도 방해하지 않는 생각의 방으로', type: 'FIVE' as GrainType },
-      { text: '믿을 수 있는 사람과 약속의 곁으로', type: 'SIX' as GrainType },
+      { text: '아름다움과 슬픔을 동시에 알아봐주는 문장', type: 'FOUR' as GrainType },
+      { text: '생각을 더 깊고 선명하게 만드는 질문', type: 'FIVE' as GrainType },
+      { text: '불안한 마음이 기대어 쉴 수 있는 문장', type: 'SIX' as GrainType },
     ],
   },
   {
-    title: '지금 당신에게 필요한 문장은\n어떤 문장인가요?',
+    title: '당신에게 힘이 되는 문장은?',
     options: [
-      { text: '닫힌 문 너머의 가능성을 보여주는 문장', type: 'SEVEN' as GrainType },
+      { text: '닫힌 문 너머의 다음 장면을 보여주는 문장', type: 'SEVEN' as GrainType },
       { text: '두려움 앞에서도 한 걸음 내딛게 하는 문장', type: 'EIGHT' as GrainType },
       { text: '고요 속에서 마음을 천천히 풀어주는 문장', type: 'NINE' as GrainType },
+    ],
+  },
+  {
+    title: '관계 안에서,\n당신이 자주 맡는 역할은?',
+    options: [
+      { text: '흐려진 기준을 다시 세우는 사람', type: 'ONE' as GrainType },
+      { text: '먼저 손 내밀고 분위기를 살피는 사람', type: 'TWO' as GrainType },
+      { text: '목표를 향해 분위기를 움직이는 사람', type: 'THREE' as GrainType },
+    ],
+  },
+  {
+    title: '타인이 보지 못하는 당신의 면은?',
+    options: [
+      { text: '생각보다 훨씬 깊고 오래 느낀다는 것', type: 'FOUR' as GrainType },
+      { text: '혼자 있어야 비로소 마음이 정리된다는 것', type: 'FIVE' as GrainType },
+      { text: '괜찮아 보여도 안쪽에서는 계속 확인하고 있다는 것', type: 'SIX' as GrainType },
+    ],
+  },
+  {
+    title: '당신이 피곤해지는 순간은?',
+    options: [
+      { text: '재미와 가능성이 모두 닫힌 것처럼 느껴질 때', type: 'SEVEN' as GrainType },
+      { text: '부당한 상황 앞에서 아무것도 할 수 없을 때', type: 'EIGHT' as GrainType },
+      { text: '갈등이 커지고 마음의 평온이 깨질 때', type: 'NINE' as GrainType },
+    ],
+  },
+  {
+    title: '지금 당신에게 필요한 말은?',
+    options: [
+      { text: '완벽하지 않아도 이미 충분히 애쓰고 있어요', type: 'ONE' as GrainType },
+      { text: '당신이 건넨 다정함도 다시 돌아와야 해요', type: 'TWO' as GrainType },
+      { text: '성과 바깥에서도 당신은 충분히 빛나요', type: 'THREE' as GrainType },
+    ],
+  },
+  {
+    title: '요즘 마음에 더 가까운 문장은?',
+    options: [
+      { text: '내 깊이를 설명하지 않아도 알아주는 문장이 필요해요', type: 'FOUR' as GrainType },
+      { text: '조용하지만 오래 남는 질문이 필요해요', type: 'FIVE' as GrainType },
+      { text: '함께 견딜 수 있다는 확신이 필요해요', type: 'SIX' as GrainType },
+    ],
+  },
+  {
+    title: '마지막으로,\n당신이 지금 붙잡고 싶은 감각은?',
+    options: [
+      { text: '아직 더 많은 세계가 남아 있다는 설렘', type: 'SEVEN' as GrainType },
+      { text: '나의 힘을 좋은 방향으로 쓰고 있다는 확신', type: 'EIGHT' as GrainType },
+      { text: '서두르지 않아도 괜찮다는 고요한 안정감', type: 'NINE' as GrainType },
     ],
   },
 ]
@@ -207,6 +255,11 @@ const RESULTS: Record<
 }
 
 const resultTypes = Object.values(RESULTS)
+const heroImages = [
+  '/images/glit_mag_bright_night.png',
+  '/images/glit_mag_bright_star.png',
+  '/images/glit_mag_week3_forest.png',
+]
 
 function calcScores(answers: GrainType[]): Record<GrainType, number> {
   const count: Record<GrainType, number> = {
@@ -255,7 +308,7 @@ export default function DiagnosisQuiz() {
         setResultType(calcResult(newAnswers))
         setStage('result')
       }
-    }, 320)
+    }, 280)
   }
 
   const handleReset = () => {
@@ -271,74 +324,86 @@ export default function DiagnosisQuiz() {
   const total = QUESTIONS.length
 
   return (
-    <div className="flex min-h-screen flex-col bg-ivory bg-[linear-gradient(rgba(46,43,40,0.035)_1px,transparent_1px)] bg-[size:100%_72px] text-ink">
-      <header className="sticky top-0 z-10 flex h-14 items-center justify-between border-b border-ink/8 bg-ivory/85 px-6 backdrop-blur-md">
+    <div className="flex min-h-screen flex-col bg-[#f5efe3] text-ink">
+      <header className="sticky top-0 z-10 flex h-14 items-center justify-between border-b border-ink/8 bg-[#f5efe3]/88 px-5 backdrop-blur-md md:px-8">
         <a href="/" className="flex items-center gap-2">
           <Diamond className="h-4 w-4 text-coral" />
           <span className="text-sm font-bold">글릿</span>
         </a>
-        {stage === 'quiz' && (
-          <span className="text-xs uppercase tracking-widest text-sub/40">
-            {step + 1} / {total}
-          </span>
-        )}
+        {stage === 'quiz' && <span className="font-mono text-xs text-sub/45">{step + 1} / {total}</span>}
       </header>
 
-      <main className="flex flex-1 items-center justify-center px-5 py-10 md:px-10 md:py-14">
+      <main className="flex flex-1 items-center justify-center px-5 py-8 md:px-8 md:py-12">
         {stage === 'intro' && (
-          <div className="mx-auto grid min-h-[calc(100vh-7rem)] w-full max-w-6xl items-center gap-10 md:grid-cols-[1.05fr_0.95fr]">
-            <div>
+          <div className="mx-auto grid w-full max-w-6xl items-center gap-12 md:grid-cols-[0.9fr_1.1fr]">
+            <div className="max-w-2xl">
               <div className="mb-7 flex items-center gap-3">
-                <Diamond className="h-4 w-4 text-coral" />
+                <span className="h-px w-10 bg-coral/55" />
                 <p className="text-xs font-semibold uppercase text-coral">Glit Sentence Grain</p>
               </div>
-              <h1 className="max-w-3xl text-5xl font-black leading-none text-ink md:text-7xl lg:text-8xl">
-                당신에게 오래 남는 문장은
-                <br />
-                어떤 결을 가졌을까요?
-              </h1>
-              <p className="mt-8 max-w-xl text-base leading-8 text-sub md:text-lg">
-                9개의 짧은 질문으로 지금의 감정 리듬과 문장 취향을 살펴보고,
-                당신에게 어울리는 읽을거리와 문장 큐레이션 방향을 제안합니다.
+              <p className="mb-5 text-sm italic leading-7 text-sub/65">
+                오래 남는 문장은 취향보다 조금 더 안쪽에 있어요.
               </p>
-              <p className="mt-4 max-w-xl text-sm leading-7 text-sub/60">
-                성격을 맞히는 검사가 아니라, 당신에게 오래 남을 문장을 고르는 방식입니다.
-                정답은 없어요. 요즘의 마음에 가장 가까운 쪽을 골라주세요.
+              <h1 className="text-4xl font-black leading-[1.13] text-ink md:text-5xl lg:text-6xl">
+                문장이 오래 남는 방식은
+                <br />
+                사람마다 달라요.
+              </h1>
+              <p className="mt-7 max-w-xl text-base leading-8 text-sub">
+                81문항의 밀도는 덜고, 문장 취향의 핵심만 남겼습니다. 45개의 진술을 15번의 선택으로 압축해 지금 당신에게 필요한 읽기의 결을 찾아드릴게요.
+              </p>
+              <p className="mt-4 max-w-lg text-sm leading-7 text-sub/60">
+                심리 진단이 아니라 글릿의 에디토리얼 큐레이션입니다. 정답을 고르기보다, 요즘 마음이 오래 머무는 문장에 가까이 가보세요.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-2 text-xs text-sub/55">
-                <span className="border border-ink/10 bg-white/45 px-3 py-2">9문항</span>
-                <span className="border border-ink/10 bg-white/45 px-3 py-2">약 3분</span>
-                <span className="border border-ink/10 bg-white/45 px-3 py-2">에디터 큐레이션 제공</span>
+                <span className="border border-ink/10 bg-white/45 px-3 py-2">45개 핵심 진술</span>
+                <span className="border border-ink/10 bg-white/45 px-3 py-2">15번 선택</span>
+                <span className="border border-ink/10 bg-white/45 px-3 py-2">약 5분</span>
               </div>
 
-              <button
-                onClick={() => setStage('quiz')}
-                className="mt-9 inline-flex h-12 items-center rounded-full bg-ink px-7 text-sm font-semibold text-ivory shadow-[0_18px_40px_rgba(46,43,40,0.16)] transition-colors hover:bg-coral"
-              >
-                나의 문장 결 알아보기
-              </button>
+              <div className="mt-9 flex flex-wrap items-center gap-4">
+                <button
+                  onClick={() => setStage('quiz')}
+                  className="inline-flex h-12 items-center rounded-full bg-ink px-7 text-sm font-semibold text-ivory shadow-[0_18px_40px_rgba(46,43,40,0.16)] transition-colors hover:bg-coral"
+                >
+                  나의 문장 결 찾기
+                </button>
+                <p className="text-xs leading-5 text-sub/45">결과 화면을 캡처해 DM으로 보내면 큐레이션을 받아볼 수 있어요.</p>
+              </div>
             </div>
 
-            <div className="border-y border-ink/10 bg-white/45 px-2 py-6 md:px-6">
-              <p className="mb-5 text-xs font-semibold uppercase text-coral">9 Glit Types</p>
-              <div className="grid grid-cols-1 gap-x-4 gap-y-3 sm:grid-cols-3">
-                {resultTypes.map((type) => (
-                  <div key={type.number} className="border-b border-ink/8 pb-3 last:border-b sm:last:border-b">
-                    <p className="font-mono text-xs text-coral">0{type.number}</p>
-                    <p className="mt-1 text-sm font-semibold leading-5 text-ink">{type.name}</p>
+            <div className="relative overflow-hidden border border-ink/10 bg-[#fffaf1]/85 p-4 shadow-[0_26px_80px_rgba(46,43,40,0.08)] md:p-5">
+              <div className="grid min-h-[23rem] grid-cols-[0.88fr_1.08fr] gap-4 md:min-h-[28rem]">
+                <div className="flex flex-col gap-4">
+                  <img src={heroImages[0]} alt="" className="h-36 w-full object-cover sepia-[0.15] saturate-[0.85] md:h-44" />
+                  <div className="flex flex-1 flex-col justify-between border-y border-ink/10 py-5">
+                    <p className="text-xs font-semibold uppercase text-coral">Compressed from 81</p>
+                    <p className="text-xl font-black leading-tight text-ink md:text-2xl">
+                      길게 묻기보다,
+                      <br />
+                      조용히 들여다보는 검사
+                    </p>
+                    <p className="text-xs leading-6 text-sub/55">9유형을 균등하게 반영해 접근성은 낮추고 결과의 결은 남겼어요.</p>
                   </div>
-                ))}
+                </div>
+                <div className="grid gap-4">
+                  <img src={heroImages[1]} alt="" className="h-52 min-h-0 w-full object-cover sepia-[0.08] saturate-[0.9] md:h-full" />
+                  <div className="grid grid-cols-[1fr_0.72fr] gap-4">
+                    <img src={heroImages[2]} alt="" className="h-28 w-full object-cover sepia-[0.2] saturate-[0.78] md:h-32" />
+                    <div className="border border-coral/20 bg-ivory/70 p-3">
+                      <p className="font-mono text-xs text-coral">15</p>
+                      <p className="mt-2 text-xs font-semibold leading-5 text-ink">questions for a quiet reading map</p>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <p className="mt-6 text-xs leading-6 text-sub/55">
-                결과는 고정된 성격이 아니라, 지금 당신이 끌리는 문장과 감정의 방향을 바탕으로 제안됩니다.
-              </p>
             </div>
           </div>
         )}
 
         {stage === 'quiz' && (
-          <div className="mx-auto grid w-full max-w-5xl gap-10 md:grid-cols-[220px_1fr]">
+          <div className="mx-auto grid w-full max-w-5xl gap-8 md:grid-cols-[16rem_1fr]">
             <aside className="md:sticky md:top-24 md:self-start">
               <p className="font-mono text-6xl text-coral">{String(step + 1).padStart(2, '0')}</p>
               <p className="mt-2 text-xs uppercase text-sub/45">of {String(total).padStart(2, '0')}</p>
@@ -346,16 +411,13 @@ export default function DiagnosisQuiz() {
                 <div className="h-px bg-coral transition-all duration-500" style={{ width: `${progress}%` }} />
               </div>
               <p className="mt-6 text-sm leading-7 text-sub/55">
-                가장 먼저 마음이 기우는 답을 골라주세요. 오래 고민할수록 결과는 흐려져요.
+                한 화면에 세 개의 문장이 놓입니다. 오래 계산하지 말고, 가장 먼저 마음이 기우는 쪽을 골라주세요.
               </p>
             </aside>
 
-            <div className="border-y border-ink/10 bg-white/45 px-1 py-8 md:px-8 md:py-10">
-              <p className="mb-6 text-xs uppercase text-sub/35">Question</p>
-              <h2
-                className="mb-8 text-2xl font-black leading-snug text-ink md:text-4xl"
-                style={{ whiteSpace: 'pre-line' }}
-              >
+            <div className="bg-[#fffaf1]/80 p-5 shadow-[0_24px_70px_rgba(46,43,40,0.07)] md:p-8">
+              <p className="mb-6 text-xs uppercase text-coral">Question</p>
+              <h2 className="mb-8 text-2xl font-black leading-snug text-ink md:text-4xl" style={{ whiteSpace: 'pre-line' }}>
                 {QUESTIONS[step].title}
               </h2>
 
@@ -369,15 +431,15 @@ export default function DiagnosisQuiz() {
                       onClick={() => handleSelect(option.type)}
                       disabled={!!selected}
                       className={[
-                        'grid w-full grid-cols-[2.5rem_1fr] items-start gap-3 px-1 py-5 text-left text-sm leading-relaxed transition-all duration-200',
+                        'grid w-full grid-cols-[2.5rem_1fr] items-start gap-3 py-5 text-left text-sm leading-relaxed transition-all duration-200',
                         isChosen
                           ? 'bg-coral/8 text-ink shadow-[inset_3px_0_0_#D9774E]'
-                        : isDimmed
-                          ? 'text-sub/25'
-                        : 'cursor-pointer text-sub hover:bg-white/35 hover:text-ink',
+                          : isDimmed
+                            ? 'text-sub/25'
+                            : 'cursor-pointer text-sub hover:bg-white/45 hover:text-ink',
                       ].join(' ')}
                     >
-                      <span className="font-mono text-xs text-coral/70">0{index + 1}</span>
+                      <span className="pl-2 font-mono text-xs text-coral/70">0{index + 1}</span>
                       <span>{option.text}</span>
                     </button>
                   )
@@ -389,21 +451,15 @@ export default function DiagnosisQuiz() {
 
         {stage === 'result' && (
           <div className="mx-auto grid w-full max-w-6xl gap-8 md:grid-cols-[minmax(0,680px)_280px]">
-            <div className="border border-ink/10 bg-[#fffaf1]/85 p-5 shadow-[0_32px_90px_rgba(46,43,40,0.13)] md:p-10">
+            <div className="bg-[#fffaf1]/90 p-5 shadow-[0_32px_90px_rgba(46,43,40,0.13)] md:p-10">
               <div className="border border-coral/20 p-5 md:p-8">
                 <div className="flex items-center justify-between border-b border-ink/10 pb-4 text-[0.65rem] uppercase text-sub/45">
                   <span>Glit Sentence Grain</span>
                   <span>Type {String(result.number).padStart(2, '0')}</span>
                 </div>
-
                 <p className="mt-7 text-sm font-semibold italic text-coral">{result.original}</p>
-                <h2 className="mt-3 text-5xl font-black leading-none text-ink md:text-7xl">
-                  {result.name}
-                </h2>
-                <p className="mt-5 text-base italic leading-relaxed text-sub">
-                  당신은 {result.name}의 결을 가졌어요.
-                </p>
-
+                <h2 className="mt-3 text-5xl font-black leading-none text-ink md:text-7xl">{result.name}</h2>
+                <p className="mt-5 text-base italic leading-relaxed text-sub">당신은 {result.name}의 결을 가졌어요.</p>
                 <blockquote className="my-8 border-y border-coral/25 py-6">
                   <p className="text-2xl font-bold leading-snug text-ink md:text-3xl">{result.signature}</p>
                 </blockquote>
@@ -437,12 +493,6 @@ export default function DiagnosisQuiz() {
                     </span>
                   ))}
                 </div>
-
-                <div className="mt-5 flex items-center justify-between text-[0.65rem] uppercase text-sub/40">
-                  <span>gleamit glit</span>
-                  <Diamond className="h-3 w-3 text-coral/45" />
-                  <span>/diagnosis</span>
-                </div>
               </div>
             </div>
 
@@ -453,22 +503,19 @@ export default function DiagnosisQuiz() {
                   결과 화면을 DM으로 보내주시면, 글릿이 직접 고른 문장과 읽을거리 목록을 48시간 안에 보내드려요.
                 </p>
               </div>
-
               <div className="mt-4 border border-ink/10 bg-white/50 p-5">
                 <p className="text-xs font-semibold uppercase text-coral">Curation Preview</p>
                 <div className="mt-4 space-y-3">
-                {result.curation.map((item) => (
-                  <div key={item} className="border-b border-ink/8 pb-3 text-sm leading-6 text-sub last:border-b-0 last:pb-0">
-                    {item}
-                  </div>
-                ))}
+                  {result.curation.map((item) => (
+                    <div key={item} className="border-b border-ink/8 pb-3 text-sm leading-6 text-sub last:border-b-0 last:pb-0">
+                      {item}
+                    </div>
+                  ))}
                 </div>
               </div>
-
               <p className="mt-4 text-xs leading-6 text-sub/45">
                 이 검사는 의학적·심리학적 진단이 아니라, 글릿이 제안하는 문장 취향 큐레이션입니다.
               </p>
-
               <a
                 href="https://instagram.com/gleamit_glit"
                 target="_blank"

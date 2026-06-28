@@ -342,18 +342,19 @@ export default function DiagnosisQuiz() {
                 <p className="text-xs font-semibold uppercase text-coral">Glit Sentence Grain</p>
               </div>
               <p className="mb-5 text-sm italic leading-7 text-sub/65">
-                오래 남는 문장은 취향보다 조금 더 안쪽에 있어요.
+                어떤 사람은 새벽 세 시의 문장에 위로받고, 어떤 사람은 낯선 도시의 첫 페이지에서 자신을 발견하죠.
               </p>
               <h1 className="text-4xl font-black leading-[1.13] text-ink md:text-5xl lg:text-6xl">
-                문장이 오래 남는 방식은
+                삶에는 저마다의
                 <br />
-                사람마다 달라요.
+                결이 있어요.
               </h1>
               <p className="mt-7 max-w-xl text-base leading-8 text-sub">
-                81문항의 밀도는 덜고, 문장 취향의 핵심만 남겼습니다. 45개의 진술을 15번의 선택으로 압축해 지금 당신에게 필요한 읽기의 결을 찾아드릴게요.
+                지금 당신에게 맞는 문장의 결을 찾아드릴게요. 아홉 개의 질문이 당신의 이야기를 듣고 싶어해요.
               </p>
               <p className="mt-4 max-w-lg text-sm leading-7 text-sub/60">
-                심리 진단이 아니라 글릿의 에디토리얼 큐레이션입니다. 정답을 고르기보다, 요즘 마음이 오래 머무는 문장에 가까이 가보세요.
+                81문항의 핵심을 45개 진술로 압축해 접근성은 낮추고, 문장 취향의 결은 선명하게 남겼습니다.
+                정답을 고르기보다, 요즘 마음이 오래 머무는 문장에 가까이 가보세요.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-2 text-xs text-sub/55">
@@ -367,7 +368,7 @@ export default function DiagnosisQuiz() {
                   onClick={() => setStage('quiz')}
                   className="inline-flex h-12 items-center rounded-full bg-ink px-7 text-sm font-semibold text-ivory shadow-[0_18px_40px_rgba(46,43,40,0.16)] transition-colors hover:bg-coral"
                 >
-                  나의 문장 결 찾기
+                  나의 결 찾기
                 </button>
                 <p className="text-xs leading-5 text-sub/45">결과 화면을 캡처해 DM으로 보내면 큐레이션을 받아볼 수 있어요.</p>
               </div>

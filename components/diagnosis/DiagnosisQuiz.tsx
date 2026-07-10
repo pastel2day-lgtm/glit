@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Diamond from '@/components/ui/Diamond'
 import SiteFooter from '@/components/SiteFooter'
+import { sentences as archiveSentences } from '@/lib/sentences'
 
 type GrainType = 'ONE' | 'TWO' | 'THREE' | 'FOUR' | 'FIVE' | 'SIX' | 'SEVEN' | 'EIGHT' | 'NINE'
 type Stage = 'intro' | 'quiz' | 'loading' | 'result'
@@ -494,11 +495,13 @@ export default function DiagnosisQuiz() {
   const [resultType, setResultType] = useState<GrainType>('FOUR')
   const [capturing, setCapturing] = useState(false)
   const [shareNote, setShareNote] = useState<string | null>(null)
+  const [copied, setCopied] = useState(false)
   const captureRef = useRef<HTMLDivElement | null>(null)
 
   const result = RESULTS[resultType]
   const total = QUESTIONS.length
   const progress = stage === 'quiz' ? ((step + 1) / total) * 100 : 100
+  const grainSentences = archiveSentences.filter((s) => s.grain === resultType)
 
   useEffect(() => {
     if (stage !== 'loading') return
@@ -509,6 +512,17 @@ export default function DiagnosisQuiz() {
 
     return () => window.clearTimeout(timer)
   }, [stage])
+
+  // 공유된 결과 링크(/diagnosis/?type=four)로 들어오면 바로 결과 화면을 보여줘요.
+  useEffect(() => {
+    const param = new URLSearchParams(window.location.search).get('type')
+    if (!param) return
+    const type = param.toUpperCase()
+    if (Object.prototype.hasOwnProperty.call(RESULTS, type)) {
+      setResultType(type as GrainType)
+      setStage('result')
+    }
+  }, [])
 
   const handleSelect = (type: GrainType) => {
     if (selected) return
@@ -539,6 +553,17 @@ export default function DiagnosisQuiz() {
   }
 
   const INSTAGRAM_URL = 'https://instagram.com/gleamit_glit'
+
+  const handleCopyLink = async () => {
+    const url = `${window.location.origin}/diagnosis/?type=${resultType.toLowerCase()}`
+    try {
+      await navigator.clipboard.writeText(url)
+      setCopied(true)
+      window.setTimeout(() => setCopied(false), 2000)
+    } catch {
+      setShareNote('링크 복사에 실패했어요. 주소창의 URL을 직접 복사해 주세요.')
+    }
+  }
 
   const handleCapture = async () => {
     if (capturing) return
@@ -792,6 +817,30 @@ export default function DiagnosisQuiz() {
                 ))}
               </div>
 
+              {grainSentences.length > 0 && (
+                <div className="mt-14">
+                  <div className="flex items-center gap-4">
+                    <p className="shrink-0 text-xs font-semibold tracking-[0.22em] text-[#ffd67d]">이 결의 문장</p>
+                    <div className="h-px flex-1 bg-white/14" />
+                  </div>
+                  <div className="mt-6 space-y-4">
+                    {grainSentences.map((s) => (
+                      <div key={s.id} className="border-l-2 border-[#dfa080]/50 bg-white/[0.04] px-6 py-5">
+                        <p className="text-base italic leading-9 text-[#e7dfce] md:text-lg">“{s.text}”</p>
+                        <p className="mt-3 text-xs text-[#9f988c]">{s.theme} · 「{s.book}」 {s.author}</p>
+                      </div>
+                    ))}
+                  </div>
+                  <a
+                    data-capture-hide
+                    href="/sentences"
+                    className="mt-5 inline-flex text-xs font-semibold text-[#dfa080] transition-colors hover:text-[#f0c09f]"
+                  >
+                    문장 아카이브에서 더 보기 →
+                  </a>
+                </div>
+              )}
+
               <div data-capture-hide className="mt-12 border border-white/14 px-6 py-9 text-center md:px-12">
                 <h3 className="text-2xl font-black leading-9">더 깊은 큐레이션을<br />받고 싶다면</h3>
                 <p className="mt-5 text-sm leading-8 text-[#d8d0bf]">
@@ -829,13 +878,20 @@ export default function DiagnosisQuiz() {
                 )}
               </div>
 
-              <button
-                data-capture-hide
-                onClick={handleReset}
-                className="mt-8 w-full border border-white/14 px-7 py-4 text-sm font-medium text-[#f7f0df] transition-colors hover:border-[#dfa080] hover:text-[#dfa080]"
-              >
-                처음부터 다시 하기
-              </button>
+              <div data-capture-hide className="mt-4 grid gap-3 sm:grid-cols-2">
+                <button
+                  onClick={handleCopyLink}
+                  className="border border-white/14 px-7 py-4 text-sm font-medium text-[#f7f0df] transition-colors hover:border-[#dfa080] hover:text-[#dfa080]"
+                >
+                  {copied ? '링크가 복사됐어요 ✓' : '결과 링크 복사'}
+                </button>
+                <button
+                  onClick={handleReset}
+                  className="border border-white/14 px-7 py-4 text-sm font-medium text-[#f7f0df] transition-colors hover:border-[#dfa080] hover:text-[#dfa080]"
+                >
+                  처음부터 다시 하기
+                </button>
+              </div>
 
               <p data-capture-hide className="mt-10 text-center text-xs leading-6 text-[#8f887b]">
                 이 검사는 의학적·심리학적 진단이 아니라, 글릿이 제안하는 문장 취향 큐레이션입니다.

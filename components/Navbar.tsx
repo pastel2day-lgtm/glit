@@ -3,10 +3,11 @@ import { useEffect, useState } from 'react'
 import Diamond from '@/components/ui/Diamond'
 
 const links = [
-  { label: 'Concept', href: '#concept' },
-  { label: 'Editorial', href: '#archive' },
+  { label: 'Concept', href: '/#concept' },
+  { label: 'Editorial', href: '/editorial' },
+  { label: '문장', href: '/sentences' },
   { label: 'Interview', href: '/interview' },
-  { label: 'About', href: '#about' },
+  { label: 'About', href: '/#about' },
 ]
 
 export default function Navbar() {

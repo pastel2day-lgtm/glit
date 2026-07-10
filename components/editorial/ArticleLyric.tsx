@@ -11,7 +11,7 @@ export default function ArticleLyric({ article }: { article: Article }) {
           <Diamond className="h-3.5 w-3.5 text-coral" />
           <span className="text-sm font-bold tracking-tight">글릿</span>
         </a>
-        <a href="/#archive" className="text-xs text-sub/40 transition-colors hover:text-coral">
+        <a href="/editorial" className="text-xs text-sub/40 transition-colors hover:text-coral">
           에디토리얼
         </a>
       </header>
@@ -80,7 +80,7 @@ export default function ArticleLyric({ article }: { article: Article }) {
         <div className="mt-16 flex flex-col items-center gap-3">
           <Diamond className="h-4 w-4 text-coral/40" />
           <p className="font-mono text-xs tracking-wider text-sub/35">{article.issue} · 글릿</p>
-          <a href="/#archive" className="mt-4 text-sm font-medium text-coral transition-colors hover:text-coral/70">
+          <a href="/editorial" className="mt-4 text-sm font-medium text-coral transition-colors hover:text-coral/70">
             다른 글 보기
           </a>
         </div>

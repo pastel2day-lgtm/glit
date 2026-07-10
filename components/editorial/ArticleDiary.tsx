@@ -11,7 +11,7 @@ export default function ArticleDiary({ article }: { article: Article }) {
           <Diamond className="h-4 w-4 text-coral" />
           <span className="text-base font-bold tracking-tight">글릿</span>
         </a>
-        <a href="/#archive" className="text-xs text-sub/50 transition-colors hover:text-coral">
+        <a href="/editorial" className="text-xs text-sub/50 transition-colors hover:text-coral">
           에디토리얼
         </a>
       </header>
@@ -78,7 +78,7 @@ export default function ArticleDiary({ article }: { article: Article }) {
 
           <div className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t border-ink/8 pt-8">
             <div className="font-mono text-xs text-sub/35">{article.issue} · 글릿 에디토리얼</div>
-            <a href="/#archive" className="text-sm font-medium text-coral transition-colors hover:text-coral/70">
+            <a href="/editorial" className="text-sm font-medium text-coral transition-colors hover:text-coral/70">
               다른 글 보기
             </a>
           </div>

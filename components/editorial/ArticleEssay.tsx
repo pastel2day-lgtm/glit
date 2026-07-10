@@ -11,7 +11,7 @@ export default function ArticleEssay({ article }: { article: Article }) {
           <Diamond className="h-4 w-4 text-coral" />
           <span className="text-base font-bold tracking-tight">글릿</span>
         </a>
-        <a href="/#archive" className="text-xs text-sub/50 transition-colors hover:text-coral">
+        <a href="/editorial" className="text-xs text-sub/50 transition-colors hover:text-coral">
           에디토리얼
         </a>
       </header>
@@ -108,7 +108,7 @@ export default function ArticleEssay({ article }: { article: Article }) {
               <Diamond className="h-2.5 w-2.5 text-coral/50" />
               <span>글릿 · {article.issue}</span>
             </div>
-            <a href="/#archive" className="text-sm font-medium text-coral transition-colors hover:text-coral/70">
+            <a href="/editorial" className="text-sm font-medium text-coral transition-colors hover:text-coral/70">
               다른 글 보기
             </a>
           </div>

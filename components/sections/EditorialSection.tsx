@@ -95,6 +95,15 @@ export default function EditorialSection() {
           </a>
         </FadeUp>
 
+        <div className="mt-8 flex justify-center">
+          <a
+            href="/editorial"
+            className="inline-flex items-center gap-2 border border-ink/15 px-6 py-3 text-sm font-semibold text-ink transition-colors hover:border-coral hover:text-coral"
+          >
+            모든 이야기 보기 →
+          </a>
+        </div>
+
         <div className="mt-6 grid gap-6 md:grid-cols-2">
           {cards.map((item, index) => (
             <FadeUp key={item.title} delay={index * 80 + 90}>

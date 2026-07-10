@@ -1,40 +1,17 @@
 /* eslint-disable @next/next/no-img-element */
 'use client'
 import FadeUp from '@/components/ui/FadeUp'
+import articles from '@/lib/editorialArticles'
 
-const featured = {
-  category: '책 추천',
-  issue: 'Vol.01',
-  title: '잠 못 드는 밤을 위한 책',
-  excerpt:
-    '화면 빛이 아니라 종이의 촉감으로, 잠 오지 않는 밤을 조금 다르게 보내보는 책 이야기.',
-  author: '글릿',
-  authorRole: '에디터',
-  readTime: '2분',
-  image: '/images/glit_mag_bright_night.png',
-  href: '/editorial/sleepless-night',
-}
+// 최신 글 3편을 홈 This Issue에 그대로 보여줍니다.
+const toCard = (article: (typeof articles)[number]) => ({
+  ...article,
+  excerpt: article.subtitle,
+  href: `/editorial/${article.slug}`,
+})
 
-const cards = [
-  {
-    category: '문장 수집',
-    issue: 'Vol.01',
-    title: '당신만의 별은 어디 있나요',
-    excerpt: '바쁘고 지친 날에도 사라지지 않는 나만의 별에 관하여.',
-    readTime: '2분',
-    image: '/images/glit_mag_bright_star.png',
-    href: '/editorial/your-own-star',
-  },
-  {
-    category: '혼자 있는 시간',
-    issue: 'Vol.01',
-    title: '혼자 있는 시간이 가장 충만했다',
-    excerpt: '월든이 먼저 증명해준 혼자만의 시간에 대한 작은 기록.',
-    readTime: '2분',
-    image: '/images/glit_mag_week3_forest.png',
-    href: '/editorial/fullest-alone',
-  },
-]
+const featured = toCard(articles[0])
+const cards = articles.slice(1, 3).map(toCard)
 
 export default function EditorialSection() {
   return (
@@ -48,7 +25,7 @@ export default function EditorialSection() {
             </h2>
           </div>
           <p className="hidden pb-1 font-mono text-xs uppercase tracking-[0.2em] text-sub/45 md:block">
-            Vol.01 · 2026
+            {featured.issue} · 2026
           </p>
         </div>
       </FadeUp>

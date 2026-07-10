@@ -330,6 +330,8 @@ const RESULTS: Record<GrainType, Result> = {
       { title: '잠 못 이루는 밤을 위하여', author: '칼 힐티', reason: '흔들리는 밤에도 마음의 중심을 다시 세워주는 책' },
       { title: '월든', author: '헨리 데이비드 소로', reason: '단순한 삶이 가진 분명한 기준을 보여주는 고전' },
       { title: '나는 나로 살기로 했다', author: '김수현', reason: '스스로에게 너무 엄격했던 마음을 다정하게 풀어주는 책' },
+      { title: '미움받을 용기', author: '기시미 이치로', reason: '옳음에 대한 강박을 조금 내려놓게 하는 단단한 대화' },
+      { title: '데미안', author: '헤르만 헤세', reason: '남의 기준을 넘어 자기 기준을 세워가는 성장의 기록' },
     ],
   },
   TWO: {
@@ -345,6 +347,8 @@ const RESULTS: Record<GrainType, Result> = {
       { title: '나는 나로 살기로 했다', author: '김수현', reason: '타인을 위해 살아온 시간 끝에 자신을 찾아가는 이야기' },
       { title: '아몬드', author: '손원평', reason: '감정을 배우는 과정을 통해 진짜 연결이 무엇인지 보여주는 소설' },
       { title: '82년생 김지영', author: '조남주', reason: '누군가를 돌보며 자신을 지워온 시간들에 대한 이야기' },
+      { title: '나미야 잡화점의 기적', author: '히가시노 게이고', reason: '건넨 다정함이 돌고 돌아 다시 돌아오는 이야기' },
+      { title: '사람은 무엇으로 사는가', author: '레프 톨스토이', reason: '다정함이 사람을 살린다는 오래된 대답' },
     ],
   },
   THREE: {
@@ -360,6 +364,8 @@ const RESULTS: Record<GrainType, Result> = {
       { title: '모든 것은 기본에서 시작한다', author: '손웅정', reason: '앞으로 나아가는 힘의 바탕을 다시 정돈하게 하는 책' },
       { title: '일의 기쁨과 슬픔', author: '장류진', reason: '성과와 일상 사이에서 일하는 마음을 현실적으로 비추는 소설' },
       { title: '월든', author: '헨리 데이비드 소로', reason: '속도 바깥의 삶을 다시 바라보게 하는 고전' },
+      { title: '미드나잇 라이브러리', author: '매트 헤이그', reason: '다른 선택의 삶을 지나 지금의 나를 다시 보게 하는 소설' },
+      { title: '하마터면 열심히 살 뻔했다', author: '하완', reason: '열심히의 방향을 다시 묻는 가벼운 에세이' },
     ],
   },
   FOUR: {
@@ -375,6 +381,8 @@ const RESULTS: Record<GrainType, Result> = {
       { title: '어린 왕자', author: '앙투안 드 생텍쥐페리', reason: '상실과 아름다움이 함께 남는 책' },
       { title: '참을 수 없는 존재의 가벼움', author: '밀란 쿤데라', reason: '사랑과 고유함의 무게를 오래 생각하게 하는 소설' },
       { title: '우리가 빛의 속도로 갈 수 없다면', author: '김초엽', reason: '외로움과 그리움을 섬세한 상상력으로 건드리는 책' },
+      { title: '데미안', author: '헤르만 헤세', reason: '내면의 가장 깊은 곳까지 따라 내려가는 고전' },
+      { title: '슬픔을 공부하는 슬픔', author: '신형철', reason: '슬픔을 오래 들여다본 사람만이 쓸 수 있는 문장' },
     ],
   },
   FIVE: {
@@ -390,6 +398,8 @@ const RESULTS: Record<GrainType, Result> = {
       { title: '월든', author: '헨리 데이비드 소로', reason: '혼자의 시간을 가장 충만하게 바꾸는 책' },
       { title: '침묵의 봄', author: '레이첼 카슨', reason: '관찰과 사유가 세계를 바꾸는 방식을 보여주는 책' },
       { title: '코스모스', author: '칼 세이건', reason: '생각의 방을 우주만큼 넓혀주는 고전' },
+      { title: '싯다르타', author: '헤르만 헤세', reason: '스스로 깨닫기 위해 홀로 걸어간 사유의 여정' },
+      { title: '고독의 위로', author: '앤서니 스토', reason: '혼자 있는 시간이 가진 창조적인 힘을 보여주는 책' },
     ],
   },
   SIX: {
@@ -405,6 +415,8 @@ const RESULTS: Record<GrainType, Result> = {
       { title: '어린 왕자', author: '앙투안 드 생텍쥐페리', reason: '믿음과 관계의 책임을 따뜻하게 보여주는 책' },
       { title: '불안', author: '알랭 드 보통', reason: '불안을 조금 더 선명하게 이해하게 해주는 책' },
       { title: '아몬드', author: '손원평', reason: '불완전한 마음들이 서로의 곁이 되어가는 소설' },
+      { title: '죽음의 수용소에서', author: '빅터 프랭클', reason: '불안 속에서도 붙들 수 있는 의미를 알려주는 책' },
+      { title: '모모', author: '미하엘 엔데', reason: '곁에서 오래 들어주는 일의 가치를 보여주는 이야기' },
     ],
   },
   SEVEN: {
@@ -420,6 +432,8 @@ const RESULTS: Record<GrainType, Result> = {
       { title: '여행의 이유', author: '김영하', reason: '낯선 세계를 향한 마음을 문장으로 확장해주는 책' },
       { title: '어린 왕자', author: '앙투안 드 생텍쥐페리', reason: '낯선 별을 건너며 세계를 넓혀주는 이야기' },
       { title: '우리가 빛의 속도로 갈 수 없다면', author: '김초엽', reason: '상상력으로 더 먼 가능성을 열어주는 책' },
+      { title: '연금술사', author: '파울로 코엘료', reason: '자기 신화를 찾아 떠나는 사람을 위한 이야기' },
+      { title: '먼 북소리', author: '무라카미 하루키', reason: '낯선 도시에서 보낸 시간이 남긴 담담한 기록' },
     ],
   },
   EIGHT: {
@@ -435,6 +449,8 @@ const RESULTS: Record<GrainType, Result> = {
       { title: '월든', author: '헨리 데이비드 소로', reason: '강함을 자기만의 삶으로 정돈하게 하는 책' },
       { title: '채식주의자', author: '한강', reason: '부딪힘과 저항의 감각을 강렬하게 남기는 소설' },
       { title: '소년이 온다', author: '한강', reason: '지켜야 할 것 앞에서 물러서지 않는 마음을 생각하게 하는 책' },
+      { title: '노인과 바다', author: '어니스트 헤밍웨이', reason: '물러서지 않는 마음의 존엄을 보여주는 고전' },
+      { title: '미움받을 용기', author: '기시미 이치로', reason: '타인의 시선을 넘어 힘의 방향을 정하게 하는 대화' },
     ],
   },
   NINE: {
@@ -450,6 +466,8 @@ const RESULTS: Record<GrainType, Result> = {
       { title: '월든', author: '헨리 데이비드 소로', reason: '고요한 삶이 가진 충만함을 보여주는 책' },
       { title: '모순', author: '양귀자', reason: '삶의 엇갈림을 조용히 품어보게 하는 소설' },
       { title: '어린 왕자', author: '앙투안 드 생텍쥐페리', reason: '작고 조용한 것의 소중함을 다시 알려주는 책' },
+      { title: '싯다르타', author: '헤르만 헤세', reason: '강물처럼 흐르는 고요를 배우게 하는 소설' },
+      { title: '모모', author: '미하엘 엔데', reason: '서두르는 세상에서 잃어버린 시간을 되찾는 이야기' },
     ],
   },
 }
@@ -691,7 +709,7 @@ export default function DiagnosisQuiz() {
                   <div className="mt-5 space-y-4 text-sm font-semibold text-ink">
                     <p>01. 36개 질문 선택</p>
                     <p>02. 결의 방향 분석</p>
-                    <p>03. 책 3권 큐레이션</p>
+                    <p>03. 책 5권 큐레이션</p>
                   </div>
                 </div>
                 <img src={introImages[2]} alt="고요한 숲길" className="h-32 w-full object-cover sepia-[0.18] saturate-[0.78]" />

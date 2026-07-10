@@ -20,7 +20,122 @@ export interface Section {
   text: string
 }
 
+// 최신 글이 앞에 오도록 정렬해 둡니다. (/editorial 목록과 홈 This Issue가 이 순서를 따릅니다.)
 const articles: Article[] = [
+  {
+    slug: 'rainy-day-sentences',
+    category: '문장 수집',
+    issue: 'Vol.02',
+    title: '비 오는 날의 문장들',
+    subtitle: '창밖의 소리가 문장이 되는 시간',
+    author: '글릿',
+    authorRole: '에디터',
+    readTime: '2분',
+    date: '2026년 7월 8일',
+    image: '/images/glit-rain-essay.png',
+    style: 'lyric',
+    body: [
+      { type: 'paragraph', text: '비가 오면 세상의 소리가 한 겹 낮아져요.' },
+      {
+        type: 'paragraph',
+        text: '자동차도, 발걸음도, 말소리도 빗소리 아래로 조금씩 잠깁니다.',
+      },
+      { type: 'paragraph', text: '그런 날엔 이상하게 오래 미뤄둔 문장이 떠올라요.' },
+      {
+        type: 'italic',
+        text: '읽다 만 책의 첫 문장, 부치지 못한 편지의 마지막 줄 같은 것들.',
+      },
+      { type: 'divider', text: '' },
+      {
+        type: 'pullquote',
+        text: '비는 아무것도 씻어내지 않아요. 다만 우리를 잠시 멈추게 할 뿐이죠.',
+      },
+      {
+        type: 'paragraph',
+        text: '멈춘 자리에서야 비로소 보이는 것들이 있어요. 창밖이 아니라, 창을 바라보는 내 얼굴 같은 것.',
+      },
+      {
+        type: 'paragraph',
+        text: '오늘 비가 온다면 우산을 펴기 전에 잠깐 서 있어보세요. 그 몇 초가 하루의 문장을 바꿔놓을지도 몰라요.',
+      },
+      {
+        type: 'paragraph',
+        text: '비 오는 날 당신에게 떠오르는 문장은 무엇인가요? 댓글로 들려주세요.',
+      },
+    ],
+  },
+  {
+    slug: 'sitting-at-the-desk',
+    category: '쓰는 마음',
+    issue: 'Vol.02',
+    title: '책상 앞에 앉는 일',
+    subtitle: '영감을 기다리지 않고 매일 앉는 사람들에 대하여',
+    author: '글릿',
+    authorRole: '에디터',
+    readTime: '3분',
+    date: '2026년 7월 8일',
+    image: '/images/glit-writer-studio.png',
+    style: 'essay',
+    body: [
+      { type: 'paragraph', text: '쓰는 사람들에게 물어보면 대답이 신기할 만큼 비슷해요.' },
+      {
+        type: 'paragraph',
+        text: '영감이 와서 쓰는 게 아니라, 앉아 있으니까 결국 쓰게 된다고요.',
+      },
+      {
+        type: 'paragraph',
+        text: '재능은 어쩌면 책상 앞에 앉은 시간의 다른 이름인지도 모릅니다.',
+      },
+      {
+        type: 'pullquote',
+        text: '쓰고 싶지 않은 날에도 앉는 것. 그것이 이미 쓰는 일입니다.',
+      },
+      {
+        type: 'paragraph',
+        text: '오늘 한 문장도 완성하지 못했더라도 괜찮아요. 화면을 오래 바라보고 있었다면, 당신은 이미 쓰는 사람이에요.',
+      },
+      {
+        type: 'italic',
+        text: '완성하지 않아도 괜찮아요. 시작한 문장은 사라지지 않으니까요.',
+      },
+      {
+        type: 'paragraph',
+        text: '당신의 책상은 어떤 모습인가요? 오늘 그 앞에 몇 분쯤 앉아 있었는지 들려주세요.',
+      },
+    ],
+  },
+  {
+    slug: 'small-things-remain',
+    category: '혼자 있는 시간',
+    issue: 'Vol.02',
+    title: '작은 것들이 남는다',
+    subtitle: '오래 곁에 둔 사물과 문장에 관하여',
+    author: '글릿',
+    authorRole: '에디터',
+    readTime: '2분',
+    date: '2026년 7월 8일',
+    image: '/images/glit-editorial-still-life.png',
+    style: 'diary',
+    body: [
+      { type: 'paragraph', text: '오래 쓴 컵, 모서리가 닳은 노트, 접힌 자국이 남은 책장.' },
+      { type: 'paragraph', text: '값비싼 것들은 생각보다 기억에 남지 않아요.' },
+      { type: 'paragraph', text: '남는 건 이상하게도 작고 사소한 것들입니다.' },
+      { type: 'divider', text: '' },
+      { type: 'pullquote', text: '사랑한 것들은 늘 조금 낡아 있어요.' },
+      {
+        type: 'paragraph',
+        text: '문장도 그래요. 근사한 문장보다, 밑줄이 두 번 세 번 겹쳐 그어진 낡은 문장이 더 오래 남습니다.',
+      },
+      {
+        type: 'paragraph',
+        text: '혼자 있는 저녁에 그 낡은 것들을 하나씩 만져보는 시간이 좋아요. 아무 말도 하지 않는데 많은 이야기를 듣게 되거든요.',
+      },
+      {
+        type: 'paragraph',
+        text: '당신의 책에서 가장 많이 밑줄 그은 문장은 무엇인가요? 글릿에 들려주세요.',
+      },
+    ],
+  },
   {
     slug: 'sleepless-night',
     category: '책 추천',

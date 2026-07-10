@@ -103,6 +103,7 @@ export default function InterviewPage() {
         <nav className="hidden md:flex items-center gap-8 text-sm text-sub font-medium">
           <a href="/#concept" className="hover:text-coral transition-colors">Concept</a>
           <a href="/editorial" className="hover:text-coral transition-colors">Editorial</a>
+          <a href="/sentences" className="hover:text-coral transition-colors">Sentences</a>
           <a href="/interview" className="text-coral font-semibold">Interview</a>
           <a href="/#about" className="hover:text-coral transition-colors">About</a>
         </nav>

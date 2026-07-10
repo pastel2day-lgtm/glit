@@ -640,16 +640,13 @@ export default function DiagnosisQuiz() {
                 </p>
               </div>
 
-              <div className="mt-9 border-2 border-coral/30 bg-ivory/70 p-4 shadow-[0_22px_52px_rgba(217,119,78,0.16)] sm:inline-flex sm:items-center sm:gap-4">
+              <div className="mt-9 border-2 border-coral/30 bg-ivory/70 p-4 shadow-[0_22px_52px_rgba(217,119,78,0.16)]">
                 <button
                   onClick={() => setStage('quiz')}
-                  className="inline-flex min-h-14 w-full items-center justify-center rounded-full bg-coral px-8 py-4 text-base font-bold text-white shadow-[0_18px_40px_rgba(217,119,78,0.28)] transition-colors hover:bg-ink sm:w-auto"
+                  className="inline-flex min-h-14 w-full items-center justify-center rounded-full bg-coral px-8 py-4 text-base font-bold text-white shadow-[0_18px_40px_rgba(217,119,78,0.28)] transition-colors hover:bg-ink"
                 >
                   나의 결 찾기
                 </button>
-                <p className="mt-3 text-xs leading-5 text-sub/55 sm:mt-0">
-                  결과 화면을 캡처해 DM으로 보내면 책 큐레이션을 받아볼 수 있어요.
-                </p>
               </div>
             </div>
 

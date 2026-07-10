@@ -540,13 +540,10 @@ export default function DiagnosisQuiz() {
 
   const INSTAGRAM_URL = 'https://instagram.com/gleamit_glit'
 
-  const handleCuration = async () => {
+  const handleCapture = async () => {
     if (capturing) return
     const node = captureRef.current
-    if (!node) {
-      window.open(INSTAGRAM_URL, '_blank', 'noopener,noreferrer')
-      return
-    }
+    if (!node) return
 
     setCapturing(true)
     setShareNote(null)
@@ -573,7 +570,7 @@ export default function DiagnosisQuiz() {
         share?: (data?: ShareData) => Promise<void>
       }
 
-      // 모바일: OS 공유 시트로 결과 이미지를 바로 첨부해 인스타그램 DM으로 보낼 수 있어요.
+      // 모바일: 공유 시트로 사진 앱에 저장하거나 바로 인스타그램에 보낼 수 있어요.
       if (nav.canShare && nav.share && nav.canShare({ files: [file] })) {
         try {
           await nav.share({
@@ -581,13 +578,14 @@ export default function DiagnosisQuiz() {
             title: '글릿 문장 결 결과',
             text: `제 문장 결은 '${result.name}'이에요. 큐레이션 부탁드려요!`,
           })
+          setShareNote('결과 이미지를 저장했어요. 아래 DM 버튼을 눌러 이미지를 첨부해 보내주세요.')
         } catch {
           // 사용자가 공유를 취소한 경우 — 별도 처리 없이 종료
         }
         return
       }
 
-      // 데스크톱 등 파일 공유 미지원 환경: 이미지를 저장하고 인스타그램을 열어 첨부하도록 안내.
+      // 데스크톱 등 파일 공유 미지원 환경: 이미지를 PNG로 저장.
       const url = URL.createObjectURL(blob)
       const link = document.createElement('a')
       link.href = url
@@ -596,11 +594,9 @@ export default function DiagnosisQuiz() {
       link.click()
       link.remove()
       URL.revokeObjectURL(url)
-      setShareNote('결과 이미지를 저장했어요. 열린 인스타그램 DM 창에 이 이미지를 첨부해 보내주세요.')
-      window.open(INSTAGRAM_URL, '_blank', 'noopener,noreferrer')
+      setShareNote('결과 이미지를 저장했어요. 아래 DM 버튼을 눌러 이미지를 첨부해 보내주세요.')
     } catch {
-      setShareNote('이미지를 만드는 데 문제가 있었어요. 화면을 직접 캡처해 DM으로 보내주세요.')
-      window.open(INSTAGRAM_URL, '_blank', 'noopener,noreferrer')
+      setShareNote('이미지를 만드는 데 문제가 있었어요. 화면을 직접 캡처해 주세요.')
     } finally {
       setCapturing(false)
     }
@@ -802,24 +798,35 @@ export default function DiagnosisQuiz() {
               <div data-capture-hide className="mt-12 border border-white/14 px-6 py-9 text-center md:px-12">
                 <h3 className="text-2xl font-black leading-9">더 깊은 큐레이션을<br />받고 싶다면</h3>
                 <p className="mt-5 text-sm leading-8 text-[#d8d0bf]">
-                  아래 버튼을 누르면 이 결과 화면이 이미지로 저장돼요.
+                  <span className="font-bold text-[#ffd67d]">1</span> 결과 이미지를 저장하고,
+                  <span className="ml-1 font-bold text-[#ffd67d]">2</span> 글릿 인스타그램 DM에 첨부해 보내주세요.
                   <br />
-                  글릿 인스타그램 DM에 첨부해 보내주시면, 48시간 안에 책 목록을 전달드릴게요.
+                  당신의 결에 맞는 책 목록을 48시간 안에 전달드릴게요.
                 </p>
-                <button
-                  onClick={handleCuration}
-                  disabled={capturing}
-                  className="mx-auto mt-8 inline-flex min-h-14 items-center justify-center gap-2 bg-[#dfa080] px-12 text-sm font-bold text-[#292925] transition-colors hover:bg-[#f0c09f] disabled:cursor-not-allowed disabled:opacity-70"
-                >
-                  {capturing ? (
-                    <>
-                      <span className="h-3 w-3 animate-spin rounded-full border-2 border-[#292925]/40 border-t-[#292925]" />
-                      결과 이미지 만드는 중…
-                    </>
-                  ) : (
-                    '결과 캡처해서 DM 보내기'
-                  )}
-                </button>
+                <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:justify-center">
+                  <button
+                    onClick={handleCapture}
+                    disabled={capturing}
+                    className="inline-flex min-h-14 items-center justify-center gap-2 border border-[#dfa080] px-8 text-sm font-bold text-[#dfa080] transition-colors hover:bg-[#dfa080]/10 disabled:cursor-not-allowed disabled:opacity-70"
+                  >
+                    {capturing ? (
+                      <>
+                        <span className="h-3 w-3 animate-spin rounded-full border-2 border-[#dfa080]/40 border-t-[#dfa080]" />
+                        이미지 만드는 중…
+                      </>
+                    ) : (
+                      '1. 결과 이미지 저장'
+                    )}
+                  </button>
+                  <a
+                    href={INSTAGRAM_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex min-h-14 items-center justify-center bg-[#dfa080] px-8 text-sm font-bold text-[#292925] transition-colors hover:bg-[#f0c09f]"
+                  >
+                    2. 인스타그램 DM 보내기
+                  </a>
+                </div>
                 {shareNote && (
                   <p className="mt-5 text-xs leading-6 text-[#ffd67d]">{shareNote}</p>
                 )}

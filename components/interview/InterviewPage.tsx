@@ -70,6 +70,54 @@ const interviews = [
     date: '2026년 4월',
     readTime: '7분',
   },
+  {
+    issue: 'Vol.05',
+    name: '박상무',
+    role: '1년 차 기획자',
+    subject: '지하철에서 쓰는 사람',
+    pullQuote: '출근길 25분이 저의 유일한 책상이에요.',
+    excerpt:
+      '"입사한 지 이제 1년이에요. 회의에서 하지 못한 말, 기획서에서 잘려나간 문장들을 출근길 메모장에 적기 시작했어요. 신입의 하루에도 문장이 되는 순간이 생각보다 많더라고요."',
+    image: '/images/interview-office-worker.jpg',
+    date: '2026년 5월',
+    readTime: '6분',
+  },
+  {
+    issue: 'Vol.06',
+    name: '오승훈',
+    role: '동네 카페 사장',
+    subject: '오픈 전 30분의 글쓰기',
+    pullQuote: '커피를 내리기 전에 마음을 먼저 내려요.',
+    excerpt:
+      '"가게 문을 열기 전에 노트를 펴요. 어제 온 손님, 오늘 날씨, 원두 볶는 냄새 같은 사소한 것들을 적습니다. 대단한 글은 아니지만, 그 30분이 하루 중 제가 저로 있는 시간이에요."',
+    image: '/images/interview-cafe-owner.jpg',
+    date: '2026년 6월',
+    readTime: '7분',
+  },
+  {
+    issue: 'Vol.07',
+    name: '김수민',
+    role: '대학생 · 스물셋',
+    subject: '아무도 안 읽어도 씁니다',
+    pullQuote: '쓰다 보면 언젠가 누군가를 만나게 돼요.',
+    excerpt:
+      '"블로그에 독서 일기를 올려요. 처음 1년은 아무도 안 읽었어요. 그런데 어느 날 모르는 분이 \'저도 이 문장에 밑줄 그었어요\'라고 댓글을 남겨줬어요. 그때 알았죠. 쓰면 결국 누군가와 만나게 된다는 걸요."',
+    image: '/images/interview-college-student.jpg',
+    date: '2026년 6월',
+    readTime: '6분',
+  },
+  {
+    issue: 'Vol.08',
+    name: '김남호',
+    role: '출판사 편집자',
+    subject: '남의 문장을 만지는 사람',
+    pullQuote: '남의 글을 고치다 보면 제 마음도 고쳐져요.',
+    excerpt:
+      '"하루 종일 남의 원고를 읽고 고치는 게 일이에요. 그런데 이상하죠. 남의 문장을 오래 들여다본 날일수록 제 문장이 쓰고 싶어져요. 퇴근하면 아무도 안 볼 일기를 씁니다."',
+    image: '/images/interview-editor.jpg',
+    date: '2026년 7월',
+    readTime: '7분',
+  },
 ]
 
 export default function InterviewPage() {
@@ -125,14 +173,14 @@ export default function InterviewPage() {
                 </h1>
               </div>
               <div className="text-right self-end pb-2">
-                <p className="text-sub/50 text-xs tracking-wider mb-1">2026 Spring</p>
+                <p className="text-sub/50 text-xs tracking-wider mb-1">2026 Spring–Summer</p>
                 <p className="text-sub text-sm max-w-[220px] leading-relaxed text-right">
                   글을 쓰는 사람들의 이야기.<br />글릿이 직접 만나 나눈 대화.
                 </p>
               </div>
             </div>
-            <div className="mt-10 flex gap-6 text-xs text-sub/50 tracking-wider">
-              {['소설가', '에세이스트', '시인', '독립출판'].map((tag) => (
+            <div className="mt-10 flex flex-wrap gap-x-6 gap-y-3 text-xs text-sub/50 tracking-wider">
+              {['소설가', '에세이스트', '시인', '독립출판', '기획자', '카페 사장', '대학생', '편집자'].map((tag) => (
                 <span key={tag} className="border-l border-ink/15 pl-3 first:border-l-0 first:pl-0">{tag}</span>
               ))}
             </div>

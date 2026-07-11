@@ -472,6 +472,41 @@ const RESULTS: Record<GrainType, Result> = {
   },
 }
 
+// 실물 표지 이미지. 표지가 있는 책이 목록 앞쪽에 오도록 정렬 기준으로도 쓴다.
+const BOOK_COVERS: Record<string, string> = {
+  '잠 못 이루는 밤을 위하여': '/images/books/sleepless-nights.jpg',
+  '월든': '/images/books/walden.jpg',
+  '나는 나로 살기로 했다': '/images/books/i-decided-to-live-as-me.jpg',
+  '미움받을 용기': '/images/books/courage-to-be-disliked.jpg',
+  '데미안': '/images/books/demian.jpg',
+  '아몬드': '/images/books/almond.jpg',
+  '82년생 김지영': '/images/books/kim-jiyoung-1982.jpg',
+  '나미야 잡화점의 기적': '/images/books/namiya.jpg',
+  '사람은 무엇으로 사는가': '/images/books/what-men-live-by.jpg',
+  '모든 것은 기본에서 시작한다': '/images/books/everything-starts-from-basics.jpg',
+  '일의 기쁨과 슬픔': '/images/books/joy-and-sorrow-of-work.jpg',
+  '미드나잇 라이브러리': '/images/books/midnight-library.jpg',
+  '하마터면 열심히 살 뻔했다': '/images/books/almost-lived-hard.jpg',
+  '어린 왕자': '/images/books/little-prince.jpg',
+  '참을 수 없는 존재의 가벼움': '/images/books/unbearable-lightness.jpg',
+  '우리가 빛의 속도로 갈 수 없다면': '/images/books/speed-of-light.jpg',
+  '슬픔을 공부하는 슬픔': '/images/books/studying-sadness.jpg',
+  '침묵의 봄': '/images/books/silent-spring.jpg',
+  '코스모스': '/images/books/cosmos.jpg',
+  '싯다르타': '/images/books/siddhartha.jpg',
+  '고독의 위로': '/images/books/solitude.jpg',
+  '불안': '/images/books/status-anxiety.jpg',
+  '죽음의 수용소에서': '/images/books/mans-search-for-meaning.jpg',
+  '모모': '/images/books/momo.jpg',
+  '여행의 이유': '/images/books/reason-for-travel.jpg',
+  '연금술사': '/images/books/alchemist.jpg',
+  '먼 북소리': '/images/books/distant-drums.jpg',
+  '채식주의자': '/images/books/vegetarian.jpg',
+  '소년이 온다': '/images/books/human-acts.jpg',
+  '노인과 바다': '/images/books/old-man-and-the-sea.jpg',
+  '모순': '/images/books/contradiction.jpg',
+}
+
 const introImages = [
   'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=900&q=85',
   'https://images.unsplash.com/photo-1519682337058-a94d519337bc?auto=format&fit=crop&w=900&q=85',
@@ -760,16 +795,35 @@ export default function DiagnosisQuiz() {
               </div>
 
               <div className="mt-8 divide-y divide-white/10">
-                {result.books.map((book, index) => (
-                  <article key={book.title} className="grid gap-4 py-7 md:grid-cols-[3rem_1fr]">
-                    <p className="font-mono text-sm text-[#9f988c]">0{index + 1}</p>
-                    <div>
-                      <h3 className="text-xl font-black leading-8">「{book.title}」</h3>
-                      <p className="mt-2 text-sm text-[#a9a293]">{book.author}</p>
-                      <p className="mt-4 text-base leading-8 text-[#d8d0bf]">{book.reason}</p>
-                    </div>
-                  </article>
-                ))}
+                {[...result.books]
+                  .sort((a, b) => (BOOK_COVERS[b.title] ? 1 : 0) - (BOOK_COVERS[a.title] ? 1 : 0))
+                  .map((book, index) => (
+                    <article key={book.title} className="flex gap-5 py-7 md:gap-7">
+                      <div className="w-24 shrink-0 md:w-28">
+                        {BOOK_COVERS[book.title] ? (
+                          <img
+                            src={BOOK_COVERS[book.title]}
+                            alt={`「${book.title}」 표지`}
+                            className="aspect-[2/3] w-full border border-white/12 object-cover shadow-[0_14px_30px_rgba(0,0,0,0.4)]"
+                          />
+                        ) : (
+                          <div className="flex aspect-[2/3] w-full flex-col justify-between border border-white/16 bg-white/[0.05] p-3 shadow-[0_14px_30px_rgba(0,0,0,0.4)]">
+                            <span className="font-mono text-[10px] tracking-widest text-[#9f988c]">glit</span>
+                            <div>
+                              <p className="text-sm font-bold leading-5 text-[#e7dfce]">{book.title}</p>
+                              <p className="mt-1.5 text-[10px] text-[#9f988c]">{book.author}</p>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                      <div>
+                        <p className="font-mono text-sm text-[#9f988c]">0{index + 1}</p>
+                        <h3 className="mt-2 text-xl font-black leading-8">「{book.title}」</h3>
+                        <p className="mt-2 text-sm text-[#a9a293]">{book.author}</p>
+                        <p className="mt-4 text-base leading-8 text-[#d8d0bf]">{book.reason}</p>
+                      </div>
+                    </article>
+                  ))}
               </div>
 
               {grainSentences.length > 0 && (

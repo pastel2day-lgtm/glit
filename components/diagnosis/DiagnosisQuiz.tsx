@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Diamond from '@/components/ui/Diamond'
 import SiteFooter from '@/components/SiteFooter'
 import { sentences as archiveSentences } from '@/lib/sentences'
@@ -511,10 +511,8 @@ export default function DiagnosisQuiz() {
   const [answers, setAnswers] = useState<GrainType[]>([])
   const [selected, setSelected] = useState<GrainType | null>(null)
   const [resultType, setResultType] = useState<GrainType>('FOUR')
-  const [capturing, setCapturing] = useState(false)
   const [shareNote, setShareNote] = useState<string | null>(null)
   const [copied, setCopied] = useState(false)
-  const captureRef = useRef<HTMLDivElement | null>(null)
 
   const result = RESULTS[resultType]
   const total = QUESTIONS.length
@@ -577,71 +575,10 @@ export default function DiagnosisQuiz() {
     try {
       await navigator.clipboard.writeText(url)
       setCopied(true)
+      setShareNote('결과 링크를 복사했어요. 아래 DM 버튼을 눌러 링크를 붙여넣어 보내주세요.')
       window.setTimeout(() => setCopied(false), 2000)
     } catch {
       setShareNote('링크 복사에 실패했어요. 주소창의 URL을 직접 복사해 주세요.')
-    }
-  }
-
-  const handleCapture = async () => {
-    if (capturing) return
-    const node = captureRef.current
-    if (!node) return
-
-    setCapturing(true)
-    setShareNote(null)
-
-    try {
-      const html2canvas = (await import('html2canvas')).default
-      const canvas = await html2canvas(node, {
-        backgroundColor: '#292925',
-        scale: 2,
-        useCORS: true,
-        onclone: (doc) => {
-          doc.querySelectorAll('[data-capture-hide]').forEach((el) => {
-            ;(el as HTMLElement).style.display = 'none'
-          })
-        },
-      })
-
-      const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, 'image/png'))
-      if (!blob) throw new Error('capture-failed')
-
-      const file = new File([blob], `glit-${result.oldName}.png`, { type: 'image/png' })
-      const nav = navigator as Navigator & {
-        canShare?: (data?: ShareData) => boolean
-        share?: (data?: ShareData) => Promise<void>
-      }
-
-      // 모바일: 공유 시트로 사진 앱에 저장하거나 바로 인스타그램에 보낼 수 있어요.
-      if (nav.canShare && nav.share && nav.canShare({ files: [file] })) {
-        try {
-          await nav.share({
-            files: [file],
-            title: '글릿 문장 결 결과',
-            text: `제 문장 결은 '${result.name}'이에요. 큐레이션 부탁드려요!`,
-          })
-          setShareNote('결과 이미지를 저장했어요. 아래 DM 버튼을 눌러 이미지를 첨부해 보내주세요.')
-        } catch {
-          // 사용자가 공유를 취소한 경우 — 별도 처리 없이 종료
-        }
-        return
-      }
-
-      // 데스크톱 등 파일 공유 미지원 환경: 이미지를 PNG로 저장.
-      const url = URL.createObjectURL(blob)
-      const link = document.createElement('a')
-      link.href = url
-      link.download = file.name
-      document.body.appendChild(link)
-      link.click()
-      link.remove()
-      URL.revokeObjectURL(url)
-      setShareNote('결과 이미지를 저장했어요. 아래 DM 버튼을 눌러 이미지를 첨부해 보내주세요.')
-    } catch {
-      setShareNote('이미지를 만드는 데 문제가 있었어요. 화면을 직접 캡처해 주세요.')
-    } finally {
-      setCapturing(false)
     }
   }
 
@@ -783,7 +720,7 @@ export default function DiagnosisQuiz() {
         )}
 
         {stage === 'result' && (
-          <section ref={captureRef} className="mx-auto w-full max-w-4xl overflow-hidden bg-[#292925] text-[#f7f0df] shadow-[0_34px_90px_rgba(30,28,24,0.24)]">
+          <section className="mx-auto w-full max-w-4xl overflow-hidden bg-[#292925] text-[#f7f0df] shadow-[0_34px_90px_rgba(30,28,24,0.24)]">
             <div className="h-3 bg-[#dfa080]" />
             <div className="px-6 py-8 md:px-12 md:py-12">
               <div className="flex items-center justify-between border-b border-white/10 pb-5 text-[0.65rem] uppercase tracking-[0.18em] text-[#b7b0a2]">
@@ -850,7 +787,6 @@ export default function DiagnosisQuiz() {
                     ))}
                   </div>
                   <a
-                    data-capture-hide
                     href="/sentences"
                     className="mt-5 inline-flex text-xs font-semibold text-[#dfa080] transition-colors hover:text-[#f0c09f]"
                   >
@@ -859,28 +795,20 @@ export default function DiagnosisQuiz() {
                 </div>
               )}
 
-              <div data-capture-hide className="mt-12 border border-white/14 px-6 py-9 text-center md:px-12">
+              <div className="mt-12 border border-white/14 px-6 py-9 text-center md:px-12">
                 <h3 className="text-2xl font-black leading-9">더 깊은 큐레이션을<br />받고 싶다면</h3>
                 <p className="mt-5 text-sm leading-8 text-[#d8d0bf]">
-                  <span className="font-bold text-[#ffd67d]">1</span> 결과 이미지를 저장하고,
-                  <span className="ml-1 font-bold text-[#ffd67d]">2</span> 글릿 인스타그램 DM에 첨부해 보내주세요.
+                  <span className="font-bold text-[#ffd67d]">1</span> 결과 링크를 복사하고,
+                  <span className="ml-1 font-bold text-[#ffd67d]">2</span> 글릿 인스타그램 DM에 붙여넣어 보내주세요.
                   <br />
                   당신의 결에 맞는 책 목록을 48시간 안에 전달드릴게요.
                 </p>
                 <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:justify-center">
                   <button
-                    onClick={handleCapture}
-                    disabled={capturing}
-                    className="inline-flex min-h-14 items-center justify-center gap-2 border border-[#dfa080] px-8 text-sm font-bold text-[#dfa080] transition-colors hover:bg-[#dfa080]/10 disabled:cursor-not-allowed disabled:opacity-70"
+                    onClick={handleCopyLink}
+                    className="inline-flex min-h-14 items-center justify-center gap-2 border border-[#dfa080] px-8 text-sm font-bold text-[#dfa080] transition-colors hover:bg-[#dfa080]/10"
                   >
-                    {capturing ? (
-                      <>
-                        <span className="h-3 w-3 animate-spin rounded-full border-2 border-[#dfa080]/40 border-t-[#dfa080]" />
-                        이미지 만드는 중…
-                      </>
-                    ) : (
-                      '1. 결과 이미지 저장'
-                    )}
+                    {copied ? '링크가 복사됐어요 ✓' : '1. 결과 링크 복사'}
                   </button>
                   <a
                     href={INSTAGRAM_URL}
@@ -896,22 +824,16 @@ export default function DiagnosisQuiz() {
                 )}
               </div>
 
-              <div data-capture-hide className="mt-4 grid gap-3 sm:grid-cols-2">
-                <button
-                  onClick={handleCopyLink}
-                  className="border border-white/14 px-7 py-4 text-sm font-medium text-[#f7f0df] transition-colors hover:border-[#dfa080] hover:text-[#dfa080]"
-                >
-                  {copied ? '링크가 복사됐어요 ✓' : '결과 링크 복사'}
-                </button>
+              <div className="mt-4">
                 <button
                   onClick={handleReset}
-                  className="border border-white/14 px-7 py-4 text-sm font-medium text-[#f7f0df] transition-colors hover:border-[#dfa080] hover:text-[#dfa080]"
+                  className="w-full border border-white/14 px-7 py-4 text-sm font-medium text-[#f7f0df] transition-colors hover:border-[#dfa080] hover:text-[#dfa080]"
                 >
                   처음부터 다시 하기
                 </button>
               </div>
 
-              <p data-capture-hide className="mt-10 text-center text-xs leading-6 text-[#8f887b]">
+              <p className="mt-10 text-center text-xs leading-6 text-[#8f887b]">
                 이 검사는 의학적·심리학적 진단이 아니라, 글릿이 제안하는 문장 취향 큐레이션입니다.
               </p>
             </div>

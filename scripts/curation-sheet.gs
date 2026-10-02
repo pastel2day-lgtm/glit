@@ -22,6 +22,8 @@ function doPost(e) {
 
   // 사람 눈에 보이지 않는 칸이 채워져 있으면 스팸 봇으로 보고 저장하지 않습니다.
   if (p['bot-field']) return ContentService.createTextOutput('ok')
+  // 이름이나 휴대폰이 없는 요청(편집기에서 직접 실행한 경우 등)은 빈 줄이 되지 않게 건너뜁니다.
+  if (!p.name || !p.phone) return ContentService.createTextOutput('ok')
 
   const lock = LockService.getScriptLock()
   lock.waitLock(10000)

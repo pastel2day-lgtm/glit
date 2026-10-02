@@ -1,14 +1,8 @@
-import Navbar from '@/components/Navbar'
-import HeroSection from '@/components/sections/HeroSection'
-import ConceptSection from '@/components/sections/ConceptSection'
-import EditorialSection from '@/components/sections/EditorialSection'
-import InterviewTeaserSection from '@/components/sections/InterviewTeaserSection'
-import AboutSection from '@/components/sections/AboutSection'
-import JoinSection from '@/components/sections/JoinSection'
+import AutumnHome from '@/components/autumn/AutumnHome'
 
 export default function Home() {
   return (
-    <main>
+    <>
       {/* Hidden form for Netlify Forms bot detection */}
       <form name="glit-subscribe" data-netlify="true" className="hidden">
         <input type="email" name="email" />
@@ -26,13 +20,7 @@ export default function Home() {
         <input type="email" name="email" />
         <input type="checkbox" name="privacy" />
       </form>
-      <Navbar />
-      <HeroSection />
-      <ConceptSection />
-      <EditorialSection />
-      <InterviewTeaserSection />
-      <AboutSection />
-      <JoinSection />
-    </main>
+      <AutumnHome />
+    </>
   )
 }

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" width="900" height="1200">
+<defs><filter id="bg" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="2" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0.2  0 0 0 0 0.12  0 0 0 0 0.05  0 0 0 -0.9 0.5" result="s"/><feComposite in="s" in2="SourceGraphic" operator="in" result="si"/><feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="si"/></feMerge></filter>
+<filter id="felt" x="-10%" y="-10%" width="120%" height="130%"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="5" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="3" xChannelSelector="R" yChannelSelector="G" result="fz"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0.15  0 0 0 0 0.1  0 0 0 0 0.05  0 0 0 -0.9 0.5" result="s"/><feComposite in="s" in2="fz" operator="in" result="si"/><feMerge result="m"><feMergeNode in="fz"/><feMergeNode in="si"/></feMerge><feDropShadow in="m" dx="0" dy="5" stdDeviation="5" flood-color="#3A2E25" flood-opacity="0.28"/></filter>
+<g id="oval"><path fill="currentColor" d="M0,-60 C38,-38 38,32 0,62 C-38,32 -38,-38 0,-60Z"/><path d="M0,60 Q3,74 9,86" stroke="currentColor" stroke-width="7" stroke-linecap="round" fill="none"/><path d="M0,-44 C26,-28 26,24 0,46 C-26,24 -26,-28 0,-44Z M0,-34 L0,36" fill="none" stroke="#FFF3DF" stroke-width="2.6" stroke-dasharray="7 5" stroke-linecap="round" opacity=".85"/></g>
+<g id="ginkgo"><path fill="currentColor" d="M0,40 Q-36,4 -72,-30 Q-58,-66 -8,-64 L0,-50 L8,-64 Q58,-66 72,-30 Q36,4 0,40Z"/><path d="M0,38 L5,84" stroke="currentColor" stroke-width="7" stroke-linecap="round"/><path d="M0,24 Q-28,-2 -55,-28 Q-46,-50 -9,-50 L0,-38 L9,-50 Q46,-50 55,-28 Q28,-2 0,24Z M0,20 L0,-34 M0,20 L-30,-40 M0,20 L30,-40" fill="none" stroke="#FFF3DF" stroke-width="2.6" stroke-dasharray="7 5" stroke-linecap="round" opacity=".85"/></g>
+<pattern id="check" width="40" height="40" patternUnits="userSpaceOnUse"><rect width="40" height="40" fill="#F1E2C4"/><rect width="20" height="20" fill="#C65F35"/><rect x="20" y="20" width="20" height="20" fill="#C65F35"/></pattern></defs>
+<rect width="900" height="1200" fill="#8E9A48" filter="url(#bg)"/>
+<g filter="url(#felt)">
+  <use href="#ginkgo" color="#F2C649" transform="translate(470 330) rotate(8) scale(1.3)"/>
+  <polygon points="110,430 450,480 450,960 110,910" fill="#F4E9D3"/>
+  <polygon points="450,480 790,430 790,910 450,960" fill="#FBF3E4"/>
+  <path d="M610,860 Q600,760 620,690" stroke="#5E6B2C" stroke-width="10" fill="none" stroke-linecap="round"/>
+  <path d="M612,800 C560,790 545,760 560,740 C590,745 610,770 612,800Z" fill="#5E6B2C"/>
+  <path d="M616,770 C660,750 680,725 668,705 C640,712 620,740 616,770Z" fill="#5E6B2C"/>
+  <circle cx="622" cy="640" r="62" fill="#B23B3B"/>
+  <use href="#oval" color="#C2582E" transform="translate(180 220) rotate(-35) scale(1.2)"/>
+  <use href="#oval" color="#9E4430" transform="translate(760 1080) rotate(50) scale(1.3)"/>
+  <use href="#ginkgo" color="#E9B52F" transform="translate(170 1070) rotate(-25) scale(1)"/>
+</g>
+<polygon points="132,454 430,498 430,934 132,890" fill="none" stroke="#C9B48E" stroke-width="3" stroke-dasharray="9 6" stroke-linecap="round"/>
+<polygon points="470,498 768,454 768,890 470,934" fill="none" stroke="#C9B48E" stroke-width="3" stroke-dasharray="9 6" stroke-linecap="round"/>
+<line x1="450" y1="480" x2="450" y2="960" stroke="#C9B48E" stroke-width="4"/>
+<path d="M622,640 m-6,0 a8,8 0 1 1 14,4 a18,18 0 1 1 -30,-12 a30,30 0 1 1 46,22 a44,44 0 1 1 -60,-38" fill="none" stroke="#FFF3DF" stroke-width="3" stroke-dasharray="9 6" stroke-linecap="round"/>
+<g stroke="#4A3627" stroke-width="5" stroke-linecap="round" fill="none"><path d="M170 560 L380 592"/><path d="M170 610 L350 637"/><path d="M170 660 L390 693"/><path d="M170 710 L320 732"/><path d="M170 760 L370 790"/></g>
+<g stroke="#4A3627" stroke-width="8" fill="none"><circle cx="220" cy="850" r="42"/><circle cx="330" cy="866" r="42"/><path d="M262 852 q12 -10 26 4"/></g>
+</svg>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 900 1200" width="900" height="1200">
+<defs><filter id="bg" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="2" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0.2  0 0 0 0 0.12  0 0 0 0 0.05  0 0 0 -0.9 0.5" result="s"/><feComposite in="s" in2="SourceGraphic" operator="in" result="si"/><feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="si"/></feMerge></filter>
+<filter id="felt" x="-10%" y="-10%" width="120%" height="130%"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="5" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="3" xChannelSelector="R" yChannelSelector="G" result="fz"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0.15  0 0 0 0 0.1  0 0 0 0 0.05  0 0 0 -0.9 0.5" result="s"/><feComposite in="s" in2="fz" operator="in" result="si"/><feMerge result="m"><feMergeNode in="fz"/><feMergeNode in="si"/></feMerge><feDropShadow in="m" dx="0" dy="5" stdDeviation="5" flood-color="#3A2E25" flood-opacity="0.28"/></filter>
+<g id="oval"><path fill="currentColor" d="M0,-60 C38,-38 38,32 0,62 C-38,32 -38,-38 0,-60Z"/><path d="M0,60 Q3,74 9,86" stroke="currentColor" stroke-width="7" stroke-linecap="round" fill="none"/><path d="M0,-44 C26,-28 26,24 0,46 C-26,24 -26,-28 0,-44Z M0,-34 L0,36" fill="none" stroke="#FFF3DF" stroke-width="2.6" stroke-dasharray="7 5" stroke-linecap="round" opacity=".85"/></g>
+<g id="ginkgo"><path fill="currentColor" d="M0,40 Q-36,4 -72,-30 Q-58,-66 -8,-64 L0,-50 L8,-64 Q58,-66 72,-30 Q36,4 0,40Z"/><path d="M0,38 L5,84" stroke="currentColor" stroke-width="7" stroke-linecap="round"/><path d="M0,24 Q-28,-2 -55,-28 Q-46,-50 -9,-50 L0,-38 L9,-50 Q46,-50 55,-28 Q28,-2 0,24Z M0,20 L0,-34 M0,20 L-30,-40 M0,20 L30,-40" fill="none" stroke="#FFF3DF" stroke-width="2.6" stroke-dasharray="7 5" stroke-linecap="round" opacity=".85"/></g>
+<pattern id="check" width="40" height="40" patternUnits="userSpaceOnUse"><rect width="40" height="40" fill="#F1E2C4"/><rect width="20" height="20" fill="#C65F35"/><rect x="20" y="20" width="20" height="20" fill="#C65F35"/></pattern></defs>
+<rect width="900" height="1200" fill="#DDA03A" filter="url(#bg)"/>
+<g filter="url(#felt)">
+  <use href="#oval" color="#C2582E" transform="translate(190 250) rotate(-30) scale(1.6)"/>
+  <use href="#oval" color="#9E4430" transform="translate(720 300) rotate(40) scale(1.3)"/>
+  <use href="#oval" color="#7E8B3E" transform="translate(480 170) rotate(12) scale(1.1)"/>
+  <use href="#ginkgo" color="#F2C649" transform="translate(300 470) rotate(-18) scale(1.2)"/>
+  <use href="#oval" color="#C2582E" transform="translate(790 560) rotate(70) scale(.9)"/>
+  <polygon points="140,640 450,690 450,1030 140,980" fill="#F4E9D3"/>
+  <polygon points="450,690 760,640 760,980 450,1030" fill="#FBF3E4"/>
+  <use href="#ginkgo" color="#E9B52F" transform="translate(610 790) rotate(22) scale(1.25)"/>
+  <use href="#ginkgo" color="#F2C649" transform="translate(130 1090) rotate(-40) scale(.9)"/>
+  <use href="#oval" color="#7E8B3E" transform="translate(770 1100) rotate(-60) scale(1)"/>
+</g>
+<polygon points="162,664 430,706 430,1004 162,962" fill="none" stroke="#C9B48E" stroke-width="3" stroke-dasharray="9 6" stroke-linecap="round"/>
+<polygon points="470,706 738,664 738,962 470,1004" fill="none" stroke="#C9B48E" stroke-width="3" stroke-dasharray="9 6" stroke-linecap="round"/>
+<line x1="450" y1="690" x2="450" y2="1030" stroke="#C9B48E" stroke-width="4"/>
+<g stroke="#4A3627" stroke-width="5" stroke-linecap="round" fill="none"><path d="M200 740 L380 768"/><path d="M200 790 L360 815"/><path d="M200 840 L390 868"/><path d="M200 890 L330 910"/></g>
+</svg>

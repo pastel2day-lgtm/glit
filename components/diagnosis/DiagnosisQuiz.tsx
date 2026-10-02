@@ -8,7 +8,7 @@ import GrainScoreChart from '@/components/diagnosis/GrainScoreChart'
 import { sentences as archiveSentences } from '@/lib/sentences'
 
 type GrainType = 'ONE' | 'TWO' | 'THREE' | 'FOUR' | 'FIVE' | 'SIX' | 'SEVEN' | 'EIGHT' | 'NINE'
-type Stage = 'intro' | 'quiz' | 'loading' | 'result'
+type Stage = 'intro' | 'quiz' | 'tiebreak' | 'loading' | 'result'
 
 type Question = {
   title: string
@@ -591,33 +591,6 @@ const BOOK_COVERS: Record<string, string> = {
 
 const INTRO_STEPS = ['36개 질문 선택', '결의 방향 분석', '책 3권 큐레이션']
 
-function calcScores(answers: GrainType[]): Record<GrainType, number> {
-  const count: Record<GrainType, number> = {
-    ONE: 0,
-    TWO: 0,
-    THREE: 0,
-    FOUR: 0,
-    FIVE: 0,
-    SIX: 0,
-    SEVEN: 0,
-    EIGHT: 0,
-    NINE: 0,
-  }
-
-  answers.forEach((answer, index) => {
-    count[answer] += 1 + index * 0.01
-  })
-
-  return count
-}
-
-function calcResult(answers: GrainType[]): GrainType {
-  const scores = calcScores(answers)
-  return (Object.keys(scores) as GrainType[]).reduce((current, candidate) =>
-    scores[current] >= scores[candidate] ? current : candidate
-  )
-}
-
 const GRAIN_TYPES = Object.keys(RESULTS) as GrainType[]
 
 // 유형마다 몇 문항에 보기로 나오는지 — 점수 그래프의 만점입니다.
@@ -635,6 +608,40 @@ function countAnswers(answers: GrainType[]): Record<GrainType, number> {
   return count
 }
 
+// 가장 많이 고른 결 (같은 점수면 여럿)
+function topTypes(count: Record<GrainType, number>): GrainType[] {
+  const max = Math.max(...GRAIN_TYPES.map((type) => count[type]))
+  return GRAIN_TYPES.filter((type) => count[type] === max)
+}
+
+// 1등이 같은 점수로 여럿이면, 그 결들끼리만 고르는 추가 질문을 보여줍니다.
+// 보기는 결마다 가장 깊은 바람을 한 문장으로 담았습니다.
+const TIE_TITLE = '지금 당신에게\n더 가까운 마음은?'
+const TIE_STATEMENTS: Record<GrainType, string> = {
+  ONE: '흐트러진 것을 바르게 되돌려 놓고 싶은 마음',
+  TWO: '누군가에게 꼭 필요한 사람이 되고 싶은 마음',
+  THREE: '해낸 만큼 인정받고 싶은 마음',
+  FOUR: '누구와도 다른 나만의 이야기를 찾고 싶은 마음',
+  FIVE: '충분히 이해할 때까지 혼자 생각하고 싶은 마음',
+  SIX: '믿고 기댈 수 있는 자리를 지키고 싶은 마음',
+  SEVEN: '아직 가보지 않은 세계로 떠나고 싶은 마음',
+  EIGHT: '누구에게도 휘둘리지 않고 내 힘으로 서고 싶은 마음',
+  NINE: '소란 없이 고요하게 머물고 싶은 마음',
+}
+
+// 추가 질문 하나에 보기는 4개까지. 더 많으면 3개씩 나눠 고른 뒤, 고른 결들끼리 다시 고릅니다.
+function splitTieRound(pool: GrainType[]): GrainType[][] {
+  if (pool.length <= 4) return [pool]
+  const groups: GrainType[][] = []
+  for (let i = 0; i < pool.length; i += 3) groups.push(pool.slice(i, i + 3))
+  // 마지막 묶음이 하나뿐이면 앞 묶음에 붙여서, 보기가 하나인 질문이 생기지 않게 합니다.
+  if (groups[groups.length - 1].length === 1) {
+    const last = groups.pop()!
+    groups[groups.length - 1].push(...last)
+  }
+  return groups
+}
+
 export default function DiagnosisQuiz() {
   const [stage, setStage] = useState<Stage>('intro')
   const [step, setStep] = useState(0)
@@ -643,6 +650,10 @@ export default function DiagnosisQuiz() {
   const [resultType, setResultType] = useState<GrainType>('FOUR')
   // 공유 링크(?type=)로 바로 들어온 결과에는 답변이 없어서 점수도 없습니다.
   const [counts, setCounts] = useState<Record<GrainType, number> | null>(null)
+  // 동점 추가 질문: 같은 점수였던 결들, 이번 차례에 고를 묶음들, 지금까지 묶음마다 고른 결
+  const [tiedTypes, setTiedTypes] = useState<GrainType[]>([])
+  const [tieGroups, setTieGroups] = useState<GrainType[][]>([])
+  const [tieWinners, setTieWinners] = useState<GrainType[]>([])
 
   const result = RESULTS[resultType]
   const total = QUESTIONS.length
@@ -681,11 +692,42 @@ export default function DiagnosisQuiz() {
       if (step < total - 1) {
         setStep((current) => current + 1)
         setSelected(null)
-      } else {
-        setResultType(calcResult(newAnswers))
-        setCounts(countAnswers(newAnswers))
+        return
+      }
+
+      const newCounts = countAnswers(newAnswers)
+      const tops = topTypes(newCounts)
+      setCounts(newCounts)
+      setTiedTypes(tops)
+      setSelected(null)
+      if (tops.length === 1) {
+        setResultType(tops[0])
         setStage('loading')
-        setSelected(null)
+      } else {
+        setTieGroups(splitTieRound(tops))
+        setTieWinners([])
+        setStage('tiebreak')
+      }
+    }, 260)
+  }
+
+  const handleTieSelect = (type: GrainType) => {
+    if (selected) return
+    setSelected(type)
+
+    window.setTimeout(() => {
+      const winners = [...tieWinners, type]
+      setSelected(null)
+      if (winners.length < tieGroups.length) {
+        // 이번 차례에 남은 묶음으로
+        setTieWinners(winners)
+      } else if (winners.length === 1) {
+        setResultType(type)
+        setStage('loading')
+      } else {
+        // 묶음마다 고른 결들끼리 다시 고릅니다.
+        setTieGroups(splitTieRound(winners))
+        setTieWinners([])
       }
     }, 260)
   }
@@ -697,6 +739,9 @@ export default function DiagnosisQuiz() {
     setSelected(null)
     setResultType('FOUR')
     setCounts(null)
+    setTiedTypes([])
+    setTieGroups([])
+    setTieWinners([])
   }
 
   const center = CENTERS.find((c) => c.types.includes(result.number))!
@@ -729,8 +774,10 @@ export default function DiagnosisQuiz() {
           <FeltDiamond className="h-5 w-5" />
           <span className="font-jua text-xl">글릿</span>
         </a>
-        {(stage === 'quiz' || stage === 'loading') && (
-          <span className="font-mono text-xs text-au-ink/55">{stage === 'quiz' ? `${step + 1} / ${total}` : 'reading your grain'}</span>
+        {(stage === 'quiz' || stage === 'tiebreak' || stage === 'loading') && (
+          <span className="font-mono text-xs text-au-ink/55">
+            {stage === 'quiz' ? `${step + 1} / ${total}` : stage === 'tiebreak' ? '추가 질문' : 'reading your grain'}
+          </span>
         )}
       </header>
 
@@ -756,8 +803,8 @@ export default function DiagnosisQuiz() {
               지금 당신에게 맞는 문장의 결을 찾아드릴게요. 서른여섯 개의 질문이 당신의 이야기를 듣고 싶어해요.
             </p>
             <p className="mx-auto mt-3 max-w-lg text-sm leading-7 text-au-ink/65">
-              81문항의 핵심을 36개 질문으로 압축해 지금 마음의 리듬과 문장 취향을 살펴봅니다. 정답을 고르기보다,
-              요즘 마음이 오래 머무는 문장에 가까이 가보세요.
+              지금 마음의 리듬과 문장 취향을 가볍게 살펴보는 검사예요. 정답을 고르기보다, 요즘 마음이 오래 머무는
+              문장에 가까이 가보세요.
             </p>
 
             <button
@@ -779,54 +826,27 @@ export default function DiagnosisQuiz() {
         )}
 
         {stage === 'quiz' && (
-          <section className="relative z-10 mx-auto w-full max-w-3xl">
-            <div className="mb-6">
-              <div className="mb-2 flex items-center justify-between text-xs font-semibold text-au-ink/60">
-                <span>질문 {step + 1}</span>
-                <span className="font-mono">{Math.round(progress)}%</span>
-              </div>
-              <div className="h-3.5 overflow-hidden rounded-full bg-au-cream/80 ring-1 ring-au-ink/10">
-                <div className="h-full rounded-full bg-au-rust transition-all duration-500" style={{ width: `${progress}%` }} />
-              </div>
-            </div>
+          <QuestionCard
+            progressLabel={`질문 ${step + 1}`}
+            progress={progress}
+            label="문장 결 질문"
+            title={QUESTIONS[step].title}
+            options={QUESTIONS[step].options}
+            selected={selected}
+            onSelect={handleSelect}
+          />
+        )}
 
-            <div className="felt stitch stitch-dark rounded-[32px] bg-au-cream p-6 shadow-[0_12px_0_rgba(58,46,37,0.12)] md:p-10">
-              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-au-rust">문장 결 질문</p>
-              <h2 className="mb-8 whitespace-pre-line font-jua text-3xl leading-snug md:text-[2.75rem]">{QUESTIONS[step].title}</h2>
-
-              <div className="grid gap-3">
-                {QUESTIONS[step].options.map((option, index) => {
-                  const isChosen = selected === option.type
-                  const isDimmed = !!selected && !isChosen
-
-                  return (
-                    <button
-                      key={option.text}
-                      onClick={() => handleSelect(option.type)}
-                      disabled={!!selected}
-                      className={[
-                        'grid min-h-[4.25rem] w-full grid-cols-[2rem_1fr] items-center gap-3 rounded-2xl border-2 px-4 py-4 text-left text-[0.95rem] leading-relaxed transition-all duration-200',
-                        isChosen
-                          ? 'border-au-rust bg-au-ginkgo/35 text-au-ink'
-                          : isDimmed
-                            ? 'border-transparent bg-white/40 text-au-ink/30'
-                            : 'cursor-pointer border-transparent bg-white/75 text-au-ink/85 [@media(hover:hover)]:hover:border-au-rust/40 [@media(hover:hover)]:hover:bg-white',
-                      ].join(' ')}
-                    >
-                      <span
-                        className={`grid h-8 w-8 place-items-center rounded-full font-jua text-sm ${
-                          isChosen ? 'bg-au-rust text-white' : 'bg-au-cream text-au-rust'
-                        }`}
-                      >
-                        {index + 1}
-                      </span>
-                      <span>{option.text}</span>
-                    </button>
-                  )
-                })}
-              </div>
-            </div>
-          </section>
+        {stage === 'tiebreak' && (
+          <QuestionCard
+            progressLabel="거의 다 왔어요"
+            progress={100}
+            label="추가 질문 · 같은 점수가 나온 결이 있어요"
+            title={TIE_TITLE}
+            options={tieGroups[tieWinners.length].map((type) => ({ text: TIE_STATEMENTS[type], type }))}
+            selected={selected}
+            onSelect={handleTieSelect}
+          />
         )}
 
         {stage === 'loading' && (
@@ -911,6 +931,14 @@ export default function DiagnosisQuiz() {
                       {QUESTIONS.length}문항에서 각 유형의 보기를 고른 횟수예요.
                       {COMMON_MAX && ` 유형마다 ${COMMON_MAX}문항씩 나와요.`} 가장 많이 고른 유형이 나의 결이 돼요.
                     </p>
+                    {tiedTypes.length > 1 && (
+                      <p className="mt-1 text-xs leading-5 text-au-ink/60">
+                        {tiedTypes.length === GRAIN_TYPES.length
+                          ? '아홉 결이 모두'
+                          : `${tiedTypes.map((type) => `${RESULTS[type].number}번`).join('·')} 결이`}{' '}
+                        같은 점수여서, 추가 질문에서 고른 결을 나의 결로 정했어요.
+                      </p>
+                    )}
                     <div className="mt-4">
                       <GrainScoreChart rows={scoreRows} highlight={result.number} />
                     </div>
@@ -1052,6 +1080,75 @@ export default function DiagnosisQuiz() {
         <SiteFooter />
       </div>
     </div>
+  )
+}
+
+function QuestionCard({
+  progressLabel,
+  progress,
+  label,
+  title,
+  options,
+  selected,
+  onSelect,
+}: {
+  progressLabel: string
+  progress: number
+  label: string
+  title: string
+  options: { text: string; type: GrainType }[]
+  selected: GrainType | null
+  onSelect: (type: GrainType) => void
+}) {
+  return (
+    <section className="relative z-10 mx-auto w-full max-w-3xl">
+      <div className="mb-6">
+        <div className="mb-2 flex items-center justify-between text-xs font-semibold text-au-ink/60">
+          <span>{progressLabel}</span>
+          <span className="font-mono">{Math.round(progress)}%</span>
+        </div>
+        <div className="h-3.5 overflow-hidden rounded-full bg-au-cream/80 ring-1 ring-au-ink/10">
+          <div className="h-full rounded-full bg-au-rust transition-all duration-500" style={{ width: `${progress}%` }} />
+        </div>
+      </div>
+
+      <div className="felt stitch stitch-dark rounded-[32px] bg-au-cream p-6 shadow-[0_12px_0_rgba(58,46,37,0.12)] md:p-10">
+        <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-au-rust">{label}</p>
+        <h2 className="mb-8 whitespace-pre-line font-jua text-3xl leading-snug md:text-[2.75rem]">{title}</h2>
+
+        <div className="grid gap-3">
+          {options.map((option, index) => {
+            const isChosen = selected === option.type
+            const isDimmed = !!selected && !isChosen
+
+            return (
+              <button
+                key={option.text}
+                onClick={() => onSelect(option.type)}
+                disabled={!!selected}
+                className={[
+                  'grid min-h-[4.25rem] w-full grid-cols-[2rem_1fr] items-center gap-3 rounded-2xl border-2 px-4 py-4 text-left text-[0.95rem] leading-relaxed transition-all duration-200',
+                  isChosen
+                    ? 'border-au-rust bg-au-ginkgo/35 text-au-ink'
+                    : isDimmed
+                      ? 'border-transparent bg-white/40 text-au-ink/30'
+                      : 'cursor-pointer border-transparent bg-white/75 text-au-ink/85 [@media(hover:hover)]:hover:border-au-rust/40 [@media(hover:hover)]:hover:bg-white',
+                ].join(' ')}
+              >
+                <span
+                  className={`grid h-8 w-8 place-items-center rounded-full font-jua text-sm ${
+                    isChosen ? 'bg-au-rust text-white' : 'bg-au-cream text-au-rust'
+                  }`}
+                >
+                  {index + 1}
+                </span>
+                <span>{option.text}</span>
+              </button>
+            )
+          })}
+        </div>
+      </div>
+    </section>
   )
 }
 

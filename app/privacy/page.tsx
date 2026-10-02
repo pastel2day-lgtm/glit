@@ -4,17 +4,17 @@ import SiteFooter from '@/components/SiteFooter'
 
 export const metadata: Metadata = {
   title: '개인정보처리방침',
-  description: '글릿의 구독, 인터뷰 신청, 문장 결 검사 신청 정보 처리 기준을 안내합니다.',
+  description: '글릿의 구독, 인터뷰 신청, 문장 결 검사 신청, 맞춤 큐레이션 신청 정보 처리 기준을 안내합니다.',
 }
 
 const sections = [
   {
     title: '수집하는 정보',
-    body: '글릿은 뉴스레터 구독 시 이메일 주소를, 인터뷰 및 문장 결 검사 신청 시 이름, 연락처, 이메일 등 신청 안내에 필요한 최소 정보를 수집합니다.',
+    body: '글릿은 뉴스레터 구독 시 이메일 주소를, 인터뷰 및 문장 결 검사 신청 시 이름, 연락처, 이메일 등 신청 안내에 필요한 최소 정보를, 맞춤 큐레이션 신청 시 이름, 나이, 휴대폰 번호와 문장 결 검사 결과(유형·점수)를 수집합니다.',
   },
   {
     title: '이용 목적',
-    body: '수집한 정보는 뉴스레터 발송, 인터뷰 신청 확인, 문장 결 검사 일정 안내, 문의 응대 목적으로만 사용합니다.',
+    body: '수집한 정보는 뉴스레터 발송, 인터뷰 신청 확인, 문장 결 검사 일정 안내, 맞춤 책 큐레이션 전달, 문의 응대 목적으로만 사용합니다.',
   },
   {
     title: '보관 기간',
@@ -22,7 +22,7 @@ const sections = [
   },
   {
     title: '제3자 제공',
-    body: '글릿은 이용자의 동의 없이 개인정보를 외부에 제공하지 않습니다. 서비스 운영에 필요한 도구를 사용하는 경우에도 목적 범위 안에서만 처리합니다.',
+    body: '글릿은 이용자의 동의 없이 개인정보를 외부에 제공하지 않습니다. 신청 정보는 사이트 운영 도구인 Netlify(폼 접수)와 Google 스프레드시트(신청 내역 관리)에 보관되며, 이 경우에도 목적 범위 안에서만 처리합니다.',
   },
   {
     title: '문의',
@@ -50,7 +50,7 @@ export default function PrivacyPage() {
         <h1 className="text-4xl font-black tracking-[-0.035em] md:text-6xl">개인정보처리방침</h1>
         <p className="mt-6 max-w-2xl text-sm leading-7 text-sub md:text-base">
           글릿은 필요한 정보만 수집하고, 신청과 구독 안내 목적 안에서 조심스럽게 다룹니다.
-          본 방침은 2026년 6월 17일부터 적용됩니다.
+          본 방침은 2026년 10월 3일부터 적용됩니다.
         </p>
 
         <div className="mt-12 divide-y divide-ink/10 border-y border-ink/10">

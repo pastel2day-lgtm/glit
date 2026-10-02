@@ -3,6 +3,8 @@
 import { useEffect, useState } from 'react'
 import SiteFooter from '@/components/SiteFooter'
 import { Cloud, FeltDiamond, FeltFilter, HillScene, Leaf } from '@/components/autumn/Felt'
+import CurationApplyForm from '@/components/diagnosis/CurationApplyForm'
+import GrainScoreChart from '@/components/diagnosis/GrainScoreChart'
 import { sentences as archiveSentences } from '@/lib/sentences'
 
 type GrainType = 'ONE' | 'TWO' | 'THREE' | 'FOUR' | 'FIVE' | 'SIX' | 'SEVEN' | 'EIGHT' | 'NINE'
@@ -616,14 +618,31 @@ function calcResult(answers: GrainType[]): GrainType {
   )
 }
 
+const GRAIN_TYPES = Object.keys(RESULTS) as GrainType[]
+
+// 유형마다 몇 문항에 보기로 나오는지 — 점수 그래프의 만점입니다.
+const MAX_PER_TYPE = Object.fromEntries(
+  GRAIN_TYPES.map((type) => [type, QUESTIONS.filter((q) => q.options.some((o) => o.type === type)).length])
+) as Record<GrainType, number>
+const COMMON_MAX = new Set(Object.values(MAX_PER_TYPE)).size === 1 ? MAX_PER_TYPE.ONE : null
+
+// 그래프와 신청서에 쓰는 정수 점수(각 유형의 보기를 고른 횟수)
+function countAnswers(answers: GrainType[]): Record<GrainType, number> {
+  const count = Object.fromEntries(GRAIN_TYPES.map((type) => [type, 0])) as Record<GrainType, number>
+  answers.forEach((answer) => {
+    count[answer] += 1
+  })
+  return count
+}
+
 export default function DiagnosisQuiz() {
   const [stage, setStage] = useState<Stage>('intro')
   const [step, setStep] = useState(0)
   const [answers, setAnswers] = useState<GrainType[]>([])
   const [selected, setSelected] = useState<GrainType | null>(null)
   const [resultType, setResultType] = useState<GrainType>('FOUR')
-  const [shareNote, setShareNote] = useState<string | null>(null)
-  const [copied, setCopied] = useState(false)
+  // 공유 링크(?type=)로 바로 들어온 결과에는 답변이 없어서 점수도 없습니다.
+  const [counts, setCounts] = useState<Record<GrainType, number> | null>(null)
 
   const result = RESULTS[resultType]
   const total = QUESTIONS.length
@@ -664,6 +683,7 @@ export default function DiagnosisQuiz() {
         setSelected(null)
       } else {
         setResultType(calcResult(newAnswers))
+        setCounts(countAnswers(newAnswers))
         setStage('loading')
         setSelected(null)
       }
@@ -676,25 +696,21 @@ export default function DiagnosisQuiz() {
     setAnswers([])
     setSelected(null)
     setResultType('FOUR')
-    setShareNote(null)
-  }
-
-  const INSTAGRAM_URL = 'https://instagram.com/gleamit_glit'
-
-  const handleCopyLink = async () => {
-    const url = `${window.location.origin}/diagnosis/?type=${resultType.toLowerCase()}`
-    try {
-      await navigator.clipboard.writeText(url)
-      setCopied(true)
-      setShareNote('결과 링크를 복사했어요. 아래 DM 버튼을 눌러 링크를 붙여넣어 보내주세요.')
-      window.setTimeout(() => setCopied(false), 2000)
-    } catch {
-      setShareNote('링크 복사에 실패했어요. 주소창의 URL을 직접 복사해 주세요.')
-    }
+    setCounts(null)
   }
 
   const center = CENTERS.find((c) => c.types.includes(result.number))!
   const [wingA, wingB] = wingsOf(result.number)
+  const scoreRows = counts
+    ? GRAIN_TYPES.map((type) => ({
+        number: RESULTS[type].number,
+        name: RESULTS[type].oldName,
+        count: counts[type],
+        max: MAX_PER_TYPE[type],
+      }))
+    : null
+  const grainLabel = `${result.number}번 ${result.name} (${result.oldName})`
+  const scoreSummary = scoreRows ? scoreRows.map((row) => `${row.number}번 ${row.count}점`).join(' / ') : ''
 
   return (
     <div className="felt flex min-h-screen flex-col break-keep bg-au-sky text-au-ink">
@@ -878,6 +894,19 @@ export default function DiagnosisQuiz() {
                   <strong className="font-bold">{result.number}번 {result.oldName}</strong>는 {result.enneagram.summary}
                 </p>
 
+                {scoreRows && (
+                  <div className="mt-8">
+                    <p className="text-sm font-bold">아홉 유형 점수</p>
+                    <p className="mt-1 text-xs leading-5 text-au-ink/60">
+                      {QUESTIONS.length}문항에서 각 유형의 보기를 고른 횟수예요.
+                      {COMMON_MAX && ` 유형마다 ${COMMON_MAX}문항씩 나와요.`} 가장 많이 고른 유형이 나의 결이 돼요.
+                    </p>
+                    <div className="mt-4">
+                      <GrainScoreChart rows={scoreRows} highlight={result.number} />
+                    </div>
+                  </div>
+                )}
+
                 <div className="mt-8 grid gap-8 md:grid-cols-[15rem_1fr] md:items-start">
                   <figure className="felt mx-auto w-full max-w-[17rem] rounded-[28px] bg-white/60 p-4 ring-1 ring-au-ink/5">
                     <EnneagramFigure result={result} />
@@ -982,28 +1011,11 @@ export default function DiagnosisQuiz() {
                     받고 싶다면
                   </h3>
                   <p className="mt-5 text-sm leading-8 text-au-ink/80">
-                    <span className="font-bold text-au-rust">1</span> 결과 링크를 복사하고,
-                    <span className="ml-1 font-bold text-au-rust">2</span> 글릿 인스타그램 DM에 붙여넣어 보내주세요.
+                    이름과 연락처를 남겨주시면,
                     <br />
-                    당신의 결에 맞는 책 목록을 48시간 안에 전달드릴게요.
+                    당신의 결에 맞는 책 목록을 48시간 안에 보내드릴게요.
                   </p>
-                  <div className="relative z-10 mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:justify-center">
-                    <button
-                      onClick={handleCopyLink}
-                      className="inline-flex min-h-14 items-center justify-center rounded-full border-2 border-au-ink/80 bg-au-cream px-8 text-sm font-bold transition-colors hover:bg-white"
-                    >
-                      {copied ? '링크가 복사됐어요 ✓' : '1. 결과 링크 복사'}
-                    </button>
-                    <a
-                      href={INSTAGRAM_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex min-h-14 items-center justify-center rounded-full bg-au-rust px-8 text-sm font-bold text-white shadow-[0_5px_0_#7E3A1F] transition-transform hover:-translate-y-0.5"
-                    >
-                      2. 인스타그램 DM 보내기
-                    </a>
-                  </div>
-                  {shareNote && <p className="mt-5 text-xs leading-6 text-au-ink">{shareNote}</p>}
+                  <CurationApplyForm key={resultType} grain={grainLabel} scores={scoreSummary} />
                 </div>
 
                 <button

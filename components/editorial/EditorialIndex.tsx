@@ -34,7 +34,7 @@ export default function EditorialIndex() {
               모든 이야기
             </h1>
             <p className="mt-6 max-w-xl text-base leading-8 text-sub">
-              매주 화요일, 글릿이 발행한 에디토리얼을 모았어요. 작은 문장이 하루를 바꾸는 순간을 기록합니다.
+              매월 글릿이 발행한 에디토리얼을 모았어요. 작은 문장이 하루를 바꾸는 순간을 기록합니다.
             </p>
           </div>
           <p className="hidden shrink-0 pb-2 font-mono text-xs uppercase tracking-[0.2em] text-sub/45 md:block">

@@ -18,7 +18,7 @@ export default function SiteFooter({ tone = 'light' }: SiteFooterProps) {
             <span>글릿 · Gleam it, Glit!</span>
           </div>
           <p className={`text-xs leading-6 ${muted}`}>
-            매주 화요일 발행되는 에디토리얼 매거진. 글을 쓰고 읽고 살아가는 사람들을 위한 공간.
+            매월 발행되는 에디토리얼 매거진. 글을 쓰고 읽고 살아가는 사람들을 위한 공간.
           </p>
         </div>
 

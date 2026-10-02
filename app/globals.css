@@ -1,4 +1,5 @@
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -28,4 +29,48 @@ body {
 
 img {
   display: block;
+}
+
+/* ── 가을 펠트 테마 ── */
+.felt {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.22 0 0 0 0 0.14 0 0 0 0 0.06 0 0 0 -0.9 0.5'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.stitch {
+  position: relative;
+}
+
+.stitch::after {
+  content: '';
+  position: absolute;
+  inset: 9px;
+  border: 2px dashed rgba(255, 246, 228, 0.8);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.stitch-dark::after {
+  border-color: rgba(107, 74, 50, 0.35);
+}
+
+.puffy {
+  color: #fffaf1;
+  text-shadow:
+    0 1px 0 #f3eadb,
+    0 2px 0 #e9dcc6,
+    0 3px 0 #ddcdb3,
+    0 8px 14px rgba(58, 46, 37, 0.28);
+}
+
+@keyframes leaf-sway {
+  0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
+  50% { transform: translateY(10px) rotate(calc(var(--r, 0deg) + 8deg)); }
+}
+
+.leaf-sway {
+  animation: leaf-sway 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .leaf-sway { animation: none; }
 }

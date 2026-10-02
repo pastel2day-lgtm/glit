@@ -23,6 +23,118 @@ export interface Section {
 // 최신 글이 앞에 오도록 정렬해 둡니다. (/editorial 목록과 홈 This Issue가 이 순서를 따릅니다.)
 const articles: Article[] = [
   {
+    slug: 'picking-up-leaves',
+    category: '문장 수집',
+    issue: 'Vol.03',
+    title: '낙엽을 줍는 마음',
+    subtitle: '떨어진 것들 사이에서 오래 남을 한 줄을 고르는 일',
+    author: '글릿',
+    authorRole: '에디터',
+    readTime: '3분',
+    date: '2026년 10월 1일',
+    image: '/images/editorial/vol03-leaves.svg',
+    style: 'essay',
+    body: [
+      { type: 'paragraph', text: '어릴 때 가을이면 책 사이에 낙엽을 끼워 두곤 했어요.' },
+      {
+        type: 'paragraph',
+        text: '길에 떨어진 수많은 잎 중에서 유난히 색이 고운 한 장을 골라, 가장 두꺼운 책 사이에 눌러 두던 일. 몇 달 뒤 우연히 그 책을 펼치면 납작하게 마른 잎이 그날의 바람까지 데리고 나왔죠.',
+      },
+      {
+        type: 'paragraph',
+        text: '문장을 모으는 일도 그것과 닮았어요. 하루에도 수많은 말이 떨어지고, 대부분은 그대로 바스러져 흩어집니다. 그중 한 장만, 오래 두고 싶은 한 줄만 주워 두는 거예요.',
+      },
+      {
+        type: 'pullquote',
+        text: '모든 잎을 줍지 않아도 괜찮아요. 내 마음이 먼저 허리를 숙인 한 장이면 충분해요.',
+      },
+      {
+        type: 'paragraph',
+        text: '주운 문장은 바로 쓰이지 않아도 됩니다. 책갈피 속 낙엽처럼 잊고 지내다가, 꼭 필요한 날 다시 펼쳐지면 그걸로 제 몫을 다한 거니까요.',
+      },
+      {
+        type: 'italic',
+        text: '이번 가을, 당신이 주워 둔 한 줄은 무엇인가요?',
+      },
+      {
+        type: 'paragraph',
+        text: '산책길에서 들은 말, 메모장 구석의 한 줄, 다시 읽은 책의 밑줄. 어떤 문장이든 글릿에 들려주세요.',
+      },
+    ],
+  },
+  {
+    slug: 'shorter-evenings',
+    category: '혼자 있는 시간',
+    issue: 'Vol.03',
+    title: '해가 짧아지는 저녁',
+    subtitle: '일찍 찾아온 어둠이 건네는 조용한 시간',
+    author: '글릿',
+    authorRole: '에디터',
+    readTime: '2분',
+    date: '2026년 10월 1일',
+    image: '/images/editorial/vol03-evening.svg',
+    style: 'lyric',
+    body: [
+      { type: 'paragraph', text: '퇴근길에 고개를 들었는데 하늘이 벌써 어두웠어요.' },
+      { type: 'paragraph', text: '분명 얼마 전까지만 해도 이 시간엔 환했는데.' },
+      { type: 'paragraph', text: '계절은 늘 이렇게, 알아차리기 전에 먼저 와 있어요.' },
+      { type: 'divider', text: '' },
+      {
+        type: 'pullquote',
+        text: '해가 짧아진 만큼, 저녁은 조금 더 길어졌어요.',
+      },
+      {
+        type: 'paragraph',
+        text: '불을 켜고 따뜻한 차를 한 잔 우리는 시간. 창밖이 어두우니 시선이 자연스럽게 안쪽으로 향합니다. 방 안으로, 책 한 페이지로, 그리고 내 마음 쪽으로.',
+      },
+      {
+        type: 'italic',
+        text: '어둠이 일찍 오는 계절은, 어쩌면 나를 일찍 데리러 오는 계절인지도 몰라요.',
+      },
+      {
+        type: 'paragraph',
+        text: '길어진 가을 저녁, 당신은 무엇을 하며 보내나요? 글릿에 들려주세요.',
+      },
+    ],
+  },
+  {
+    slug: 'reopened-in-autumn',
+    category: '책 추천',
+    issue: 'Vol.03',
+    title: '가을에 다시 펼친 책',
+    subtitle: '오래전에 읽은 문장이 지금의 나에게 다르게 닿을 때',
+    author: '글릿',
+    authorRole: '에디터',
+    readTime: '3분',
+    date: '2026년 10월 1일',
+    image: '/images/editorial/vol03-reread.svg',
+    style: 'diary',
+    body: [
+      { type: 'paragraph', text: '책장 정리를 하다가 『어린 왕자』를 꺼냈어요.' },
+      {
+        type: 'paragraph',
+        text: '어릴 때는 그냥 이상한 별에 사는 사람들 이야기라고 생각했는데, 다시 읽으니 페이지마다 아는 얼굴이 있었어요. 숫자만 세는 어른, 바쁘다는 말만 하는 어른. 그리고 그중 몇몇은 꽤 나를 닮아 있었죠.',
+      },
+      { type: 'divider', text: '' },
+      {
+        type: 'pullquote',
+        text: '“너의 장미를 그토록 소중하게 만든 건, 네가 장미를 위해 보낸 시간이야.”',
+      },
+      {
+        type: 'paragraph',
+        text: '예전엔 사랑에 관한 문장이라고만 생각했어요. 이번엔 조금 다르게 읽혔어요. 오래 붙들고 있었던 일, 끝내 놓지 않은 사람, 매일 조금씩 쓴 문장. 시간을 쓴 것들이 결국 나의 장미가 된다는 이야기로요.',
+      },
+      {
+        type: 'paragraph',
+        text: '같은 책인데 다르게 읽히는 건, 책이 아니라 내가 달라졌기 때문이겠죠. 가을은 그 차이를 확인하기 좋은 계절이에요.',
+      },
+      {
+        type: 'paragraph',
+        text: '다시 펼쳐 보고 싶은 책이 있나요? 그 책에서 지금 다르게 읽히는 문장을 글릿에 들려주세요.',
+      },
+    ],
+  },
+  {
     slug: 'rainy-day-sentences',
     category: '문장 수집',
     issue: 'Vol.02',

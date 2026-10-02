@@ -37,7 +37,7 @@ export default function JoinSection() {
             기다리고 있어요
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-base leading-8 text-sub md:text-lg">
-            글릿은 쓰는 사람들의 공간입니다. 매주 발행되는 에디토리얼 소식을 받고,
+            글릿은 쓰는 사람들의 공간입니다. 매월 발행되는 에디토리얼 소식을 받고,
             직접 글을 보내 함께 만들어가요.
           </p>
         </FadeUp>
@@ -79,7 +79,7 @@ export default function JoinSection() {
           </div>
 
           <p className="mt-4 text-xs leading-6 text-sub/45">
-            매주 화요일 발행됩니다. 구독 신청 시 이메일 수신과 개인정보처리방침에 동의한 것으로 간주됩니다.
+            매월 발행됩니다. 구독 신청 시 이메일 수신과 개인정보처리방침에 동의한 것으로 간주됩니다.
           </p>
 
           <div className="my-9 flex items-center gap-4">

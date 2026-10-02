@@ -33,7 +33,7 @@ export default function AboutSection() {
                 일의 태도를 함께 찾아가며, 작은 문장이 하루를 바꾸는 순간을 기록합니다.
               </p>
               <p className="text-base leading-8 text-sub">
-                매주 발행되는 에디토리얼에는 작가들의 인터뷰, 에세이, 감상이 담깁니다.
+                매월 발행되는 에디토리얼에는 작가들의 인터뷰, 에세이, 감상이 담깁니다.
                 완결된 글 너머에서 오늘을 위한 한 줄이 당신에게 닿기를 바랍니다.
               </p>
               <div className="flex flex-wrap gap-2 pt-2">
@@ -47,7 +47,7 @@ export default function AboutSection() {
 
             <div className="space-y-6">
               <Info label="창간" value="2026년 봄" />
-              <Info label="발행" value="매주 화요일" />
+              <Info label="발행" value="매월" />
               <Info label="채널" value="@gleamit_glit" href="https://instagram.com/gleamit_glit" />
               <Info label="인터뷰" value="Writers' Voice" href="/interview" withDiamond />
             </div>

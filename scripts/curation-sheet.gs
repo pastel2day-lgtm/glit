@@ -45,12 +45,12 @@ function doPost(e) {
 
 function getSheet_() {
   const book = SpreadsheetApp.getActiveSpreadsheet()
-  let sheet = book.getSheetByName(SHEET_NAME)
-  if (!sheet) {
-    sheet = book.insertSheet(SHEET_NAME)
-  }
+  // '신청' 탭이 있으면 거기에, 없으면 첫 번째 탭에 쌓습니다.
+  const sheet = book.getSheetByName(SHEET_NAME) || book.getSheets()[0]
   if (sheet.getLastRow() === 0) {
     sheet.appendRow(HEADERS)
+  }
+  if (sheet.getFrozenRows() === 0) {
     sheet.setFrozenRows(1)
   }
   return sheet

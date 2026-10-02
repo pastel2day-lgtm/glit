@@ -25,7 +25,7 @@ type Result = {
   color: string
   text: string
   books: { title: string; author: string; reason: string }[]
-  enneagram: {
+  profile: {
     summary: string
     desire: string
     fear: string
@@ -341,7 +341,7 @@ const RESULTS: Record<GrainType, Result> = {
       { title: '월든', author: '헨리 데이비드 소로', reason: '단순한 삶이 가진 분명한 기준을 보여주는 고전' },
       { title: '나는 나로 살기로 했다', author: '김수현', reason: '스스로에게 너무 엄격했던 마음을 다정하게 풀어주는 책' },
     ],
-    enneagram: {
+    profile: {
       summary: '옳고 그름에 대한 감각이 뚜렷하고, 세상을 조금 더 낫게 만들고 싶어 하는 유형이에요. 스스로에게 높은 기준을 두는 만큼, 마음속 비판의 목소리도 큰 편이에요.',
       desire: '옳고 선한 사람이 되는 것',
       fear: '잘못되었거나 부족한 사람이 되는 것',
@@ -364,7 +364,7 @@ const RESULTS: Record<GrainType, Result> = {
       { title: '아몬드', author: '손원평', reason: '감정을 배우는 과정을 통해 진짜 연결이 무엇인지 보여주는 소설' },
       { title: '82년생 김지영', author: '조남주', reason: '누군가를 돌보며 자신을 지워온 시간들에 대한 이야기' },
     ],
-    enneagram: {
+    profile: {
       summary: '다른 사람의 필요를 누구보다 먼저 알아차리고 기꺼이 돕는 유형이에요. 사랑받고 필요한 존재가 되고 싶은 마음이 큰 만큼, 정작 자신의 필요는 뒤로 미루기 쉬워요.',
       desire: '사랑받고, 필요한 존재가 되는 것',
       fear: '사랑받을 가치가 없는 사람이 되는 것',
@@ -387,7 +387,7 @@ const RESULTS: Record<GrainType, Result> = {
       { title: '일의 기쁨과 슬픔', author: '장류진', reason: '성과와 일상 사이에서 일하는 마음을 현실적으로 비추는 소설' },
       { title: '월든', author: '헨리 데이비드 소로', reason: '속도 바깥의 삶을 다시 바라보게 하는 고전' },
     ],
-    enneagram: {
+    profile: {
       summary: '목표를 세우고 이루는 데 탁월하고, 상황에 맞춰 자신을 빠르게 조율하는 유형이에요. 가치 있는 사람으로 인정받고 싶은 마음이 커서, 성과와 나 자신을 같은 것으로 여기기 쉬워요.',
       desire: '가치 있는 사람으로 인정받는 것',
       fear: '아무 가치도 없는 사람이 되는 것',
@@ -410,7 +410,7 @@ const RESULTS: Record<GrainType, Result> = {
       { title: '참을 수 없는 존재의 가벼움', author: '밀란 쿤데라', reason: '사랑과 고유함의 무게를 오래 생각하게 하는 소설' },
       { title: '우리가 빛의 속도로 갈 수 없다면', author: '김초엽', reason: '외로움과 그리움을 섬세한 상상력으로 건드리는 책' },
     ],
-    enneagram: {
+    profile: {
       summary: '자신만의 고유한 정체성과 감정의 진실함을 소중히 여기는 유형이에요. 무언가 빠져 있다는 느낌 속에서, 아름다움과 의미를 찾아가요.',
       desire: '나만의 고유한 의미와 정체성을 찾는 것',
       fear: '정체성도, 의미도 없는 사람이 되는 것',
@@ -433,7 +433,7 @@ const RESULTS: Record<GrainType, Result> = {
       { title: '침묵의 봄', author: '레이첼 카슨', reason: '관찰과 사유가 세계를 바꾸는 방식을 보여주는 책' },
       { title: '코스모스', author: '칼 세이건', reason: '생각의 방을 우주만큼 넓혀주는 고전' },
     ],
-    enneagram: {
+    profile: {
       summary: '세상을 관찰하고 이해할 때 안전하다고 느끼는 유형이에요. 시간과 에너지를 아껴 쓰며, 한 분야를 깊이 파고들어 자기만의 지식과 통찰을 쌓아가요.',
       desire: '유능하고, 세상을 이해하는 사람이 되는 것',
       fear: '무능하고 쓸모없는 사람이 되는 것',
@@ -456,7 +456,7 @@ const RESULTS: Record<GrainType, Result> = {
       { title: '불안', author: '알랭 드 보통', reason: '불안을 조금 더 선명하게 이해하게 해주는 책' },
       { title: '아몬드', author: '손원평', reason: '불완전한 마음들이 서로의 곁이 되어가는 소설' },
     ],
-    enneagram: {
+    profile: {
       summary: '신뢰와 안전을 중요하게 여기고, 믿을 수 있는 사람과 공동체에 깊이 헌신하는 유형이에요. 위험을 미리 내다보는 만큼, 걱정과 의심이 함께 따라오기도 해요.',
       desire: '안전하고, 믿을 수 있는 지지를 얻는 것',
       fear: '기댈 곳 없이 혼자 남겨지는 것',
@@ -479,7 +479,7 @@ const RESULTS: Record<GrainType, Result> = {
       { title: '어린 왕자', author: '앙투안 드 생텍쥐페리', reason: '낯선 별을 건너며 세계를 넓혀주는 이야기' },
       { title: '우리가 빛의 속도로 갈 수 없다면', author: '김초엽', reason: '상상력으로 더 먼 가능성을 열어주는 책' },
     ],
-    enneagram: {
+    profile: {
       summary: '새로운 경험과 가능성에서 에너지를 얻는 유형이에요. 고통과 지루함을 피하고 싶은 마음에, 다음 즐거움으로 빠르게 옮겨 가기도 해요.',
       desire: '만족스럽고 충만한 삶을 누리는 것',
       fear: '결핍과 고통 속에 갇히는 것',
@@ -502,7 +502,7 @@ const RESULTS: Record<GrainType, Result> = {
       { title: '채식주의자', author: '한강', reason: '부딪힘과 저항의 감각을 강렬하게 남기는 소설' },
       { title: '소년이 온다', author: '한강', reason: '지켜야 할 것 앞에서 물러서지 않는 마음을 생각하게 하는 책' },
     ],
-    enneagram: {
+    profile: {
       summary: '강한 의지와 추진력으로 상황을 이끌고, 약한 사람을 지키려는 유형이에요. 통제당하거나 상처받지 않으려 스스로를 단단하게 무장하기도 해요.',
       desire: '스스로를 지키고, 삶을 내 뜻대로 이끄는 것',
       fear: '다른 사람에게 통제당하거나 상처받는 것',
@@ -525,7 +525,7 @@ const RESULTS: Record<GrainType, Result> = {
       { title: '모순', author: '양귀자', reason: '삶의 엇갈림을 조용히 품어보게 하는 소설' },
       { title: '어린 왕자', author: '앙투안 드 생텍쥐페리', reason: '작고 조용한 것의 소중함을 다시 알려주는 책' },
     ],
-    enneagram: {
+    profile: {
       summary: '갈등을 피하고 주변과 조화롭게 지내는 것을 가장 중요하게 여기는 유형이에요. 모두를 편안하게 해주는 대신, 자신의 의견과 바람을 쉽게 잊어버리기도 해요.',
       desire: '마음의 평화와 안정을 지키는 것',
       fear: '갈등으로 관계가 끊어지고 흩어지는 것',
@@ -535,10 +535,10 @@ const RESULTS: Record<GrainType, Result> = {
   },
 }
 
-const ENNEAGRAM_INTRO =
-  '에니어그램은 사람을 아홉 가지 유형으로 나눠, 겉으로 드러나는 행동보다 그 아래의 동기, 곧 무엇을 가장 원하고 무엇을 가장 두려워하는지를 살펴보는 성격 유형 이론이에요. 글릿의 아홉 가지 문장 결은 이 아홉 유형에서 출발했어요.'
+const GRAIN_MAP_INTRO =
+  '글릿의 문장 결 검사는 사람의 마음을 아홉 가지 결로 나눠, 겉으로 드러나는 행동보다 그 아래의 마음, 곧 무엇을 가장 원하고 무엇을 가장 두려워하는지를 살펴봐요. 아홉 가지 결은 서로 이어져 있어서, 마음에 여유가 있을 때와 지칠 때 가까워지는 결이 따로 있어요.'
 
-// 에니어그램 도형의 안쪽 선이 곧 성장(통합)·스트레스(분열) 방향입니다.
+// 아홉 결 도형의 안쪽 선이 곧 성장할 때·지칠 때 가까워지는 방향입니다.
 const GROWTH: Record<number, number> = { 1: 7, 2: 4, 3: 6, 4: 1, 5: 8, 6: 9, 7: 5, 8: 2, 9: 3 }
 const STRESS: Record<number, number> = { 1: 4, 2: 8, 3: 9, 4: 2, 5: 7, 6: 3, 7: 1, 8: 5, 9: 6 }
 
@@ -848,7 +848,7 @@ export default function DiagnosisQuiz() {
                   <GrainBadge result={result} />
                   <div className="text-center md:text-left">
                     <p className="text-sm font-semibold text-au-rust">
-                      에니어그램 {result.number}번 · {result.oldName}
+                      {result.number}번 결 · {result.oldName}
                     </p>
                     <h2 className="mt-3 font-jua text-4xl leading-[1.15] md:text-6xl">{result.name}</h2>
                     <p className="mt-4 text-base leading-8 text-au-ink/75">당신은 {result.name}의 결을 가졌어요.</p>
@@ -872,15 +872,15 @@ export default function DiagnosisQuiz() {
 
                 <p className="mt-8 text-base leading-8 text-au-ink/80">{result.description}</p>
 
-                <SheetTitle eyebrow={`Enneagram · Type ${result.number}`}>에니어그램으로 보는 나의 결</SheetTitle>
-                <p className="mt-5 text-sm leading-7 text-au-ink/60">{ENNEAGRAM_INTRO}</p>
+                <SheetTitle eyebrow={`Nine Grains · Type ${result.number}`}>아홉 가지 결 속의 나</SheetTitle>
+                <p className="mt-5 text-sm leading-7 text-au-ink/60">{GRAIN_MAP_INTRO}</p>
                 <p className="mt-4 text-base leading-8">
-                  <strong className="font-bold">{result.number}번 {result.oldName}</strong>는 {result.enneagram.summary}
+                  <strong className="font-bold">{result.number}번 {result.oldName}</strong>는 {result.profile.summary}
                 </p>
 
                 <div className="mt-8 grid gap-8 md:grid-cols-[15rem_1fr] md:items-start">
                   <figure className="felt mx-auto w-full max-w-[17rem] rounded-[28px] bg-white/60 p-4 ring-1 ring-au-ink/5">
-                    <EnneagramFigure result={result} />
+                    <GrainFigure result={result} />
                     <figcaption className="mt-3 space-y-1.5 text-xs text-au-ink/65">
                       <p className="flex items-center gap-2">
                         <span className="inline-block h-0.5 w-6 rounded bg-[#6F7D35]" />
@@ -898,8 +898,8 @@ export default function DiagnosisQuiz() {
                   </figure>
 
                   <dl className="divide-y divide-au-ink/10 border-y border-au-ink/10">
-                    <Fact label="핵심 욕구">{result.enneagram.desire}</Fact>
-                    <Fact label="근원적 두려움">{result.enneagram.fear}</Fact>
+                    <Fact label="핵심 욕구">{result.profile.desire}</Fact>
+                    <Fact label="근원적 두려움">{result.profile.fear}</Fact>
                     <Fact label="힘의 중심">
                       <span className="font-semibold">{center.name}</span>
                       <span className="mt-1 block text-sm leading-6 text-au-ink/65">{center.text}</span>
@@ -914,11 +914,11 @@ export default function DiagnosisQuiz() {
                     </Fact>
                     <Fact label="성장할 때">
                       <span className="font-semibold">{typeLabel(GROWTH[result.number])} 쪽으로</span>
-                      <span className="mt-1 block text-sm leading-6 text-au-ink/65">{result.enneagram.growth}</span>
+                      <span className="mt-1 block text-sm leading-6 text-au-ink/65">{result.profile.growth}</span>
                     </Fact>
                     <Fact label="지칠 때">
                       <span className="font-semibold">{typeLabel(STRESS[result.number])} 쪽으로</span>
-                      <span className="mt-1 block text-sm leading-6 text-au-ink/65">{result.enneagram.stress}</span>
+                      <span className="mt-1 block text-sm leading-6 text-au-ink/65">{result.profile.stress}</span>
                     </Fact>
                   </dl>
                 </div>
@@ -1097,15 +1097,15 @@ function GrainBadge({ result }: { result: Result }) {
 }
 
 // 9개 점을 원 위에 두고(9번이 맨 위), 안쪽 선은 3-6-9 삼각형과 1-4-2-8-5-7 육각 별입니다.
-const ENNEA_POINTS = Array.from({ length: 9 }, (_, i) => {
+const GRAIN_POINTS = Array.from({ length: 9 }, (_, i) => {
   const n = i + 1
   const angle = ((-90 + n * 40) * Math.PI) / 180
   return { n, x: Math.round((100 + 74 * Math.cos(angle)) * 10) / 10, y: Math.round((100 + 74 * Math.sin(angle)) * 10) / 10 }
 })
-const pointOf = (n: number) => ENNEA_POINTS[n - 1]
+const pointOf = (n: number) => GRAIN_POINTS[n - 1]
 const polygonOf = (ns: number[]) => ns.map((n) => `${pointOf(n).x},${pointOf(n).y}`).join(' ')
 
-function EnneagramFigure({ result }: { result: Result }) {
+function GrainFigure({ result }: { result: Result }) {
   const me = result.number
   const wings = wingsOf(me)
 
@@ -1123,12 +1123,12 @@ function EnneagramFigure({ result }: { result: Result }) {
   }
 
   return (
-    <svg viewBox="0 0 200 200" role="img" aria-label={`에니어그램 도형에서 ${me}번 유형의 위치`} className="h-auto w-full">
+    <svg viewBox="0 0 200 200" role="img" aria-label={`아홉 가지 결 도형에서 ${me}번 결의 위치`} className="h-auto w-full">
       <defs>
-        <marker id="ennea-growth" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+        <marker id="grain-growth" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto">
           <path d="M0,0 L10,5 L0,10 z" fill="#6F7D35" />
         </marker>
-        <marker id="ennea-stress" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+        <marker id="grain-stress" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto">
           <path d="M0,0 L10,5 L0,10 z" fill="#9E4430" />
         </marker>
       </defs>
@@ -1136,17 +1136,17 @@ function EnneagramFigure({ result }: { result: Result }) {
       <polygon points={polygonOf([3, 6, 9])} fill="none" stroke="#3A2E25" strokeOpacity="0.15" strokeWidth="1.2" />
       <polygon points={polygonOf([1, 4, 2, 8, 5, 7])} fill="none" stroke="#3A2E25" strokeOpacity="0.15" strokeWidth="1.2" />
 
-      <line {...segment(GROWTH[me])} stroke="#6F7D35" strokeWidth="2.6" strokeLinecap="round" markerEnd="url(#ennea-growth)" />
+      <line {...segment(GROWTH[me])} stroke="#6F7D35" strokeWidth="2.6" strokeLinecap="round" markerEnd="url(#grain-growth)" />
       <line
         {...segment(STRESS[me])}
         stroke="#9E4430"
         strokeWidth="2.4"
         strokeDasharray="5 4"
         strokeLinecap="round"
-        markerEnd="url(#ennea-stress)"
+        markerEnd="url(#grain-stress)"
       />
 
-      {ENNEA_POINTS.map((p) => {
+      {GRAIN_POINTS.map((p) => {
         const isMe = p.n === me
         const isWing = wings.includes(p.n)
         return (

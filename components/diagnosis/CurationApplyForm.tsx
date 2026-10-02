@@ -21,7 +21,7 @@ const inputClass =
  * 결과지 하단의 맞춤 큐레이션 신청 폼.
  * Netlify Forms(관리 화면·CSV)로 보내고, CURATION_SHEET_URL이 있으면 구글 스프레드시트에도 함께 보냅니다.
  */
-export default function CurationApplyForm({ grain, scores }: { grain: string; scores: string }) {
+export default function CurationApplyForm({ scores }: { scores: string }) {
   const [name, setName] = useState('')
   const [age, setAge] = useState('')
   const [phone, setPhone] = useState('')
@@ -81,7 +81,6 @@ export default function CurationApplyForm({ grain, scores }: { grain: string; sc
       className="relative z-10 mx-auto mt-8 max-w-md space-y-3 text-left"
     >
       <input type="hidden" name="form-name" value={FORM_NAME} />
-      <input type="hidden" name="grain" value={grain} />
       <input type="hidden" name="scores" value={scores} />
       <p className="hidden">
         <label>

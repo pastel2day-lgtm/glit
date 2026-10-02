@@ -709,8 +709,18 @@ export default function DiagnosisQuiz() {
         max: MAX_PER_TYPE[type],
       }))
     : null
-  const grainLabel = `${result.number}번 ${result.name} (${result.oldName})`
-  const scoreSummary = scoreRows ? scoreRows.map((row) => `${row.number}번 ${row.count}점`).join(' / ') : ''
+  // 신청서에는 점수가 높은 순으로 적습니다. 동점이면 결과 유형을 먼저, 그다음은 번호 순입니다.
+  const scoreSummary = scoreRows
+    ? [...scoreRows]
+        .sort(
+          (a, b) =>
+            b.count - a.count ||
+            Number(b.number === result.number) - Number(a.number === result.number) ||
+            a.number - b.number
+        )
+        .map((row) => `${row.number}번 ${row.count}점`)
+        .join(' / ')
+    : ''
 
   return (
     <div className="felt flex min-h-screen flex-col break-keep bg-au-sky text-au-ink">
@@ -1015,7 +1025,7 @@ export default function DiagnosisQuiz() {
                     <br />
                     당신의 결에 맞는 책 목록을 48시간 안에 보내드릴게요.
                   </p>
-                  <CurationApplyForm key={resultType} grain={grainLabel} scores={scoreSummary} />
+                  <CurationApplyForm key={resultType} scores={scoreSummary} />
                 </div>
 
                 <button

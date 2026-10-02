@@ -23,7 +23,6 @@ export default function DiagnosisPage() {
         <input type="text" name="name" />
         <input type="number" name="age" />
         <input type="tel" name="phone" />
-        <input type="text" name="grain" />
         <input type="text" name="scores" />
         <input type="checkbox" name="privacy" />
       </form>
